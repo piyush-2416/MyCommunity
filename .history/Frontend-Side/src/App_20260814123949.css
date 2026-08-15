@@ -1,0 +1,69 @@
+@import "tailwindcss";
+@plugin "daisyui";
+.Main-image{
+  background-image: url("Mycommunity-image.png");
+   width: 100%;
+      /* filter: brightness(90%) contrast(110%); */
+      object-fit: cover;
+      height: 30rem;
+      color: darkred;
+      background-size: cover;
+  background-position: center;
+     display: flex;
+ }.community-Trees    {
+    width: 100%;
+  height: 35rem;
+margin :5rem;
+  /* Background Image */
+  background-image: url("Second community trees image.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Spacing */
+  padding: 4rem;
+  box-sizing: border-box;
+
+  /* UI */
+  border-radius: 20px;
+  overflow: hidden;
+
+  /* Optional */
+  position: relative;
+   
+ }
+ .Quick-action-sec ul li{
+width:8rem;
+height:5rem;border-radius:1.2rem;
+font-size: larger;  background-color:var(--white);
+  color:  var(--primary);
+  border:2px solid mediumseagreen;
+ }:root {
+  --primary: mediumseagreen;
+  --white: #ffffff;
+  --light-green: #eaf8f0;
+  --dark-green: #2e8b57;
+  --text: #333333;
+}
+
+  .Quick-action-sec ul{
+  display:flex;
+  gap:3rem;
+  margin-left:10%;
+  }.Business-sec ul  {
+  display:flex;
+  gap:3rem;
+  margin-left:2%;
+  }.Business-sec  ul li{
+width:13rem;
+overflow:hidden;
+height:12rem;border-radius:1.2rem;
+font-size: medium;  background-color:var(--white);
+  color:  var(--primary);
+  border:2px solid mediumseagreen;
+ }

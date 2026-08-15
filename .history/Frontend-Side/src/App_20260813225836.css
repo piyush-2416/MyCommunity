@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@plugin "daisyui";
+.Main-image{
+  background-image: url("Mycommunity-image.png");
+  width:70%;
+  height:50rem;
+
+}

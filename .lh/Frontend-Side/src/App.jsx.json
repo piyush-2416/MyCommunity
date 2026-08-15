@@ -1,0 +1,26 @@
+{
+    "sourceFile": "Frontend-Side/src/App.jsx",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1786555985413,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1786556250253,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n  import React from 'react'\n- \n+import \"./App.css\";\n  function App() {\n    return (\n      <div>\n    <h1 className=\"font-bold text-blue-600 text-3xl\">\n"
+                },
+                {
+                    "date": 1786556316956,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,13 @@\n+ import React from 'react'\n+import \"./App.css\";import \"./index.css\"\n+ function App() {\n+   return (\n+     <div>\n+   <h1 className=\"font-bold text-blue-600 text-3xl\">\n+      Tailwind is working!\n+    </h1>     </div>\n+   )\n+ }\n+ \n+ export default App\n+ \n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1786555985413,
+            "name": "Commit-0",
+            "content": " import React from 'react'\n \n function App() {\n   return (\n     <div>\n   <h1 className=\"text-3xl font-bold text-blue-600\">\n      Tailwind is working!\n    </h1>     </div>\n   )\n }\n \n export default App\n "
+        }
+    ]
+}

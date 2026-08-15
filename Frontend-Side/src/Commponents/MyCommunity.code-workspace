@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../CarePoint-Web"
+		},
+		{
+			"path": "../../../../../Java-codes"
+		},
+		{
+			"path": "../../../../MakerMarket"
+		},
+		{
+			"path": "../../../../SecodeMern-Project"
+		}
+	],
+	"settings": {}
+}

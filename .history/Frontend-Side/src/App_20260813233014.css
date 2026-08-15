@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@plugin "daisyui";
+.Main-image{
+  background-image: url("Mycommunity-image.png");
+   width: 100%;
+      /* filter: brightness(90%) contrast(110%); */
+      object-fit: cover;
+      height: 30rem;
+      color: darkred;
+      background-size: cover;
+  background-position: center;
+     display: flex;
+ }
+ .Quick-action-sec ul li{
+width:8rem;
+height:7rem;border-radius:1.2rem;
+font-size: medium;
+background-color:mediumseagreen;
+
+ }
+
+  .Quick-action-sec ul{
+  display:flex;
+  gap:5rem;
+  margin-left:15%;
+  }

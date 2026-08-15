@@ -1,0 +1,422 @@
+{
+    "sourceFile": "Frontend-Side/src/App.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 101,
+            "patches": [
+                {
+                    "date": 1786555933847,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1786556812524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-@import \"tailwindcss\";\n+/* @import \"tailwindcss\"; */\n .counter {\n   font-size: 16px;\n   padding: 5px 10px;\n   border-radius: 5px;\n"
+                },
+                {
+                    "date": 1786641973042,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,185 +1,3 @@\n-/* @import \"tailwindcss\"; */\n-.counter {\n-  font-size: 16px;\n-  padding: 5px 10px;\n-  border-radius: 5px;\n-  color: var(--accent);\n-  background: var(--accent-bg);\n-  border: 2px solid transparent;\n-  transition: border-color 0.3s;\n-  margin-bottom: 24px;\n-\n-  &:hover {\n-    border-color: var(--accent-border);\n-  }\n-  &:focus-visible {\n-    outline: 2px solid var(--accent);\n-    outline-offset: 2px;\n-  }\n-}\n-\n-.hero {\n-  position: relative;\n-\n-  .base,\n-  .framework,\n-  .vite {\n-    inset-inline: 0;\n-    margin: 0 auto;\n-  }\n-\n-  .base {\n-    width: 170px;\n-    position: relative;\n-    z-index: 0;\n-  }\n-\n-  .framework,\n-  .vite {\n-    position: absolute;\n-  }\n-\n-  .framework {\n-    z-index: 1;\n-    top: 34px;\n-    height: 28px;\n-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)\n-      scale(1.4);\n-  }\n-\n-  .vite {\n-    z-index: 0;\n-    top: 107px;\n-    height: 26px;\n-    width: auto;\n-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)\n-      scale(0.8);\n-  }\n-}\n-\n-#center {\n-  display: flex;\n-  flex-direction: column;\n-  gap: 25px;\n-  place-content: center;\n-  place-items: center;\n-  flex-grow: 1;\n-\n-  @media (max-width: 1024px) {\n-    padding: 32px 20px 24px;\n-    gap: 18px;\n-  }\n-}\n-\n-#next-steps {\n-  display: flex;\n-  border-top: 1px solid var(--border);\n-  text-align: left;\n-\n-  & > div {\n-    flex: 1 1 0;\n-    padding: 32px;\n-    @media (max-width: 1024px) {\n-      padding: 24px 20px;\n-    }\n-  }\n-\n-  .icon {\n-    margin-bottom: 16px;\n-    width: 22px;\n-    height: 22px;\n-  }\n-\n-  @media (max-width: 1024px) {\n-    flex-direction: column;\n-    text-align: center;\n-  }\n-}\n-\n-#docs {\n-  border-right: 1px solid var(--border);\n-\n-  @media (max-width: 1024px) {\n-    border-right: none;\n-    border-bottom: 1px solid var(--border);\n-  }\n-}\n-\n-#next-steps ul {\n-  list-style: none;\n-  padding: 0;\n-  display: flex;\n-  gap: 8px;\n-  margin: 32px 0 0;\n-\n-  .logo {\n-    height: 18px;\n-  }\n-\n-  a {\n-    color: var(--text-h);\n-    font-size: 16px;\n-    border-radius: 6px;\n-    background: var(--social-bg);\n-    display: flex;\n-    padding: 6px 12px;\n-    align-items: center;\n-    gap: 8px;\n-    text-decoration: none;\n-    transition: box-shadow 0.3s;\n-\n-    &:hover {\n-      box-shadow: var(--shadow);\n-    }\n-    .button-icon {\n-      height: 18px;\n-      width: 18px;\n-    }\n-  }\n-\n-  @media (max-width: 1024px) {\n-    margin-top: 20px;\n-    flex-wrap: wrap;\n-    justify-content: center;\n-\n-    li {\n-      flex: 1 1 calc(50% - 8px);\n-    }\n-\n-    a {\n-      width: 100%;\n-      justify-content: center;\n-      box-sizing: border-box;\n-    }\n-  }\n-}\n-\n-#spacer {\n-  height: 88px;\n-  border-top: 1px solid var(--border);\n-  @media (max-width: 1024px) {\n-    height: 48px;\n-  }\n-}\n-\n-.ticks {\n-  position: relative;\n-  width: 100%;\n-\n-  &::before,\n-  &::after {\n-    content: '';\n-    position: absolute;\n-    top: -4.5px;\n-    border: 5px solid transparent;\n-  }\n-\n-  &::before {\n-    left: 0;\n-    border-left-color: var(--border);\n-  }\n-  &::after {\n-    right: 0;\n-    border-right-color: var(--border);\n-  }\n-}\n+@import \"tailwindcss\";\n+@plugin \"daisyui\";\n+ \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786642050662,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,5 @@\n @import \"tailwindcss\";\n @plugin \"daisyui\";\n- \n\\ No newline at end of file\n+.Main-image{\n+  background-image: url(\"Frontend-Side/public/Mycommunity-image.png\");\n+}\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786642070239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,7 @@\n @import \"tailwindcss\";\n @plugin \"daisyui\";\n .Main-image{\n   background-image: url(\"Frontend-Side/public/Mycommunity-image.png\");\n+  width:100%;\n+  height:20rem;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786642088466,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n @import \"tailwindcss\";\n @plugin \"daisyui\";\n .Main-image{\n-  background-image: url(\"Frontend-Side/public/Mycommunity-image.png\");\n+  background-image: url(\"Mycommunity-image.png\");\n   width:100%;\n   height:20rem;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786642106826,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,6 +2,7 @@\n @plugin \"daisyui\";\n .Main-image{\n   background-image: url(\"Mycommunity-image.png\");\n   width:100%;\n-  height:20rem;\n+  height:50rem;\n+\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786642116710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n @import \"tailwindcss\";\n @plugin \"daisyui\";\n .Main-image{\n   background-image: url(\"Mycommunity-image.png\");\n-  width:100%;\n+  width:70%;\n   height:50rem;\n \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786642199980,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,14 @@\n @import \"tailwindcss\";\n @plugin \"daisyui\";\n .Main-image{\n   background-image: url(\"Mycommunity-image.png\");\n-  width:70%;\n-  height:50rem;\n+   width: 70rem;\n+      /* filter: brightness(90%) contrast(110%); */\n+      object-fit: cover;\n+      height: 30rem;\n+      color: darkred;\n+      background-size: cover;\n+      background-position: center;\n+    display: flex;\n \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786642216393,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,8 @@\n       object-fit: cover;\n       height: 30rem;\n       color: darkred;\n       background-size: cover;\n-      background-position: center;\n+      /* background-position: center; */\n     display: flex;\n \n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786642248083,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,13 @@\n       object-fit: cover;\n       height: 30rem;\n       color: darkred;\n       background-size: cover;\n-      /* background-position: center; */\n+\n+      background-position: center;\n     display: flex;\n \n+}* {\n+    margin: 0;\n+    padding: 0;\n+    box-sizing: border-box;\n }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786642294044,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,12 +7,11 @@\n       object-fit: cover;\n       height: 30rem;\n       color: darkred;\n       background-size: cover;\n+  background-position: center;\n+    /* display: flex; */\n \n-      background-position: center;\n-    display: flex;\n-\n }* {\n     margin: 0;\n     padding: 0;\n     box-sizing: border-box;\n"
+                },
+                {
+                    "date": 1786642299667,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n       object-fit: cover;\n       height: 30rem;\n       color: darkred;\n       background-size: cover;\n-  background-position: center;\n+  /* background-position: center; */\n     /* display: flex; */\n \n }* {\n     margin: 0;\n"
+                },
+                {
+                    "date": 1786642309489,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n       object-fit: cover;\n       height: 30rem;\n       color: darkred;\n       background-size: cover;\n-  /* background-position: center; */\n+  background-position: start;\n     /* display: flex; */\n \n }* {\n     margin: 0;\n"
+                },
+                {
+                    "date": 1786642323719,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n       object-fit: cover;\n       height: 30rem;\n       color: darkred;\n       background-size: cover;\n-  background-position: start;\n+  background-position: center;\n     /* display: flex; */\n \n }* {\n     margin: 0;\n"
+                },
+                {
+                    "date": 1786642338642,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n       height: 30rem;\n       color: darkred;\n       background-size: cover;\n   background-position: center;\n+  position:absolute;\n     /* display: flex; */\n \n }* {\n     margin: 0;\n"
+                },
+                {
+                    "date": 1786642349922,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n       height: 30rem;\n       color: darkred;\n       background-size: cover;\n   background-position: center;\n-  position:absolute;\n+  position:relative;\n     /* display: flex; */\n \n }* {\n     margin: 0;\n"
+                },
+                {
+                    "date": 1786642358561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n       height: 30rem;\n       color: darkred;\n       background-size: cover;\n   background-position: center;\n-  position:relative;\n+  /* position:relative; */\n     /* display: flex; */\n \n }* {\n     margin: 0;\n"
+                },
+                {
+                    "date": 1786642370498,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,10 @@\n   background-position: center;\n   /* position:relative; */\n     /* display: flex; */\n \n-}* {\n+}\n+/* * {\n     margin: 0;\n     padding: 0;\n\\ No newline at end of file\n     box-sizing: border-box;\n-}\n+} */\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786642383416,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n       color: darkred;\n       background-size: cover;\n   background-position: center;\n   /* position:relative; */\n-    /* display: flex; */\n+    display: flex;\n \n }\n /* * {\n     margin: 0;\n"
+                },
+                {
+                    "date": 1786642400374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       background-size: cover;\n   background-position: center;\n   /* position:relative; */\n     display: flex;\n-\n+margin:auto;\n }\n /* * {\n     margin: 0;\n     padding: 0;\n"
+                },
+                {
+                    "date": 1786642411243,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       background-size: cover;\n   background-position: center;\n   /* position:relative; */\n     display: flex;\n-margin:auto;\n+margin-left:auto;\n }\n /* * {\n     margin: 0;\n     padding: 0;\n"
+                },
+                {
+                    "date": 1786642419919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       background-size: cover;\n   background-position: center;\n   /* position:relative; */\n     display: flex;\n-margin-left:auto;\n+margin-left:2rem;\n }\n /* * {\n     margin: 0;\n     padding: 0;\n"
+                },
+                {
+                    "date": 1786642426464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       background-size: cover;\n   background-position: center;\n   /* position:relative; */\n     display: flex;\n-margin-left:2rem;\n+margin-right:2rem;\n }\n /* * {\n     margin: 0;\n     padding: 0;\n"
+                },
+                {
+                    "date": 1786642432507,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       background-size: cover;\n   background-position: center;\n   /* position:relative; */\n     display: flex;\n-margin-right:2rem;\n+margin-right:5rem;\n }\n /* * {\n     margin: 0;\n     padding: 0;\n"
+                },
+                {
+                    "date": 1786642441074,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       background-size: cover;\n   background-position: center;\n   /* position:relative; */\n     display: flex;\n-margin-right:5rem;\n+margin-right:8rem;\n }\n /* * {\n     margin: 0;\n     padding: 0;\n"
+                },
+                {
+                    "date": 1786642495382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n @import \"tailwindcss\";\n @plugin \"daisyui\";\n .Main-image{\n   background-image: url(\"Mycommunity-image.png\");\n-   width: 70rem;\n+   width: 100%;\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n       height: 30rem;\n       color: darkred;\n"
+                },
+                {
+                    "date": 1786642510374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       background-size: cover;\n   background-position: center;\n   /* position:relative; */\n     display: flex;\n-margin-right:8rem;\n+/* margin-right:8rem; */\n }\n /* * {\n     margin: 0;\n     padding: 0;\n"
+                },
+                {
+                    "date": 1786642564364,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,17 +4,11 @@\n   background-image: url(\"Mycommunity-image.png\");\n    width: 100%;\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n-      height: 30rem;\n+      height: 20rem;\n       color: darkred;\n       background-size: cover;\n   background-position: center;\n-  /* position:relative; */\n-    display: flex;\n-/* margin-right:8rem; */\n-}\n-/* * {\n-    margin: 0;\n-    padding: 0;\n-    box-sizing: border-box;\n\\ No newline at end of file\n-} */\n+     display: flex;\n+ }\n+ \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786642571706,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   background-image: url(\"Mycommunity-image.png\");\n    width: 100%;\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n-      height: 20rem;\n+      height: 25rem;\n       color: darkred;\n       background-size: cover;\n   background-position: center;\n      display: flex;\n"
+                },
+                {
+                    "date": 1786642580257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n   background-image: url(\"Mycommunity-image.png\");\n    width: 100%;\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n-      height: 25rem;\n+      height: 30rem;\n       color: darkred;\n       background-size: cover;\n   background-position: center;\n      display: flex;\n"
+                },
+                {
+                    "date": 1786643554274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,5 +10,11 @@\n       background-size: cover;\n   background-position: center;\n      display: flex;\n  }\n+ .Quick-action-secul li{\n+width:5rem;\n+height:5rem;\n+background-color: black;\n+\n+ }\n  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786643566153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       background-size: cover;\n   background-position: center;\n      display: flex;\n  }\n- .Quick-action-secul li{\n+ .Quick-action-sec ul li{\n width:5rem;\n height:5rem;\n background-color: black;\n \n"
+                },
+                {
+                    "date": 1786643578935,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n  }\n  .Quick-action-sec ul li{\n width:5rem;\n height:5rem;\n+display:flex;\n background-color: black;\n \n  }\n  \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786643615380,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,12 @@\n  }\n  .Quick-action-sec ul li{\n width:5rem;\n height:5rem;\n-display:flex;\n background-color: black;\n \n  }\n- \n\\ No newline at end of file\n+\n+  .Quick-action-sec ul{\n+  display:flex;\n+  \n+  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786643637113,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n  }\n \n   .Quick-action-sec ul{\n   display:flex;\n-  \n+  margin-left:20%;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786643644161,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n  }\n \n   .Quick-action-sec ul{\n   display:flex;\n-  margin-left:20%;\n+  margin-left:25%;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786643651429,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n  }\n \n   .Quick-action-sec ul{\n   display:flex;\n-  margin-left:25%;\n+  margin-left:30%;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786643657336,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,6 @@\n  }\n \n   .Quick-action-sec ul{\n   display:flex;\n-  margin-left:30%;\n+  margin-left:33%;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786643672511,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,6 +19,7 @@\n  }\n \n   .Quick-action-sec ul{\n   display:flex;\n+  gap:5rem;\n   margin-left:33%;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786643697374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,6 +20,6 @@\n \n   .Quick-action-sec ul{\n   display:flex;\n   gap:5rem;\n-  margin-left:33%;\n+  margin-left:30%;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786643714647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,6 +20,6 @@\n \n   .Quick-action-sec ul{\n   display:flex;\n   gap:5rem;\n-  margin-left:30%;\n+  margin-left:28%;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786643722675,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,6 +20,6 @@\n \n   .Quick-action-sec ul{\n   display:flex;\n   gap:5rem;\n-  margin-left:28%;\n+  margin-left:26%;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786643737878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,6 +20,6 @@\n \n   .Quick-action-sec ul{\n   display:flex;\n   gap:5rem;\n-  margin-left:26%;\n+  margin-left:22%;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786643747247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   background-position: center;\n      display: flex;\n  }\n  .Quick-action-sec ul li{\n-width:5rem;\n+width:6rem;\n height:5rem;\n background-color: black;\n \n  }\n"
+                },
+                {
+                    "date": 1786643760912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n  }\n  .Quick-action-sec ul li{\n width:6rem;\n height:5rem;\n+font-size: medium;\n background-color: black;\n \n  }\n \n"
+                },
+                {
+                    "date": 1786643788957,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n  .Quick-action-sec ul li{\n width:6rem;\n height:5rem;\n font-size: medium;\n-background-color: black;\n+background-color:mediumseagreen;\n \n  }\n \n   .Quick-action-sec ul{\n"
+                },
+                {
+                    "date": 1786643811788,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n      display: flex;\n  }\n  .Quick-action-sec ul li{\n width:6rem;\n-height:5rem;\n+height:5rem;border-radius:5rem;\n font-size: medium;\n background-color:mediumseagreen;\n \n  }\n"
+                },
+                {
+                    "date": 1786643818615,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n      display: flex;\n  }\n  .Quick-action-sec ul li{\n width:6rem;\n-height:5rem;border-radius:5rem;\n+height:5rem;border-radius:1.5rem;\n font-size: medium;\n background-color:mediumseagreen;\n \n  }\n"
+                },
+                {
+                    "date": 1786643827065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n      display: flex;\n  }\n  .Quick-action-sec ul li{\n width:6rem;\n-height:5rem;border-radius:1.5rem;\n+height:5rem;border-radius:1.2rem;\n font-size: medium;\n background-color:mediumseagreen;\n \n  }\n"
+                },
+                {
+                    "date": 1786643855377,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,10 +11,10 @@\n   background-position: center;\n      display: flex;\n  }\n  .Quick-action-sec ul li{\n-width:6rem;\n-height:5rem;border-radius:1.2rem;\n+width:8rem;\n+height:7rem;border-radius:1.2rem;\n font-size: medium;\n background-color:mediumseagreen;\n \n  }\n"
+                },
+                {
+                    "date": 1786644014762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,6 +21,6 @@\n \n   .Quick-action-sec ul{\n   display:flex;\n   gap:5rem;\n-  margin-left:22%;\n+  margin-left:15%;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786644020303,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,6 +21,6 @@\n \n   .Quick-action-sec ul{\n   display:flex;\n   gap:5rem;\n-  margin-left:15%;\n+  margin-left:10%;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786644027833,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,7 +20,7 @@\n  }\n \n   .Quick-action-sec ul{\n   display:flex;\n-  gap:5rem;\n+  gap:3rem;\n   margin-left:10%;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786644173737,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,15 @@\n height:7rem;border-radius:1.2rem;\n font-size: medium;\n background-color:mediumseagreen;\n \n- }\n+ }:root {\n+  --primary: mediumseagreen;\n+  --white: #ffffff;\n+  --light-green: #eaf8f0;\n+  --dark-green: #2e8b57;\n+  --text: #333333;\n+}\n \n   .Quick-action-sec ul{\n   display:flex;\n   gap:3rem;\n"
+                },
+                {
+                    "date": 1786644219542,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,11 +13,13 @@\n  }\n  .Quick-action-sec ul li{\n width:8rem;\n height:7rem;border-radius:1.2rem;\n-font-size: medium;\n-background-color:mediumseagreen;\n+font-size: medium;  background: var(--primary);\n+  color: var(--white);\n \n+/* background-color:mediumseagreen; */\n+\n  }:root {\n   --primary: mediumseagreen;\n   --white: #ffffff;\n   --light-green: #eaf8f0;\n"
+                },
+                {
+                    "date": 1786644682097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,13 +13,10 @@\n  }\n  .Quick-action-sec ul li{\n width:8rem;\n height:7rem;border-radius:1.2rem;\n-font-size: medium;  background: var(--primary);\n+font-size: larger;  background: var(--primary);\n   color: var(--white);\n-\n-/* background-color:mediumseagreen; */\n-\n  }:root {\n   --primary: mediumseagreen;\n   --white: #ffffff;\n   --light-green: #eaf8f0;\n"
+                },
+                {
+                    "date": 1786644710508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n      display: flex;\n  }\n  .Quick-action-sec ul li{\n width:8rem;\n-height:7rem;border-radius:1.2rem;\n+height:5rem;border-radius:1.2rem;\n font-size: larger;  background: var(--primary);\n   color: var(--white);\n  }:root {\n   --primary: mediumseagreen;\n"
+                },
+                {
+                    "date": 1786644741065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n  }\n  .Quick-action-sec ul li{\n width:8rem;\n height:5rem;border-radius:1.2rem;\n-font-size: larger;  background: var(--primary);\n+font-size: larger;  background-color:var(--white);\n   color: var(--white);\n  }:root {\n   --primary: mediumseagreen;\n   --white: #ffffff;\n"
+                },
+                {
+                    "date": 1786644765433,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n  .Quick-action-sec ul li{\n width:8rem;\n height:5rem;border-radius:1.2rem;\n font-size: larger;  background-color:var(--white);\n-  color: var(--white);\n+  color:  var(--primary);\n  }:root {\n   --primary: mediumseagreen;\n   --white: #ffffff;\n   --light-green: #eaf8f0;\n"
+                },
+                {
+                    "date": 1786644793214,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n width:8rem;\n height:5rem;border-radius:1.2rem;\n font-size: larger;  background-color:var(--white);\n   color:  var(--primary);\n+  border:2px solid mediumseagreen;\n  }:root {\n   --primary: mediumseagreen;\n   --white: #ffffff;\n   --light-green: #eaf8f0;\n"
+                },
+                {
+                    "date": 1786646952601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,5 +28,9 @@\n   .Quick-action-sec ul{\n   display:flex;\n   gap:3rem;\n   margin-left:10%;\n+  }.Business-secul ul{\n+  display:flex;\n+  gap:3rem;\n+  margin-left:10%;\n   }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786646974155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,5 +32,11 @@\n   }.Business-secul ul{\n   display:flex;\n   gap:3rem;\n   margin-left:10%;\n-  }\n\\ No newline at end of file\n+  }.Business-secul ul li{\n+width:8rem;\n+height:5rem;border-radius:1.2rem;\n+font-size: larger;  background-color:var(--white);\n+  color:  var(--primary);\n+  border:2px solid mediumseagreen;\n+ }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786647014951,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,13 +28,13 @@\n   .Quick-action-sec ul{\n   display:flex;\n   gap:3rem;\n   margin-left:10%;\n-  }.Business-secul ul{\n+  }.Business-sec ul ul{\n   display:flex;\n   gap:3rem;\n   margin-left:10%;\n-  }.Business-secul ul li{\n+  }.Business-sec  ul li{\n width:8rem;\n height:5rem;border-radius:1.2rem;\n font-size: larger;  background-color:var(--white);\n   color:  var(--primary);\n"
+                },
+                {
+                    "date": 1786647023017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,9 +28,9 @@\n   .Quick-action-sec ul{\n   display:flex;\n   gap:3rem;\n   margin-left:10%;\n-  }.Business-sec ul ul{\n+  }.Business-sec ul  {\n   display:flex;\n   gap:3rem;\n   margin-left:10%;\n   }.Business-sec  ul li{\n"
+                },
+                {
+                    "date": 1786647129352,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -34,9 +34,9 @@\n   gap:3rem;\n   margin-left:10%;\n   }.Business-sec  ul li{\n width:8rem;\n-height:5rem;border-radius:1.2rem;\n+height:10rem;border-radius:1.2rem;\n font-size: larger;  background-color:var(--white);\n   color:  var(--primary);\n   border:2px solid mediumseagreen;\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786647134693,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n   display:flex;\n   gap:3rem;\n   margin-left:10%;\n   }.Business-sec  ul li{\n-width:8rem;\n+width:15rem;\n height:10rem;border-radius:1.2rem;\n font-size: larger;  background-color:var(--white);\n   color:  var(--primary);\n   border:2px solid mediumseagreen;\n"
+                },
+                {
+                    "date": 1786647174947,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,10 @@\n   display:flex;\n   gap:3rem;\n   margin-left:10%;\n   }.Business-sec  ul li{\n-width:15rem;\n+width:13rem;\n+overflow:hidden;\n height:10rem;border-radius:1.2rem;\n font-size: larger;  background-color:var(--white);\n   color:  var(--primary);\n   border:2px solid mediumseagreen;\n"
+                },
+                {
+                    "date": 1786647222890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n   margin-left:10%;\n   }.Business-sec  ul li{\n width:13rem;\n overflow:hidden;\n-height:10rem;border-radius:1.2rem;\n+height:15rem;border-radius:1.2rem;\n font-size: larger;  background-color:var(--white);\n   color:  var(--primary);\n   border:2px solid mediumseagreen;\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786647238156,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n   margin-left:10%;\n   }.Business-sec  ul li{\n width:13rem;\n overflow:hidden;\n-height:15rem;border-radius:1.2rem;\n+height:12rem;border-radius:1.2rem;\n font-size: larger;  background-color:var(--white);\n   color:  var(--primary);\n   border:2px solid mediumseagreen;\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786647276500,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,8 @@\n   }.Business-sec  ul li{\n width:13rem;\n overflow:hidden;\n height:12rem;border-radius:1.2rem;\n-font-size: larger;  background-color:var(--white);\n+font-size: medium;  background-color:var(--white);\n   color:  var(--primary);\n   border:2px solid mediumseagreen;\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786647367740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n   margin-left:10%;\n   }.Business-sec  ul li{\n width:13rem;\n overflow:hidden;\n-height:12rem;border-radius:1.2rem;\n+height:10rem;border-radius:1.2rem;\n font-size: medium;  background-color:var(--white);\n   color:  var(--primary);\n   border:2px solid mediumseagreen;\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786647375006,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n   margin-left:10%;\n   }.Business-sec  ul li{\n width:13rem;\n overflow:hidden;\n-height:10rem;border-radius:1.2rem;\n+height:11rem;border-radius:1.2rem;\n font-size: medium;  background-color:var(--white);\n   color:  var(--primary);\n   border:2px solid mediumseagreen;\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786647382633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,9 @@\n   margin-left:10%;\n   }.Business-sec  ul li{\n width:13rem;\n overflow:hidden;\n-height:11rem;border-radius:1.2rem;\n+height:12rem;border-radius:1.2rem;\n font-size: medium;  background-color:var(--white);\n   color:  var(--primary);\n   border:2px solid mediumseagreen;\n  }\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1786690590652,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,26 @@\n       color: darkred;\n       background-size: cover;\n   background-position: center;\n      display: flex;\n+ }.community-Trees  {\n+   background-image: url(\"Mycommunity-image.png\");\n+   width: 100%;\n+      /* filter: brightness(90%) contrast(110%); */\n+      object-fit: cover;\n+      height: 30rem;\n+      color: darkred;\n+      background-size: cover;\n+  background-position: center;\n+     display: flex;\");\n+   width: 100%;\n+      /* filter: brightness(90%) contrast(110%); */\n+      object-fit: cover;\n+      height: 30rem;\n+      color: darkred;\n+      background-size: cover;\n+  background-position: center;\n+     display: flex;\n  }\n  .Quick-action-sec ul li{\n width:8rem;\n height:5rem;border-radius:1.2rem;\n@@ -31,9 +49,9 @@\n   margin-left:10%;\n   }.Business-sec ul  {\n   display:flex;\n   gap:3rem;\n-  margin-left:10%;\n+  margin-left:2%;\n   }.Business-sec  ul li{\n width:13rem;\n overflow:hidden;\n height:12rem;border-radius:1.2rem;\n"
+                },
+                {
+                    "date": 1786690602246,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n       height: 30rem;\n       color: darkred;\n       background-size: cover;\n   background-position: center;\n-     display: flex;\");\n+     display: flex;\n    width: 100%;\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n       height: 30rem;\n"
+                },
+                {
+                    "date": 1786690658301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n       background-size: cover;\n   background-position: center;\n      display: flex;\n  }.community-Trees  {\n-   background-image: url(\"Mycommunity-image.png\");\n+   background-image: url(\"community-Trees-image.png\");\n    width: 100%;\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n       height: 30rem;\n"
+                },
+                {
+                    "date": 1786690670898,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n    background-image: url(\"community-Trees-image.png\");\n    width: 100%;\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n-      height: 30rem;\n+      height: 35rem;\n       color: darkred;\n       background-size: cover;\n   background-position: center;\n      display: flex;\n"
+                },
+                {
+                    "date": 1786690753341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n    background-image: url(\"community-Trees-image.png\");\n    width: 100%;\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n-      height: 35rem;\n+      height: 35rem;padding:4rem;\n       color: darkred;\n       background-size: cover;\n   background-position: center;\n      display: flex;\n"
+                },
+                {
+                    "date": 1786690768268,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n       color: darkred;\n       background-size: cover;\n   background-position: center;\n      display: flex;\n- }.community-Trees  {\n+ }.community-Trees img  {\n    background-image: url(\"community-Trees-image.png\");\n    width: 100%;\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n"
+                },
+                {
+                    "date": 1786690781910,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,9 @@\n       object-fit: cover;\n       height: 35rem;padding:4rem;\n       color: darkred;\n       background-size: cover;\n+      overflow: hidden;\n   background-position: center;\n      display: flex;\n    width: 100%;\n       /* filter: brightness(90%) contrast(110%); */\n"
+                },
+                {
+                    "date": 1786690792014,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n       height: 35rem;padding:4rem;\n       color: darkred;\n-      background-size: cover;\n+      background-siz/e: cover;\n       overflow: hidden;\n   background-position: center;\n      display: flex;\n    width: 100%;\n"
+                },
+                {
+                    "date": 1786690808762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,11 +16,11 @@\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n       height: 35rem;padding:4rem;\n       color: darkred;\n-      background-siz/e: cover;\n+      /* background-size: cover; */\n       overflow: hidden;\n-  background-position: center;\n+  /* background-position: center; */\n      display: flex;\n    width: 100%;\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n"
+                },
+                {
+                    "date": 1786690814988,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n       /* background-size: cover; */\n       overflow: hidden;\n   /* background-position: center; */\n      display: flex;\n-   width: 100%;\n+   /* width: 100%; */\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n       height: 30rem;\n       color: darkred;\n"
+                },
+                {
+                    "date": 1786690836017,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,16 +20,9 @@\n       /* background-size: cover; */\n       overflow: hidden;\n   /* background-position: center; */\n      display: flex;\n-   /* width: 100%; */\n-      /* filter: brightness(90%) contrast(110%); */\n-      object-fit: cover;\n-      height: 30rem;\n-      color: darkred;\n-      background-size: cover;\n-  background-position: center;\n-     display: flex;\n+   \n  }\n  .Quick-action-sec ul li{\n width:8rem;\n height:5rem;border-radius:1.2rem;\n"
+                },
+                {
+                    "date": 1786690848961,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n       height: 35rem;padding:4rem;\n       color: darkred;\n       /* background-size: cover; */\n       overflow: hidden;\n-  /* background-position: center; */\n+  background-position: center;\n      display: flex;\n    \n  }\n  .Quick-action-sec ul li{\n"
+                },
+                {
+                    "date": 1786690858047,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n       /* filter: brightness(90%) contrast(110%); */\n       object-fit: cover;\n       height: 35rem;padding:4rem;\n       color: darkred;\n-      /* background-size: cover; */\n+      background-size: cover;\n       overflow: hidden;\n   background-position: center;\n      display: flex;\n    \n"
+                },
+                {
+                    "date": 1786691017720,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,18 +10,32 @@\n       background-size: cover;\n   background-position: center;\n      display: flex;\n  }.community-Trees img  {\n-   background-image: url(\"community-Trees-image.png\");\n-   width: 100%;\n-      /* filter: brightness(90%) contrast(110%); */\n-      object-fit: cover;\n-      height: 35rem;padding:4rem;\n-      color: darkred;\n-      background-size: cover;\n-      overflow: hidden;\n+    width: 100%;\n+  height: 35rem;\n+\n+  /* Background Image */\n+  background-image: url(\"./community-Trees-image.png\");\n+  background-size: cover;\n   background-position: center;\n-     display: flex;\n+  background-repeat: no-repeat;\n+\n+  /* Layout */\n+  display: flex;\n+  align-items: center;\n+  justify-content: center;\n+\n+  /* Spacing */\n+  padding: 4rem;\n+  box-sizing: border-box;\n+\n+  /* UI */\n+  border-radius: 20px;\n+  overflow: hidden;\n+\n+  /* Optional */\n+  position: relative;\n    \n  }\n  .Quick-action-sec ul li{\n width:8rem;\n"
+                },
+                {
+                    "date": 1786691039919,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n       color: darkred;\n       background-size: cover;\n   background-position: center;\n      display: flex;\n- }.community-Trees img  {\n+ }.community-Trees    {\n     width: 100%;\n   height: 35rem;\n \n   /* Background Image */\n"
+                },
+                {
+                    "date": 1786691176085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n     width: 100%;\n   height: 35rem;\n \n   /* Background Image */\n-  background-image: url(\"./community-Trees-image.png\");\n+  background-image: url(\"Second community trees image.png\");\n   background-size: cover;\n   background-position: center;\n   background-repeat: no-repeat;\n \n"
+                },
+                {
+                    "date": 1786691191290,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   background-position: center;\n      display: flex;\n  }.community-Trees    {\n     width: 100%;\n-  height: 35rem;\n+  height: 30rem;\n \n   /* Background Image */\n   background-image: url(\"Second community trees image.png\");\n   background-size: cover;\n"
+                },
+                {
+                    "date": 1786691346593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n   background-position: center;\n      display: flex;\n  }.community-Trees    {\n     width: 100%;\n-  height: 30rem;\n+  height: 35rem;\n \n   /* Background Image */\n   background-image: url(\"Second community trees image.png\");\n   background-size: cover;\n"
+                },
+                {
+                    "date": 1786691360169,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n      display: flex;\n  }.community-Trees    {\n     width: 100%;\n   height: 35rem;\n-\n+padding :5rem;\n   /* Background Image */\n   background-image: url(\"Second community trees image.png\");\n   background-size: cover;\n   background-position: center;\n"
+                },
+                {
+                    "date": 1786691368608,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n      display: flex;\n  }.community-Trees    {\n     width: 100%;\n   height: 35rem;\n-padding :5rem;\n+padding :50rem;\n   /* Background Image */\n   background-image: url(\"Second community trees image.png\");\n   background-size: cover;\n   background-position: center;\n"
+                },
+                {
+                    "date": 1786691379273,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n      display: flex;\n  }.community-Trees    {\n     width: 100%;\n   height: 35rem;\n-padding :50rem;\n+margin :50rem;\n   /* Background Image */\n   background-image: url(\"Second community trees image.png\");\n   background-size: cover;\n   background-position: center;\n"
+                },
+                {
+                    "date": 1786691389153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n      display: flex;\n  }.community-Trees    {\n     width: 100%;\n   height: 35rem;\n-margin :50rem;\n+margin :5rem;\n   /* Background Image */\n   background-image: url(\"Second community trees image.png\");\n   background-size: cover;\n   background-position: center;\n"
+                },
+                {
+                    "date": 1786691401158,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n      display: flex;\n  }.community-Trees    {\n     width: 100%;\n   height: 35rem;\n-margin :5rem;\n+margin :2rem;\n   /* Background Image */\n   background-image: url(\"Second community trees image.png\");\n   background-size: cover;\n   background-position: center;\n"
+                },
+                {
+                    "date": 1786691418649,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n      display: flex;\n  }.community-Trees    {\n     width: 100%;\n   height: 35rem;\n-margin :2rem;\n+margin :8px;\n   /* Background Image */\n   background-image: url(\"Second community trees image.png\");\n   background-size: cover;\n   background-position: center;\n"
+                },
+                {
+                    "date": 1786691437064,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n   background-image: url(\"Second community trees image.png\");\n   background-size: cover;\n   background-position: center;\n   background-repeat: no-repeat;\n-\n+overflow: hidden;\n   /* Layout */\n   display: flex;\n   align-items: center;\n   justify-content: center;\n"
+                },
+                {
+                    "date": 1786691451086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n      display: flex;\n  }.community-Trees    {\n     width: 100%;\n   height: 35rem;\n-margin :8px;\n+margin :8px;overflow: hidden;\n   /* Background Image */\n   background-image: url(\"Second community trees image.png\");\n   background-size: cover;\n   background-position: center;\n"
+                },
+                {
+                    "date": 1786691463302,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n      display: flex;\n  }.community-Trees    {\n     width: 100%;\n   height: 35rem;\n-margin :8px;overflow: hidden;\n+margin :10px;overflow: hidden;\n   /* Background Image */\n   background-image: url(\"Second community trees image.png\");\n   background-size: cover;\n   background-position: center;\n"
+                },
+                {
+                    "date": 1786691471381,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n      display: flex;\n  }.community-Trees    {\n     width: 100%;\n   height: 35rem;\n-margin :10px;overflow: hidden;\n+margin :6px;overflow: hidden;\n   /* Background Image */\n   background-image: url(\"Second community trees image.png\");\n   background-size: cover;\n   background-position: center;\n"
+                }
+            ],
+            "date": 1786555933847,
+            "name": "Commit-0",
+            "content": "@import \"tailwindcss\";\n.counter {\n  font-size: 16px;\n  padding: 5px 10px;\n  border-radius: 5px;\n  color: var(--accent);\n  background: var(--accent-bg);\n  border: 2px solid transparent;\n  transition: border-color 0.3s;\n  margin-bottom: 24px;\n\n  &:hover {\n    border-color: var(--accent-border);\n  }\n  &:focus-visible {\n    outline: 2px solid var(--accent);\n    outline-offset: 2px;\n  }\n}\n\n.hero {\n  position: relative;\n\n  .base,\n  .framework,\n  .vite {\n    inset-inline: 0;\n    margin: 0 auto;\n  }\n\n  .base {\n    width: 170px;\n    position: relative;\n    z-index: 0;\n  }\n\n  .framework,\n  .vite {\n    position: absolute;\n  }\n\n  .framework {\n    z-index: 1;\n    top: 34px;\n    height: 28px;\n    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)\n      scale(1.4);\n  }\n\n  .vite {\n    z-index: 0;\n    top: 107px;\n    height: 26px;\n    width: auto;\n    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)\n      scale(0.8);\n  }\n}\n\n#center {\n  display: flex;\n  flex-direction: column;\n  gap: 25px;\n  place-content: center;\n  place-items: center;\n  flex-grow: 1;\n\n  @media (max-width: 1024px) {\n    padding: 32px 20px 24px;\n    gap: 18px;\n  }\n}\n\n#next-steps {\n  display: flex;\n  border-top: 1px solid var(--border);\n  text-align: left;\n\n  & > div {\n    flex: 1 1 0;\n    padding: 32px;\n    @media (max-width: 1024px) {\n      padding: 24px 20px;\n    }\n  }\n\n  .icon {\n    margin-bottom: 16px;\n    width: 22px;\n    height: 22px;\n  }\n\n  @media (max-width: 1024px) {\n    flex-direction: column;\n    text-align: center;\n  }\n}\n\n#docs {\n  border-right: 1px solid var(--border);\n\n  @media (max-width: 1024px) {\n    border-right: none;\n    border-bottom: 1px solid var(--border);\n  }\n}\n\n#next-steps ul {\n  list-style: none;\n  padding: 0;\n  display: flex;\n  gap: 8px;\n  margin: 32px 0 0;\n\n  .logo {\n    height: 18px;\n  }\n\n  a {\n    color: var(--text-h);\n    font-size: 16px;\n    border-radius: 6px;\n    background: var(--social-bg);\n    display: flex;\n    padding: 6px 12px;\n    align-items: center;\n    gap: 8px;\n    text-decoration: none;\n    transition: box-shadow 0.3s;\n\n    &:hover {\n      box-shadow: var(--shadow);\n    }\n    .button-icon {\n      height: 18px;\n      width: 18px;\n    }\n  }\n\n  @media (max-width: 1024px) {\n    margin-top: 20px;\n    flex-wrap: wrap;\n    justify-content: center;\n\n    li {\n      flex: 1 1 calc(50% - 8px);\n    }\n\n    a {\n      width: 100%;\n      justify-content: center;\n      box-sizing: border-box;\n    }\n  }\n}\n\n#spacer {\n  height: 88px;\n  border-top: 1px solid var(--border);\n  @media (max-width: 1024px) {\n    height: 48px;\n  }\n}\n\n.ticks {\n  position: relative;\n  width: 100%;\n\n  &::before,\n  &::after {\n    content: '';\n    position: absolute;\n    top: -4.5px;\n    border: 5px solid transparent;\n  }\n\n  &::before {\n    left: 0;\n    border-left-color: var(--border);\n  }\n  &::after {\n    right: 0;\n    border-right-color: var(--border);\n  }\n}\n"
+        }
+    ]
+}
