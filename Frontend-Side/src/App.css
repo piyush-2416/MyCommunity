@@ -3,38 +3,24 @@
 .Main-image{
   background-image: url("Mycommunity-image.png");
    width: 100%;
-      /* filter: brightness(90%) contrast(110%); */
+      filter: brightness(90%) contrast(110%);
       object-fit: cover;
       height: 30rem;
       color: darkred;
       background-size: cover;
   background-position: center;
      display: flex;
- }.community-Trees    {
+ }.community-Trees {
     width: 100%;
-  height: 35rem;
-margin :6px;overflow: hidden;
-  /* Background Image */
-  background-image: url("Second community trees image.png");
+    display: flex;height: 28.5rem;
+margin :6px; 
+   background-image: url("last-community-image.png");
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-overflow: hidden;
-  /* Layout */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* Spacing */
-  padding: 4rem;
-  box-sizing: border-box;
-
-  /* UI */
+ /* padding:4.5px;  */
+ background-position: center;
+ justify-content: center;
   border-radius: 20px;
-  overflow: hidden;
-
-  /* Optional */
-  position: relative;
+  
    
  }
  .Quick-action-sec ul li{
@@ -67,3 +53,600 @@ font-size: medium;  background-color:var(--white);
   color:  var(--primary);
   border:2px solid mediumseagreen;
  }
+
+ .community-features ul li img{
+ width:100%;
+ overflow: hidden;
+ height: 5rem;
+ }
+.community-features ul li {
+  width:10rem;
+  height:10rem;
+  border:2px solid black;
+}.community-features ul {
+  display:flex;
+}
+
+
+/* starting chartgpt-- */
+/* =========================================
+   COMMUNITY FEATURES
+========================================= */
+
+.community-features {
+  width: 94%;
+  max-width: 1200px;
+  margin: 50px auto;
+}
+
+
+/* ---------- Heading ---------- */
+
+.community-feature-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 25px;
+}
+
+.section-label {
+  color: mediumseagreen;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.community-feature-heading h2 {
+  margin: 7px 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #222;
+}
+
+.community-feature-heading h2 span {
+  color: mediumseagreen;
+}
+
+.community-feature-heading p {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+}
+
+
+/* ---------- View All ---------- */
+
+.view-all-btn {
+  border: none;
+  background: #eaf8f0;
+  color: mediumseagreen;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.view-all-btn:hover {
+  background: mediumseagreen;
+  color: white;
+}
+
+
+/* ---------- Grid ---------- */
+
+.community-feature-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+
+/* ---------- Card ---------- */
+
+.community-feature-card {
+  background: white;
+
+  border: 1px solid #e5eee9;
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.06);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  cursor: pointer;
+}
+
+
+/* Card hover */
+
+.community-feature-card:hover {
+  transform: translateY(-7px);
+
+  box-shadow:
+    0 15px 35px rgba(46, 139, 87, 0.15);
+}
+
+
+/* ---------- Image ---------- */
+
+.feature-image-wrapper {
+  height: 155px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background: #eaf8f0;
+}
+
+.feature-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition: transform 0.5s ease;
+}
+
+.community-feature-card:hover .feature-image {
+  transform: scale(1.08);
+}
+
+
+/* ---------- Icon ---------- */
+
+.feature-icon {
+  position: absolute;
+
+  left: 15px;
+  bottom: 12px;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: white;
+
+  border-radius: 50%;
+
+  font-size: 21px;
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ---------- Tag ---------- */
+
+.feature-tag {
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  color: #2e8b57;
+
+  padding: 5px 10px;
+
+  border-radius: 20px;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+
+/* ---------- Content ---------- */
+
+.feature-content {
+  padding: 17px;
+}
+
+.feature-content h3 {
+  margin: 0 0 7px;
+
+  font-size: 18px;
+
+  color: #222;
+
+  font-weight: 750;
+}
+
+.feature-content p {
+  margin: 0;
+
+  color: #777;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  min-height: 40px;
+}
+
+
+/* ---------- Action ---------- */
+
+.feature-action {
+  margin-top: 14px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: mediumseagreen;
+
+  font-weight: 700;
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  transition: 0.3s;
+}
+
+.feature-action span {
+  font-size: 17px;
+
+  transition: 0.3s;
+}
+
+.community-feature-card:hover
+.feature-action span {
+  transform: translateX(5px);
+}/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .community-feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .community-features {
+    width: 92%;
+    margin: 35px auto;
+  }
+
+  .community-feature-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .community-feature-heading h2 {
+    font-size: 23px;
+  }
+
+  .community-feature-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .feature-image-wrapper {
+    height: 180px;
+  }
+
+  .view-all-btn {
+    align-self: flex-start;
+  }
+
+}
+
+/* =========================
+   QUICK ACTION
+========================= */
+
+.quick-section {
+  width: 94%;
+  max-width: 1200px;
+  margin: 30px auto;
+}
+
+.quick-section h2 {
+  text-align: center;
+  font-size: 25px;
+  color: black;
+  margin-bottom: 20px;
+}
+
+
+/* Cards container */
+
+.quick-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+}
+
+
+/* Individual card */
+
+.quick-card {
+  min-height: 95px;
+
+  background:#55ad7b;
+
+  border: 1px solid #d8ebe1;
+  border-radius: 16px;
+
+  padding: 14px 13px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  cursor: pointer;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  transition: all 0.2s ease;
+}
+
+
+/* Small hover */
+
+.quick-card:hover {
+  border-color: #55ad7b;
+  box-shadow: 0 5px 14px rgba(46, 139, 87, 0.10);
+}
+
+
+/* Icon */
+
+.quick-icon {
+  width: 42px;
+  height: 42px;
+
+  min-width: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #eef9f3;
+
+  border-radius: 12px;
+
+  font-size: 22px;
+}
+
+
+/* Text */
+
+.quick-card h3 {
+  margin: 0;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  color: white;
+}
+
+.quick-card p {
+  margin: 4px 0 0;
+
+  font-size: 11px;
+
+  line-height: 1.3;
+
+  color:bisque;
+}
+
+
+/* Arrow */
+
+.quick-card .arrow {
+  margin-left: auto;
+
+  width: 27px;
+  height: 27px;
+
+  min-width: 27px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #f0f8f4;
+
+  color: #3c9b68;
+
+  font-size: 16px;
+
+  transition: 0.2s;
+}
+
+
+/* Arrow hover */
+
+.quick-card:hover .arrow {
+  background: #3c9b68;
+  color: white;
+}
+
+/* popular service */
+/* =========================
+   POPULAR SERVICES
+========================= */
+
+.service-section {
+  width: 94%;
+  max-width: 1200px;
+  margin: 25px auto;
+}
+
+.service-list {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+.service-card {
+  text-align: center;
+
+  padding: 18px 10px;
+
+  border: 1px solid #dcece4;
+  border-radius: 14px;
+
+  background: #f8fcfa;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.service-card:hover {
+  border-color: mediumseagreen;
+  background: #f1faf5;
+}
+
+.service-card span {
+  font-size: 28px;
+}
+
+.service-card h3 {
+  margin: 8px 0 3px;
+  color: #333;
+  font-size: 16px;
+}
+
+.service-card p {
+  margin: 0;
+  color: #777;
+  font-size: 11px;
+}
+
+/* =========================
+   BUSINESS
+========================= */
+
+.business-section {
+  width: 94%;
+  max-width: 1200px;
+  margin: 30px auto;
+}
+
+.business-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.business-card {
+  background: white;
+
+  border: 1px solid #dcece4;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+
+  transition: 0.2s;
+
+  cursor: pointer;
+}
+
+.business-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.09);
+}
+
+.business-card img {
+  width: 100%;
+  height: 150px;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+.business-info {
+  min-height: 75px;
+
+  padding: 12px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.business-info h3 {
+  margin: 0;
+
+  font-size: 16px;
+
+  color: #333;
+}
+
+.business-info p {
+  margin: 5px 0 0;
+
+  font-size: 12px;
+
+  color: #6d987f;
+}
+
+.business-info button {
+  width: 32px;
+  height: 32px;
+
+  border: 1px solid #b7dcc8;
+
+  border-radius: 50%;
+
+  background: white;
+
+  color: mediumseagreen;
+
+  cursor: pointer;
+
+  font-size: 17px;
+}
+
+.business-info button:hover {
+  background: mediumseagreen;
+  color: white;
+}
