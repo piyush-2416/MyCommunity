@@ -10,6 +10,7 @@ import Business from "./Pages/Business.jsx";
  import Event from "./Pages/Event.jsx";
   import Notice from "./Components/Notices.jsx";
  import Profile from "./Pages/Profile.jsx";
+ import Society_polls from "./Pages/Society_Polls.jsx";
  
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/Event" element={<Event />} />
           <Route path="/Notice" element={<Notice />} />
           <Route path="/Profile" element={<Profile />} />
+          <Route path="/Society_Polls" element={<Society_polls />} />
 
 {/* <Route path="/Doctorid/:id" element={<Doctorid />} />  */}
 
