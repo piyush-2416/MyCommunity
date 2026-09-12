@@ -650,3 +650,237 @@ font-size: medium;  background-color:var(--white);
   background: mediumseagreen;
   color: white;
 }
+
+
+
+/* Make Our Community Better Together */
+/* communityPages.css
+   Shared design system for community initiative pages
+   (Elder Care, Animal Safety, Trees & Plants, Blood Donation, Lost & Found, Dogs & Community)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+.cp-page {
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: #24261F;
+  background: #FBFAF7;
+  line-height: 1.5;
+}
+
+/* ---------- Hero ---------- */
+.cp-hero {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 72px 24px 48px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.cp-hero-icon {
+  flex-shrink: 0;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--accent-tint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+
+.cp-hero-text h1 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(2rem, 4.6vw, 3.2rem);
+  line-height: 1.08;
+  margin: 0 0 16px;
+  letter-spacing: -0.01em;
+}
+
+.cp-hero-text p.cp-sub {
+  font-size: 1.08rem;
+  color: #5B5C50;
+  max-width: 52ch;
+  margin: 0 0 28px;
+}
+
+.cp-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cp-btn-primary {
+  background: var(--accent);
+  color: #fff;
+  padding: 13px 26px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.98rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: transform 0.15s ease;
+}
+.cp-btn-primary:hover { transform: translateY(-1px); }
+.cp-btn-primary:focus-visible { outline: 2px solid var(--accent-dark); outline-offset: 3px; }
+
+.cp-link-secondary {
+  color: #24261F;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: #C7C6B8;
+}
+
+/* ---------- Stats strip ---------- */
+.cp-stats {
+  display: flex;
+  gap: 48px;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 36px 24px;
+  border-top: 1px solid #E7E5DC;
+  border-bottom: 1px solid #E7E5DC;
+  flex-wrap: wrap;
+}
+
+.cp-stat-num {
+  font-family: 'Fraunces', serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--accent-dark);
+  line-height: 1;
+}
+
+.cp-stat-label {
+  font-size: 0.85rem;
+  color: #6F7062;
+  margin-top: 6px;
+}
+
+/* ---------- Steps (genuinely sequential, so numbered) ---------- */
+.cp-steps {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+
+.cp-steps h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.7rem;
+  margin: 0 0 8px;
+}
+
+.cp-steps-sub {
+  color: #6F7062;
+  font-size: 0.95rem;
+  margin: 0 0 36px;
+}
+
+.cp-step {
+  display: flex;
+  gap: 22px;
+  padding: 22px 0;
+  border-top: 1px solid #E7E5DC;
+}
+.cp-step:last-child { border-bottom: 1px solid #E7E5DC; }
+
+.cp-step-num {
+  font-family: 'Fraunces', serif;
+  font-size: 1rem;
+  color: var(--accent-dark);
+  min-width: 28px;
+  flex-shrink: 0;
+}
+
+.cp-step-title {
+  font-weight: 600;
+  font-size: 1.02rem;
+  margin: 0 0 5px;
+}
+
+.cp-step-desc {
+  color: #5B5C50;
+  font-size: 0.92rem;
+  margin: 0;
+  max-width: 56ch;
+}
+
+/* ---------- Quote ---------- */
+.cp-quote {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 8px 24px 72px;
+  text-align: center;
+}
+
+.cp-quote p {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+  line-height: 1.45;
+  color: #34352A;
+  margin: 0;
+}
+
+.cp-quote-by {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #8C8D7C;
+  margin-top: 18px;
+}
+
+/* ---------- CTA band ---------- */
+.cp-cta-band {
+  background: var(--accent);
+  padding: 52px 24px;
+  text-align: center;
+  color: #fff;
+}
+
+.cp-cta-band h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 3.6vw, 2.1rem);
+  margin: 0 0 12px;
+}
+
+.cp-cta-band p {
+  opacity: 0.92;
+  margin: 0 0 26px;
+  font-size: 1rem;
+}
+
+.cp-cta-band .cp-btn-primary {
+  background: #fff;
+  color: var(--accent-dark);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 640px) {
+  .cp-hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 44px 20px 36px;
+    gap: 20px;
+  }
+  .cp-hero-icon { width: 64px; height: 64px; font-size: 30px; }
+  .cp-stats { gap: 28px; padding: 28px 20px; }
+  .cp-steps { padding: 44px 20px; }
+  .cp-step { flex-direction: column; gap: 6px; }
+  .cp-step-num { min-width: auto; }
+  .cp-quote { padding: 0 20px 52px; }
+  .cp-cta-band { padding: 40px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cp-btn-primary { transition: none; }
+}
