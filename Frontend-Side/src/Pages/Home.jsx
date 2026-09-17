@@ -1,6 +1,9 @@
 import React from 'react'
  import Navbar from './Navbar.jsx';
 import { Link } from 'react-router-dom';
+import Footer from './Footer.jsx';import Blogs from '../Components/Blogs.jsx';
+import NotificationBell from './NotificationBell .jsx';
+import { ImageOff } from 'lucide-react';
  const communityFeatures = [
   {
     title: "Elder Care",
@@ -8,6 +11,7 @@ import { Link } from 'react-router-dom';
     image:
       "https://img.magnific.com/free-vector/grandparents-day-older-characters-icon-isolated_24911-109256.jpg",
     icon: "👵",
+    Link:"/Elders",
     tag: "Care",
   },
   {
@@ -16,6 +20,7 @@ import { Link } from 'react-router-dom';
     image:
       "https://static.vecteezy.com/system/resources/thumbnails/011/466/678/small/animal-rescue-team-is-taking-care-of-wild-animals-vector.jpg",
     icon: "🐾",
+    Link:"/AnimalsSafety",
     tag: "Animals",
   },
   {
@@ -24,6 +29,7 @@ import { Link } from 'react-router-dom';
     image:
       "https://static.vecteezy.com/system/resources/previews/029/454/798/non_2x/planting-plants-illustration-with-people-enjoy-gardening-plant-watering-or-digging-in-the-garden-in-flat-kids-cartoon-background-design-vector.jpg",
     icon: "🌱",
+    Link:"/TreesPlats",
     tag: "Environment",
   },
   {
@@ -32,6 +38,7 @@ import { Link } from 'react-router-dom';
     image:
       "https://media.istockphoto.com/id/1852205337/vector/doctor-working-with-patient-in-hospital-doctor-collects-blood-from-man.jpg?s=612x612&w=0&k=20&c=04alId1qs46HoJoQPgkihQzSMaZhDunLlM3auWltEMI=",
     icon: "🩸",
+    Link:"/Blood_donation",
     tag: "Health",
   },
   {
@@ -40,6 +47,7 @@ import { Link } from 'react-router-dom';
     image:
       "https://st2.depositphotos.com/33417770/42168/v/1600/depositphotos_421680902-stock-illustration-man-returning-lost-wallet-to.jpg",
     icon: "🔎",
+    Link:"/Lost_Found-data",
     tag: "Community",
   },
   {
@@ -48,6 +56,7 @@ import { Link } from 'react-router-dom';
     image:
       "https://static.vecteezy.com/system/resources/previews/046/885/275/non_2x/a-cartoon-illustration-of-a-man-kneeling-down-and-petting-his-dog-while-outdoors-in-a-park-free-vector.jpg",
     icon: "🐶",
+    Link:"/Dogs_care",
     tag: "Pets",
   },
 ];
@@ -64,6 +73,14 @@ function Home() {
 
   <div className="quick-list">
 
+     <div className="quick-card">
+      <span className="quick-icon">👥</span>
+      <div>
+        <h3>Community-Directory</h3>
+        <p>Our Members/residents</p>
+      </div>
+      <Link to="/Directory"><span className="arrow">→</span></Link>
+    </div>
     <div className="quick-card">
       <span className="quick-icon">🚨</span>
       <div>
@@ -73,14 +90,7 @@ function Home() {
       <Link to="/Complaints"><span className="arrow">→</span></Link>
     </div>
 
-    <div className="quick-card">
-      <span className="quick-icon">📝</span>
-      <div>
-        <h3>View Notices</h3>
-        <p>Check latest updates</p>
-      </div>
-      <Link to="/Notice"><span className="arrow">→</span></Link>
-    </div>
+   
 
     <div className="quick-card">
       <span className="quick-icon">📅</span>
@@ -270,10 +280,10 @@ function Home() {
 
               <p>{feature.description}</p>
 
-              <button className="feature-action">
+                <Link to={feature.Link}><button className="feature-action">
                 Explore
                 <span>→</span>
-              </button>
+              </button></Link>
 
             </div>
 
@@ -283,7 +293,7 @@ function Home() {
       </div>
 
     </section>
-    <hr/>
+    <hr/>  
     <div className="quick-section">
   <h2>Community-Highlights</h2>
 
@@ -341,43 +351,8 @@ function Home() {
  
 
   </div>
-</div>
-{/* Footer-section */}
-<footer className="bg-green-600 p-10 text-base-content footer sm:footer-horizontal">
-  <nav>
-    <h6 className="footer-title">Services</h6>
-    <a className="link link-hover">Branding</a>
-    <a className="link link-hover">Design</a>
-    <a className="link link-hover">Marketing</a>
-    <a className="link link-hover">Advertisement</a>
-  </nav>
-  <nav>
-    <h6 className="footer-title">Company</h6>
-    <a className="link link-hover">About us</a>
-    <a className="link link-hover">Contact</a>
-    <a className="link link-hover">Jobs</a>
-    <a className="link link-hover">Press kit</a>
-  </nav>
-  <nav>
-    <h6 className="footer-title">Legal</h6>
-    <a className="link link-hover">Terms of use</a>
-    <a className="link link-hover">Privacy policy</a>
-    <a className="link link-hover">Cookie policy</a>
-  </nav>
-  <form>
-    <h6 className="footer-title">Newsletter</h6>
-    <fieldset className="w-80">
-      <label>Enter your email address</label>
-      <div className="join">
-        <input
-          type="text"
-          placeholder="username@site.com"
-          className="input join-item" />
-        <button className="btn btn-primary join-item">Subscribe</button>
-      </div>
-    </fieldset>
-  </form>
-</footer>
+</div>  <Blogs/>
+ <Footer/>
     </div>
   )
 }
