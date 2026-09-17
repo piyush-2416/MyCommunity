@@ -1,9 +1,11 @@
-import React from 'react'
- 
+import React from "react";
+import Gallery from "./Gallery";
+import NotificationBell from "./NotificationBell ";
+import { Link } from "react-router-dom";
 function Navbar() {
   return (
     <div>
-        <div className="drawer">
+      <div className="drawer">
         <input id="my-drawer-1" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content"></div>
         <div className="drawer-side">
@@ -17,37 +19,100 @@ function Navbar() {
             <li>
               <h2 style={{ color: "gray" }}>Community</h2>
             </li>
-            <li><b><h3>Gellery</h3></b></li>
             <li>
-              <h2 style={{ color: "gray" }}>Business & service </h2>
-            </li>{" "}
-            <li>
-              <b>
-                {" "}
-                <a>Business</a>
-              </b>
+              <Link to="/Gallery">
+                <b>
+                  <h3>🏠 Dashboard</h3>
+                </b>
+              </Link>
             </li>
             <li>
-              <b>
-                <a> Service</a>
-              </b>
+              <Link to="/Gallery">
+                <b>
+                  <h3>👥 Members</h3>
+                </b>
+              </Link>
+            </li>
+            <li>
+              <Link to="/Gallery">
+                <b>
+                  <h3>🤝 Volunteers</h3>
+                </b>
+              </Link>
             </li>{" "}
             <li>
+              <Link to="/Gallery">
+                <b>
+                  <h3>🗳️ Polls & Voting</h3>
+                </b>
+              </Link>
+            </li>
+            <li>
+              <h2 style={{ color: "gray" }}>Discover </h2>
+            </li>{" "}
+            <li>
+              <Link to="/Gallery">
+                <b>
+                  <h3>🔍 Explore</h3>
+                </b>
+              </Link>
+            </li>
+            <li>
+              <Link to="/Gallery">
+                <b>
+                  <h3>📰 Community Feed</h3>
+                </b>
+              </Link>
+            </li>
+            <li>
+              <Link to="/Gallery">
+                <b>
+                  <h3>📸 Memories</h3>
+                </b>
+              </Link>
+            </li>
+            <li>
+              <Link to="/Gallery">
+                <b>
+                  <h3></h3>
+                </b>
+              </Link>
+            </li>{" "}
+            <li>
+              <Link to="/Gallery">
+                <b>
+                  <h3>🏆 Achievements</h3>
+                </b>
+              </Link>
+            </li>
+             <li>
+              <Link to="/Gallery">
+                <b>
+                  <h3>💬 Feedback</h3>
+                </b>
+              </Link>
+            </li>
+            <li>
+              
               <h2 style={{ color: "gray" }}>Account</h2>
             </li>
             <li>
               <b>
-                <a>My Profile </a>
+                <a>👤My Profile </a>
               </b>
             </li>{" "}
             <li>
               <b>
-                <a>Notification</a>
+                <a>🔔Notification</a>
               </b>
             </li>
             <li>
               <b>
-                <a> Setting</a>
+                <a> 💾 Saved</a>
+              </b>
+            </li>  <li>
+              <b>
+                <a>⚙️ Settings</a>
               </b>
             </li>
             <li>
@@ -59,7 +124,7 @@ function Navbar() {
           </ul>
         </div>
       </div>
-        <div
+      <div
         className="bg-base-100 shadow-sm navbar"
         style={{ backgroundColor: "mediumseagreen" }}
       >
@@ -100,30 +165,13 @@ function Navbar() {
               />{" "}
             </svg>
           </button>
-          <button className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {" "}
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                />{" "}
-              </svg>
-              <span className="badge badge-xs badge-primary indicator-item"></span>
-            </div>
-          </button>
+
+          {/* Notification bell with dropdown */}
+          <NotificationBell />
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
