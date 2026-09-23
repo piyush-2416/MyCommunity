@@ -27,7 +27,16 @@ function Business() {
     <div>
       <Navbar/>
       <div className="Business-image">
-        <img style={{width:"100%",height:"3%"}}src="https://img.magnific.com/premium-vector/vibrant-market-street-scene-indian-town_1163311-2740.jpg?semt=ais_hybrid&w=740&q=80" />
+        <img
+  src="/Community_business_main-image.png"
+  alt="Community Businesses"
+  style={{
+    width: "100%",
+    height: "450px",
+    display: "block",
+    objectFit: "cover"
+  }}
+/>
       </div>
 
       <div style={{ padding: "20px" }}>
