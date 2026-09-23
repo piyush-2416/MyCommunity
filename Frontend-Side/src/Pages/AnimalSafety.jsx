@@ -6,22 +6,22 @@ function AnimalSafety() {
   return (
     <div
       className="cp-page"
-      style={{ "--accent": "#2C8C82", "--accent-dark": "#1E625A", "--accent-tint": "#D9EEEA" }}
+      style={{ "--accent": "#CC6B3F", "--accent-dark": "#8F4A2B", "--accent-tint": "#F6E1D4" }}
     >
       <section className="cp-hero">
         <div className="cp-hero-icon">🐾</div>
         <div className="cp-hero-text">
-          <h1>Report, rescue and protect animals</h1>
+          <h1>Report, rescue and protect animals in need</h1>
           <p className="cp-sub">
-            An injured stray, a trapped bird, or a dangerous situation for a
-            pet — a quick report here gets rescuers moving faster than
-            waiting on your own.
+            Injured strays, abandoned pets, and animals in danger often go
+            unnoticed until someone nearby steps in. A quick report can
+            connect them to a rescuer within minutes.
           </p>
           <div className="cp-cta-row">
-            <Link to="/animalsafety/report" className="cp-btn-primary">
-              Report an incident
+            <Link to="/animalsafety/reports" className="cp-btn-primary">
+              See animals needing help
             </Link>
-            <Link to="/animalsafety/rescuers" className="cp-link-secondary">
+            <Link to="/animalsafety/volunteer" className="cp-link-secondary">
               Become a rescuer
             </Link>
           </div>
@@ -30,29 +30,30 @@ function AnimalSafety() {
 
       <div className="cp-stats">
         <div>
-          <div className="cp-stat-num">86</div>
-          <div className="cp-stat-label">animals rescued</div>
+          <div className="cp-stat-num">87</div>
+          <div className="cp-stat-label">animals rescued this year</div>
         </div>
         <div>
-          <div className="cp-stat-num">18 min</div>
-          <div className="cp-stat-label">average response time</div>
+          <div className="cp-stat-num">45+</div>
+          <div className="cp-stat-label">reports resolved</div>
         </div>
         <div>
-          <div className="cp-stat-num">15</div>
-          <div className="cp-stat-label">trained rescuers on call</div>
+          <div className="cp-stat-num">20</div>
+          <div className="cp-stat-label">active rescuers</div>
         </div>
       </div>
 
       <section className="cp-steps">
         <h2>How it works</h2>
-        <p className="cp-steps-sub">From spotting trouble to an animal being safe.</p>
+        <p className="cp-steps-sub">Three steps from spotting an animal in distress to getting it help.</p>
 
         <div className="cp-step">
           <div className="cp-step-num">01</div>
           <div>
             <p className="cp-step-title">Spot an animal in distress</p>
             <p className="cp-step-desc">
-              Injured, trapped, or in danger — note where exactly you saw it.
+              Injured, abandoned, or stuck somewhere it shouldn't be — note
+              the exact location.
             </p>
           </div>
         </div>
@@ -61,18 +62,18 @@ function AnimalSafety() {
           <div>
             <p className="cp-step-title">Report the location</p>
             <p className="cp-step-desc">
-              Add a photo if you can. The nearest rescuer gets notified
-              immediately.
+              Share a photo and location. It goes straight to nearby
+              rescuers and shelters.
             </p>
           </div>
         </div>
         <div className="cp-step">
           <div className="cp-step-num">03</div>
           <div>
-            <p className="cp-step-title">Rescuer steps in</p>
+            <p className="cp-step-title">A rescuer responds</p>
             <p className="cp-step-desc">
-              A trained community rescuer handles it safely, and the case gets
-              closed once resolved.
+              Someone from the community picks it up — rescue, treatment, or
+              a foster home.
             </p>
           </div>
         </div>
@@ -80,17 +81,17 @@ function AnimalSafety() {
 
       <div className="cp-quote">
         <p>
-          "We found the kitten stuck in the drain within the hour, thanks to
-          someone flagging it here."
+          "I reported an injured dog on my way to work and by evening it was
+          already at the vet."
         </p>
-        <span className="cp-quote-by">— Volunteer rescuer, Block A</span>
+        <span className="cp-quote-by">— Resident, Sector 12</span>
       </div>
 
       <section className="cp-cta-band">
-        <h2>Seen an animal that needs help?</h2>
-        <p>Every report reaches a rescuer near you, right away.</p>
-        <Link to="/animalsafety/report" className="cp-btn-primary">
-          Report now
+        <h2>An animal nearby might need you today</h2>
+        <p>It takes two minutes to sign up and start helping.</p>
+        <Link to="/animalsafety/volunteer" className="cp-btn-primary">
+          Join as a rescuer
         </Link>
       </section>
     </div>
