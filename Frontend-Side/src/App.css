@@ -1224,3 +1224,246 @@
     right: 12px;
   }
 }
+
+/*OURcommunity pages css
+/* communityPages.css
+   Shared styles for every cp-page (Elders, AnimalSafety, BloodDonation,
+   DogsCare, TreesPlants, LostFound). Each page sets its own accent via
+   inline CSS variables: --accent, --accent-dark, --accent-tint.
+*/
+
+.cp-page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+  color: #1f2430;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+/* ── Hero ─────────────────────────────────────────────── */
+.cp-hero {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 40px;
+  border-radius: 24px;
+  background: var(--accent-tint);
+}
+
+.cp-hero-icon {
+  flex-shrink: 0;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.cp-hero-text h1 {
+  margin: 0 0 12px;
+  font-size: 32px;
+  line-height: 1.25;
+  font-weight: 700;
+  color: var(--accent-dark);
+}
+
+.cp-sub {
+  margin: 0 0 20px;
+  max-width: 520px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4b5160;
+}
+
+.cp-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cp-btn-primary {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.cp-btn-primary:hover {
+  background: var(--accent-dark);
+  transform: translateY(-1px);
+}
+
+.cp-link-secondary {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-dark);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+.cp-link-secondary:hover {
+  color: var(--accent);
+}
+
+/* ── Stats ────────────────────────────────────────────── */
+.cp-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 40px 0;
+  text-align: center;
+}
+
+.cp-stats > div {
+  padding: 20px 12px;
+  border: 1px solid #ececf1;
+  border-radius: 16px;
+}
+
+.cp-stat-num {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent-dark);
+}
+
+.cp-stat-label {
+  margin-top: 4px;
+  font-size: 12.5px;
+  color: #6b7180;
+}
+
+/* ── Steps ────────────────────────────────────────────── */
+.cp-steps {
+  margin: 56px 0;
+}
+
+.cp-steps h2 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.cp-steps-sub {
+  margin: 0 0 28px;
+  font-size: 14px;
+  color: #6b7180;
+}
+
+.cp-step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 18px 0;
+  border-top: 1px solid #ececf1;
+}
+
+.cp-step:last-child {
+  border-bottom: 1px solid #ececf1;
+}
+
+.cp-step-num {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--accent-tint);
+  color: var(--accent-dark);
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.cp-step-title {
+  margin: 4px 0 4px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.cp-step-desc {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #6b7180;
+  max-width: 480px;
+}
+
+/* ── Quote ────────────────────────────────────────────── */
+.cp-quote {
+  margin: 56px 0;
+  padding: 32px 40px;
+  border-left: 4px solid var(--accent);
+  background: #fafafa;
+  border-radius: 0 16px 16px 0;
+}
+
+.cp-quote p {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.5;
+  color: #2b2f38;
+}
+
+.cp-quote-by {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7180;
+}
+
+/* ── CTA band ─────────────────────────────────────────── */
+.cp-cta-band {
+  text-align: center;
+  padding: 48px 24px;
+  border-radius: 24px;
+  background: var(--accent-dark);
+  color: #fff;
+}
+
+.cp-cta-band h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.cp-cta-band p {
+  margin: 0 0 22px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.cp-cta-band .cp-btn-primary {
+  background: #fff;
+  color: var(--accent-dark);
+}
+
+.cp-cta-band .cp-btn-primary:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 640px) {
+  .cp-hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 28px;
+  }
+  .cp-cta-row {
+    justify-content: center;
+  }
+  .cp-stats {
+    grid-template-columns: 1fr;
+  }
+}
