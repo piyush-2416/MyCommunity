@@ -73,14 +73,15 @@ function Home() {
 
   <div className="quick-list">
 
-     <div className="quick-card">
-      <span className="quick-icon">👥</span>
+    <div className="quick-card">
+      <span className="quick-icon">🆘</span>
       <div>
-        <h3>Community-Directory</h3>
-        <p>Our Members/residents</p>
+        <h3>Emergency Help</h3>
+        <p>Get urgent assistance</p>
       </div>
-      <Link to="/Directory"><span className="arrow">→</span></Link>
+      <Link to="/Emergency"><span className="arrow">→</span></Link>
     </div>
+   
     <div className="quick-card">
       <span className="quick-icon">🚨</span>
       <div>
@@ -98,17 +99,9 @@ function Home() {
         <h3>Upcoming Events</h3>
         <p>See community events</p>
       </div>
-      <Link to="/Event"><span className="arrow">→</span></Link>
+      <Link to="/Events"><span className="arrow">→</span></Link>
     </div>
 
-    <div className="quick-card">
-      <span className="quick-icon">🆘</span>
-      <div>
-        <h3>Emergency Help</h3>
-        <p>Get urgent assistance</p>
-      </div>
-      <Link to="/Emergency"><span className="arrow">→</span></Link>
-    </div>
 
     <div className="quick-card">
       <span className="quick-icon">☑️</span>
@@ -118,7 +111,14 @@ function Home() {
       </div>
       <Link to="Society_Polls"><span className="arrow">→</span></Link>
     </div>
-
+  <div className="quick-card">
+      <span className="quick-icon">👥</span>
+      <div>
+        <h3>Community-Directory</h3>
+        <p>Our Members/residents</p>
+      </div>
+      <Link to="/Directory"><span className="arrow">→</span></Link>
+    </div>
   </div>
 </div>
       <hr />
@@ -173,7 +173,7 @@ function Home() {
           <p>🏋️ Gym</p>
         </div>
 
-        <button>→</button>
+         
       </div>
     </div>
 
@@ -190,7 +190,7 @@ function Home() {
           <p>🥦 Grocery Store</p>
         </div>
 
-        <button>→</button>
+       
       </div>
     </div>
 
@@ -206,7 +206,7 @@ function Home() {
           <p>📚 Tutor</p>
         </div>
 
-        <button>→</button>
+      
       </div>
     </div>
      
@@ -222,7 +222,7 @@ function Home() {
           <p>All business</p>
         </div>
 
-      <Link to="/Business"><span className="arrow">→</span></Link>
+      <Link to="/Business"><button className="arrow">→</button></Link>
       </div>
     </div>
 
