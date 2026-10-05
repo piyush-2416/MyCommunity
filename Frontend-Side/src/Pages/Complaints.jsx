@@ -1,21 +1,144 @@
-import React from 'react'
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { productApi } from "./../api/productApi.js";
-// import "./App.css";
-
+import { Link } from "react-router-dom";
+// Complaint data format (server generates complaintId, createdAt, updatedAt)
 const EMPTY_FORM = {
-  complaintId: "",
   title: "",
   type: "",
-  status: "",
+  status: "Pending",
   raiseBy: "",
   raisedBytitle: "",
-  createdAt: "",
-  updatedAt: "",
   description: "",
   photo: "",
   location: "",
 };
+
+const STATUS_OPTIONS = ["Pending", "In Progress", "Resolved"];
+const STATUS_COLORS = {
+  Pending: "#e0a030",
+  "In Progress": "#808080",
+  Resolved: "#1f8a4c",
+};
+
+const css = `
+.cx-page { min-height: 100vh; background: #fff; font-family: "Segoe UI", Arial, sans-serif; color: #333; }
+
+.cx-header {
+  background: #3cb371;
+  padding: 22px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cx-brand {
+  background: #fff;
+  color: #3cb371;
+  font-weight: 700;
+  font-size: 24px;
+  padding: 20px 30px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.cx-add {
+  background: none;
+  border: none;
+  color: #7c4dcc;
+  font-size: 44px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 14px;
+}
+
+.cx-title { text-align: center; font-size: 30px; font-weight: 400; margin: 40px 0 30px; }
+
+.cx-search-wrap { display: flex; justify-content: center; margin-bottom: 24px; }
+.cx-search {
+  width: 100%; max-width: 420px; padding: 10px 16px;
+  border: 1px solid #ddd; border-radius: 20px; font-size: 15px; outline: none;
+}
+.cx-search:focus { border-color: #3cb371; }
+
+.cx-list { padding: 0 40px 40px; display: flex; flex-direction: column; gap: 26px; }
+
+.cx-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border: 1px solid #e3e3e3;
+  border-left: 5px solid #d9534f;
+  border-radius: 14px;
+  padding: 30px 24px;
+  background: #fff;
+}
+.cx-img-box { width: 120px; height: 120px; flex-shrink: 0; }
+.cx-img { width: 120px; height: 120px; object-fit: cover; border-radius: 8px; display: block; }
+.cx-img-fallback {
+  width: 120px; height: 120px; border-radius: 8px; background: #eef3f0;
+  display: flex; align-items: center; justify-content: center; font-size: 40px;
+}
+
+.cx-body { flex: 1; min-width: 0; }
+.cx-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.cx-Title{ margin: 0; font-size: 30px; font-weight: 400; color: #14919b; }
+.cx-type { font-size: 20px; color: #7ec8e3; }
+.cx-desc { margin: 14px 0 14px; font-size: 20px; color: #444; text-align: center; }
+.cx-loc { font-size: 18px; color: #666; }
+.cx-meta { margin-top: 6px; font-size: 13px; color: #999; }
+
+.cx-side { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.cx-pill {
+  color: #fff; font-weight: 700; font-size: 20px;
+  padding: 14px 24px; border-radius: 30px; white-space: nowrap;
+}
+.cx-actions { display: flex; gap: 8px; }
+.cx-icon-btn {
+  background: none; border: 1px solid #ddd; border-radius: 8px;
+  padding: 4px 10px; font-size: 16px; cursor: pointer;
+}
+.cx-icon-btn:hover { background: #f5f5f5; }
+
+.cx-empty { text-align: center; color: #888; padding: 60px 0; font-size: 18px; }
+
+/* Modal */
+.cx-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 1000;
+  display: flex; align-items: center; justify-content: center; padding: 20px;
+}
+.cx-modal {
+  background: #fff; border-radius: 14px; padding: 28px; width: 100%; max-width: 520px;
+  max-height: 90vh; overflow-y: auto; border-top: 6px solid #3cb371;
+}
+.cx-modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.cx-modal-head h2 { margin: 0; font-size: 22px; font-weight: 500; color: #14919b; }
+.cx-close { background: none; border: none; font-size: 22px; cursor: pointer; color: #888; }
+.cx-field { margin-bottom: 14px; }
+.cx-field label { display: block; margin-bottom: 5px; font-size: 14px; color: #555; }
+.cx-field input, .cx-field select, .cx-field textarea {
+  width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 8px;
+  font-size: 15px; box-sizing: border-box; font-family: inherit;
+}
+.cx-field input:focus, .cx-field select:focus, .cx-field textarea:focus { outline: none; border-color: #3cb371; }
+.cx-modal-foot { display: flex; gap: 12px; margin-top: 20px; }
+.cx-btn { padding: 12px; border-radius: 8px; font-weight: 600; font-size: 15px; cursor: pointer; }
+.cx-btn-cancel { flex: 1; background: #fff; border: 1px solid #ccc; color: #555; }
+.cx-btn-save { flex: 2; background: #3cb371; border: none; color: #fff; }
+.cx-btn-save:disabled { background: #9ad3b4; cursor: not-allowed; }
+
+.cx-toast {
+  position: fixed; top: 20px; right: 20px; z-index: 9999; color: #fff;
+  padding: 12px 20px; border-radius: 10px; font-weight: 600; font-size: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+@media (max-width: 720px) {
+  .cx-list { padding: 0 14px 30px; }
+  .cx-card { flex-direction: column; align-items: flex-start; padding: 20px 16px; }
+  .cx-desc { text-align: left; font-size: 17px; }
+  .cx-Title{ font-size: 24px; }
+  .cx-side { flex-direction: row; align-items: center; }
+  .cx-pill { font-size: 16px; padding: 10px 18px; }
+}
+`;
 
 // ─── Toast ────────────────────────────────────────────────────
 function Toast({ msg, type, onClose }) {
@@ -24,155 +147,88 @@ function Toast({ msg, type, onClose }) {
     return () => clearTimeout(t);
   }, [onClose]);
 
-  const colors = { success: "#22c55e", error: "#ef4444", info: "#6366f1" };
+  const colors = { success: "#1f8a4c", error: "#d9534f", info: "#14919b" };
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 20,
-        right: 20,
-        zIndex: 9999,
-        background: colors[type] || colors.info,
-        color: "#fff",
-        padding: "12px 20px",
-        borderRadius: 10,
-        fontWeight: 600,
-        boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
-        fontSize: 14,
-      }}
-    >
+    <div className="cx-toast" style={{ background: colors[type] || colors.info }}>
       {msg}
     </div>
   );
 }
 
 // ─── Modal Form (Create / Edit) ───────────────────────────────
-function ProductModal({ product, onSave, onClose }) {
-  const [form, setForm] = useState(product || EMPTY_FORM);
+function ComplaintModal({ complaint, onSave, onClose }) {
+  const [form, setForm] = useState(complaint ? { ...EMPTY_FORM, ...complaint } : EMPTY_FORM);
   const [loading, setLoading] = useState(false);
 
-  const handle = (e) => setForm((f) => ({ ...f, [e.target.tile]: e.target.value }));
+  // input ke `name` attribute se state update hoti hai
+  const handle = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
   const submit = async () => {
-    if (!form.tile || !form.location || !form.type) {
-      alert("title, location aur type required hai!");
+    if (!form.title || !form.type || !form.location) {
+      alert("Title, type aur location required hai!");
       return;
     }
+    // sirf editable fields bhejo (complaintId, createdAt, updatedAt server handle karega)
+    const payload = {};
+    Object.keys(EMPTY_FORM).forEach((k) => (payload[k] = form[k]));
     setLoading(true);
-    await onSave(form);
+    await onSave(payload);
     setLoading(false);
   };
 
-  const inputStyle = {
-    width: "100%",
-    padding: "10px 14px",
-    borderRadius: 8,
-    border: "1.5px solid #2d2d3a",
-    background: "#12121a",
-    color: "#e2e8f0",
-    fontSize: 14,
-    outline: "none",
-    boxSizing: "border-box",
-  };
-  const labelStyle = {
-    display: "block",
-    marginBottom: 6,
-    fontSize: 12,
-    fontWeight: 700,
-    color: "#7c7caa",
-    textTransform: "uppercase",
-    letterSpacing: 1,
-  };
+  const fields = [
+    { label: "Title *", name: "title", placeholder: "e.g. Street Light Not Working" },
+    { label: "Type *", name: "type", placeholder: "e.g. Electricity" },
+    { label: "Location *", name: "location", placeholder: "e.g. Street - 12, Green Park" },
+    { label: "Raised by", name: "raiseBy", placeholder: "Resident Title/ ID" },
+    { label: "Raised by title", name: "raisedBytitle", placeholder: "e.g. Resident" },
+    { label: "Photo URL", name: "photo", placeholder: "https://..." },
+  ];
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        background: "rgba(0,0,0,0.75)",
-        zIndex: 1000,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 20,
-      }}
-    >
-      <div
-        style={{
-          background: "#1a1a2e",
-          borderRadius: 16,
-          padding: 32,
-          width: "100%",
-          maxWidth: 520,
-          border: "1px solid #2d2d3a",
-        }}
-      >
-        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 24 }}>
-          <h2 style={{ margin: 0, fontSize: 20, color: "#e2e8f0" }}>
-            {product ? "✏️ Product Edit Karo" : "➕ Naya Product"}
-          </h2>
-          <button
-            onClick={onClose}
-            style={{ background: "none", border: "none", color: "#7c7caa", fontSize: 22, cursor: "pointer" }}
-          >
-            ✕
-          </button>
+    <div className="cx-overlay">
+      <div className="cx-modal">
+        <div className="cx-modal-head">
+          <h2>{complaint ? "✏️ Edit Complaint" : "➕ New Complaint"}</h2>
+          <button className="cx-close" onClick={onClose}>✕</button>
         </div>
 
-        <div style={{ display: "grid", gap: 16 }}>
-          {[
-            { label: "Product title *", title: "title", placeholder: "e.g. Butter Chicken" },
-            { label: "location (₹) *", title: "location", placeholder: "e.g. 299", type: "number" },
-            { label: "type *", title: "type", placeholder: "e.g. Main Course" },
-            { label: "Description", title: "description", placeholder: "Short description..." },
-            { label: "photo URL", title: "photo", placeholder: "https://..." },
-            { label: "status", title: "status", placeholder: "e.g. 50", type: "number" },
-          ].map(({ label, title, placeholder, type = "text" }) => (
-            <div key={title}>
-              <label style={labelStyle}>{label}</label>
-              <input
-                type={type}
-                title={title}
-                value={form[title] ?? ""}
-                onChange={handle}
-                placeholder={placeholder}
-                style={inputStyle}
-              />
-            </div>
-          ))}
+        {fields.map(({ label, name, placeholder }) => (
+          <div className="cx-field" key={name}>
+            <label>{label}</label>
+            <input
+              name={name}
+              value={form[name] ?? ""}
+              onChange={handle}
+              placeholder={placeholder}
+            />
+          </div>
+        ))}
+
+        <div className="cx-field">
+          <label>Status</label>
+          <select name="status" value={form.status} onChange={handle}>
+            {STATUS_OPTIONS.map((s) => (
+              <option key={s} value={s}>{s}</option>
+            ))}
+          </select>
         </div>
 
-        <div style={{ display: "flex", gap: 12, marginTop: 24 }}>
-          <button
-            onClick={onClose}
-            style={{
-              flex: 1,
-              padding: "12px",
-              borderRadius: 8,
-              border: "1.5px solid #2d2d3a",
-              background: "transparent",
-              color: "#7c7caa",
-              fontWeight: 600,
-              cursor: "pointer",
-            }}
-          >
-            Cancel
-          </button>
-          <button
-            onClick={submit}
-            disabled={loading}
-            style={{
-              flex: 2,
-              padding: "12px",
-              borderRadius: 8,
-              border: "none",
-              background: loading ? "#3d3d5c" : "linear-gradient(135deg, #6366f1, #8b5cf6)",
-              color: "#fff",
-              fontWeight: 700,
-              cursor: loading ? "not-allowed" : "pointer",
-            }}
-          >
-            {loading ? "⏳ Saving..." : product ? "💾 Update Karo" : "✅ Create Karo"}
+        <div className="cx-field">
+          <label>Description</label>
+          <textarea
+            name="description"
+            rows={3}
+            value={form.description ?? ""}
+            onChange={handle}
+            placeholder="Problem ke baare mein likho..."
+          />
+        </div>
+
+        <div className="cx-modal-foot">
+          <button className="cx-btn cx-btn-cancel" onClick={onClose}>Cancel</button>
+          <button className="cx-btn cx-btn-save" onClick={submit} disabled={loading}>
+            {loading ? "Saving..." : complaint ? "Update" : "Create"}
           </button>
         </div>
       </div>
@@ -180,126 +236,70 @@ function ProductModal({ product, onSave, onClose }) {
   );
 }
 
-// ─── Product Card ─────────────────────────────────────────────
-function ProductCard({ product, onEdit, onDelete }) {
+// ─── Complaint Card ───────────────────────────────────────────
+function ComplaintCard({ complaint, onEdit, onDelete }) {
   const [deleting, setDeleting] = useState(false);
+  const [imgFailed, setImgFailed] = useState(false);
 
   const handleDelete = async () => {
-    if (!confirm(`"${product.title}" delete karna chahte ho?`)) return;
+    if (!window.confirm(`"${complaint.title}" delete karna chahte ho?`)) return;
     setDeleting(true);
-    await onDelete(product._id);
+    await onDelete(complaint._id);
     setDeleting(false);
   };
 
   return (
-    <div
-      style={{
-        background: "#1a1a2e",
-        borderRadius: 14,
-        overflow: "hidden",
-        border: "1px solid #2d2d3a",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <div
-        style={{
-          height: 160,
-          background: "#12121a",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          overflow: "hidden",
-        }}
-      >
-        {product.photo ? (
+    <div className="cx-card">
+      <div className="cx-img-box">
+        {complaint.photo && !imgFailed ? (
           <img
-            src={product.photo}
-            alt={product.title}
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            onError={(e) => (e.target.style.display = "none")}
+            className="cx-img"
+            src={complaint.photo}
+            alt={complaint.title}
+            onError={() => setImgFailed(true)}
           />
         ) : (
-          <span style={{ fontSize: 48 }}>🍽️</span>
+          <div className="cx-img-fallback">📷</div>
         )}
       </div>
 
-      <div style={{ padding: 16, flex: 1, display: "flex", flexDirection: "column", gap: 8 }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-          <h3 style={{ margin: 0, fontSize: 16, color: "#e2e8f0" }}>{product.title}</h3>
-          <span
-            style={{
-              background: "#6366f120",
-              color: "#818cf8",
-              padding: "2px 10px",
-              borderRadius: 20,
-              fontSize: 11,
-              fontWeight: 700,
-              whiteSpace: "nowrap",
-              marginLeft: 8,
-            }}
-          >
-            {product.type}
-          </span>
+      <div className="cx-body">
+        <div className="cx-head">
+          <h3 className="cx-name">{complaint.title}</h3>
+          <span className="cx-type">{complaint.type}</span>
         </div>
 
-        {product.description && (
-          <p
-            style={{
-              margin: 0,
-              fontSize: 12,
-              color: "#64748b",
-              display: "-webkit-box",
-              WebkitLineClamp: 2,
-              WebkitBoxOrient: "vertical",
-              overflow: "hidden",
-            }}
-          >
-            {product.description}
-          </p>
+        {complaint.description && <p className="cx-desc">{complaint.description}</p>}
+
+        <div className="cx-loc">📍 {complaint.location}</div>
+
+        {(complaint.raiseBy || complaint.complaintId) && (
+          <div className="cx-meta">
+            {complaint.complaintId && <>ID: {complaint.complaintId}</>}
+            {complaint.complaintId && complaint.raiseBy && "  |  "}
+            {complaint.raiseBy && (
+              <>
+                By: {complaint.raiseBy}
+                {complaint.raisedBytitle ? ` (${complaint.raisedBytitle})` : ""}
+              </>
+            )}
+          </div>
         )}
-
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto", paddingTop: 8 }}>
-          <span style={{ fontSize: 20, fontWeight: 800, color: "#22c55e" }}>₹{product.location}</span>
-          <span style={{ fontSize: 11, color: "#64748b" }}>status: {product.status ?? "N/A"}</span>
-        </div>
-
-        <div style={{ fontSize: 9, color: "#3d3d5c", fontFamily: "monospace", wordBreak: "break-all" }}>
-          ID: {product._id}
-        </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderTop: "1px solid #2d2d3a" }}>
-        <button
-          onClick={() => onEdit(product)}
-          style={{
-            padding: 12,
-            background: "none",
-            border: "none",
-            color: "#6366f1",
-            fontWeight: 700,
-            fontSize: 13,
-            cursor: "pointer",
-            borderRight: "1px solid #2d2d3a",
-          }}
+      <div className="cx-side">
+        <span
+          className="cx-pill"
+          style={{ background: STATUS_COLORS[complaint.status] || "#808080" }}
         >
-          ✏️ Edit
-        </button>
-        <button
-          onClick={handleDelete}
-          disabled={deleting}
-          style={{
-            padding: 12,
-            background: "none",
-            border: "none",
-            color: "#ef4444",
-            fontWeight: 700,
-            fontSize: 13,
-            cursor: deleting ? "not-allowed" : "pointer",
-          }}
-        >
-          {deleting ? "⏳" : "🗑️ Delete"}
-        </button>
+          {complaint.status || "Pending"}
+        </span>
+        <div className="cx-actions">
+          <button className="cx-icon-btn" onClick={() => onEdit(complaint)} title="Edit">✏️</button>
+          <button className="cx-icon-btn" onClick={handleDelete} disabled={deleting} title="Delete">
+            {deleting ? "⏳" : "🗑️"}
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -307,19 +307,19 @@ function ProductCard({ product, onEdit, onDelete }) {
 
 // ─── Main App ─────────────────────────────────────────────────
 export default function ComplainsCrud() {
-  const [products, setProducts] = useState([]);
+  const [complaints, setComplaints] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [modal, setModal] = useState(null); // null | "create" | product-obj
+  const [modal, setModal] = useState(null); // null | "create" | complaint-obj
   const [toast, setToast] = useState(null);
   const [search, setSearch] = useState("");
 
   const showToast = (msg, type = "success") => setToast({ msg, type });
 
-  const loadProducts = async () => {
+  const loadComplaints = async () => {
     setLoading(true);
     try {
       const res = await productApi.getAll();
-      if (res.success) setProducts(res.data);
+      if (res.success) setComplaints(res.data);
       else showToast(res.error || "Load fail!", "error");
     } catch {
       showToast("Server se connect nahi ho pa raha! (backend chal raha hai?)", "error");
@@ -328,7 +328,7 @@ export default function ComplainsCrud() {
   };
 
   useEffect(() => {
-    loadProducts();
+    loadComplaints();
   }, []);
 
   const handleCreate = async (form) => {
@@ -337,7 +337,7 @@ export default function ComplainsCrud() {
       if (res.success) {
         showToast(res.message, "success");
         setModal(null);
-        loadProducts();
+        loadComplaints();
       } else {
         showToast(res.error || "Create fail!", "error");
       }
@@ -352,7 +352,7 @@ export default function ComplainsCrud() {
       if (res.success) {
         showToast(res.message, "success");
         setModal(null);
-        loadProducts();
+        loadComplaints();
       } else {
         showToast(res.error || "Update fail!", "error");
       }
@@ -366,7 +366,7 @@ export default function ComplainsCrud() {
       const res = await productApi.remove(id);
       if (res.success) {
         showToast(res.message, "success");
-        loadProducts();
+        loadComplaints();
       } else {
         showToast(res.error || "Delete fail!", "error");
       }
@@ -375,110 +375,116 @@ export default function ComplainsCrud() {
     }
   };
 
-  const filtered = products.filter(
-    (p) =>
-      p.title?.toLowerCase().includes(search.toLowerCase()) ||
-      p.type?.toLowerCase().includes(search.toLowerCase())
+  const q = search.toLowerCase();
+  const filtered = complaints.filter(
+    (c) =>
+      c.title?.toLowerCase().includes(q) ||
+      c.type?.toLowerCase().includes(q) ||
+      c.location?.toLowerCase().includes(q)
   );
 
   return (
-    <div style={{ minHeight: "100vh", background: "#0d0d17", fontFamily: "'Segoe UI', sans-serif", color: "#e2e8f0" }}>
-      <header
-        style={{
-          background: "#1a1a2e",
-          borderBottom: "1px solid #2d2d3a",
-          padding: "20px 32px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          flexWrap: "wrap",
-          gap: 12,
-        }}
-      >
-        <div>
-          <h1
-            style={{
-              margin: 0,
-              fontSize: 24,
-              fontWeight: 800,
-              background: "linear-gradient(135deg, #6366f1, #a78bfa)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            🍽️ Product Manager (Admin)
-          </h1>
-          <p style={{ margin: 0, fontSize: 12, color: "#64748b" }}>MongoDB Connected — changes yahan se DB me save hote hain</p>
-        </div>
-        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-          <span style={{ background: "#22c55e20", color: "#22c55e", padding: "6px 14px", borderRadius: 20, fontSize: 12, fontWeight: 700 }}>
-            📦 {products.length} Products
-          </span>
-          <button
-            onClick={() => setModal("create")}
-            style={{
-              padding: "10px 20px",
-              background: "linear-gradient(135deg, #6366f1, #8b5cf6)",
-              border: "none",
-              borderRadius: 10,
-              color: "#fff",
-              fontWeight: 700,
-              fontSize: 14,
-              cursor: "pointer",
-            }}
-          >
-            ➕ New Product
-          </button>
-        </div>
-      </header>
+    <div className="cx-page">
+      <style>{css}</style>
 
-      <div style={{ padding: "24px 32px 0" }}>
-        <input
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          placeholder="🔍 Product ya type search karo..."
-          style={{
-            width: "100%",
-            maxWidth: 400,
-            padding: "12px 16px",
-            borderRadius: 10,
-            border: "1.5px solid #2d2d3a",
-            background: "#1a1a2e",
-            color: "#e2e8f0",
-            fontSize: 14,
-            outline: "none",
-          }}
+      <header className="cx-header">
+          <div className="navbar-start">
+  <div className="dropdown">
+    <input id="my-drawer-1" type="checkbox" className="drawer-toggle" />
+    <div className="drawer-content">
+   <Link to="/" >  <label htmlFor="my-drawer-1" className="inline-block cursor-pointer">
+        <img
+          src="/MyCommunity%20Logo.png"
+          alt="MyCommunity Logo"
+          className="bg-white shadow-md p-1 border-4 border-white rounded-full w-10 md:w-20 h-7 md:h-16 object-contain transition-transform duration-200"
         />
+      </label></Link>
+    </div>
+  </div>
+</div>
+        <button className="cx-add" onClick={() => setModal("create")} title="New complaint">
+          ✚
+        </button>
+      </header>
+ 
+<div className="cx-page">
+
+  <h2 className="cx-title">
+    📋 Complaints
+  </h2>
+
+  <div className="cx-search-wrap">
+    <input
+      className="cx-search"
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      placeholder="🔍 Title, type ya location search karo..."
+    />
+  </div>
+
+  {/* Complaints List */}
+  <main className="gap-5 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 cx-list">
+
+    {loading ? (
+      <div className="flex justify-center items-center col-span-full min-h-40">
+        <div className="bg-white shadow-md px-6 py-4 rounded-2xl font-medium text-emerald-600 text-sm animate-pulse">
+          Complaints load ho rahi hain...
+        </div>
       </div>
 
-      <main style={{ padding: "24px 32px" }}>
-        {loading ? (
-          <p style={{ textAlign: "center", color: "#64748b", padding: 80 }}>Products load ho rahe hain...</p>
-        ) : filtered.length === 0 ? (
-          <div style={{ textAlign: "center", padding: 80 }}>
-            <div style={{ fontSize: 64, marginBottom: 16 }}>🍽️</div>
-            <p style={{ color: "#64748b", fontSize: 16 }}>
-              {search ? "Koi product nahi mila!" : "Koi product nahi hai. Pehla product add karo!"}
-            </p>
-          </div>
-        ) : (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: 20 }}>
-            {filtered.map((p) => (
-              <ProductCard key={p._id} product={p} onEdit={setModal} onDelete={handleDelete} />
-            ))}
-          </div>
-        )}
-      </main>
+    ) : filtered.length === 0 ? (
 
-      {modal && (
-        <ProductModal
-          product={modal === "create" ? null : modal}
-          onSave={modal === "create" ? handleCreate : handleUpdate}
-          onClose={() => setModal(null)}
-        />
-      )}
+      <div className="col-span-full bg-white/80 shadow-sm px-5 py-12 border border-emerald-200 border-dashed rounded-2xl text-center">
+        <div className="mb-3 text-4xl">📭</div>
 
-      {toast && <Toast msg={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
-    </div>
+        <p className="text-slate-500 text-sm sm:text-base">
+          {search
+            ? "Koi complaint nahi mili."
+            : "Abhi koi complaint nahi hai. ✚ dabakar pehli add karo."}
+        </p>
+      </div>
+
+    ) : (
+
+      filtered.map((c, index) => (
+        <div
+          key={c._id}
+          className="animate-[fadeIn_0.5s_ease-out]"
+          style={{
+            animationDelay: `${index * 80}ms`,
+            animationFillMode: "both",
+          }}
+        >
+          <ComplaintCard
+            complaint={c}
+            onEdit={setModal}
+            onDelete={handleDelete}
+          />
+        </div>
+      ))
+
+    )}
+
+  </main>
+
+  {/* Modal */}
+  {modal && (
+    <ComplaintModal
+      complaint={modal === "create" ? null : modal}
+      onSave={modal === "create" ? handleCreate : handleUpdate}
+      onClose={() => setModal(null)}
+    />
+  )}
+
+  {/* Toast */}
+  {toast && (
+    <Toast
+      msg={toast.msg}
+      type={toast.type}
+      onClose={() => setToast(null)}
+    />
+  )}
+
+</div></div>
   );
 }
