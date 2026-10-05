@@ -17,31 +17,31 @@ function Navbar() {
           <ul className="bg-base-200 p-4 w-80 min-h-full menu">
             {/* Sidebar content here */}
             <li>
-              <h2 style={{ color: "gray" }}>Community</h2>
+              <Link to="/"> <h2 style={{ color: "gray" }}>Community</h2></Link>
             </li>
             <li>
-              <Link to="/Gallery">
+              <Link to="/Dashboard">
                 <b>
                   <h3>🏠 Dashboard</h3>
                 </b>
               </Link>
             </li>
             <li>
-              <Link to="/Gallery">
+              <Link to="/About">
                 <b>
-                  <h3>👥 Members</h3>
+                  <h3>👥 About</h3>
                 </b>
               </Link>
             </li>
             <li>
-              <Link to="/Gallery">
+              <Link to="/">
                 <b>
                   <h3>🤝 Volunteers</h3>
                 </b>
               </Link>
             </li>{" "}
             <li>
-              <Link to="/Gallery">
+              <Link to="/Society_Polls">
                 <b>
                   <h3>🗳️ Polls & Voting</h3>
                 </b>
@@ -51,14 +51,14 @@ function Navbar() {
               <h2 style={{ color: "gray" }}>Discover </h2>
             </li>{" "}
             <li>
-              <Link to="/Gallery">
+              <Link to="/Explore">
                 <b>
                   <h3>🔍 Explore</h3>
                 </b>
               </Link>
             </li>
             <li>
-              <Link to="/Gallery">
+              <Link to="/Feed">
                 <b>
                   <h3>📰 Community Feed</h3>
                 </b>
@@ -71,22 +71,22 @@ function Navbar() {
                 </b>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/Gallery">
                 <b>
                   <h3></h3>
                 </b>
               </Link>
-            </li>{" "}
+            </li>{" "} */}
             <li>
-              <Link to="/Gallery">
+              <Link to="/Achievements">
                 <b>
                   <h3>🏆 Achievements</h3>
                 </b>
               </Link>
             </li>
              <li>
-              <Link to="/Gallery">
+              <Link to="/Feedback">
                 <b>
                   <h3>💬 Feedback</h3>
                 </b>
@@ -101,19 +101,18 @@ function Navbar() {
                 <a>👤My Profile </a>
               </b>
             </li>{" "}
-            <li>
-              <b>
-                <a>🔔Notification</a>
-              </b>
-            </li>
+            
             <li>
               <b>
                 <a> 💾 Saved</a>
               </b>
-            </li>  <li>
-              <b>
-                <a>⚙️ Settings</a>
-              </b>
+            </li>   
+              <li>
+              <Link to="/Setting">
+                <b>
+                  <h3>⚙️Settings</h3>
+                </b>
+              </Link>
             </li>
             <li>
               <b>
@@ -128,46 +127,31 @@ function Navbar() {
         className="bg-base-100 shadow-sm navbar"
         style={{ backgroundColor: "mediumseagreen" }}
       >
-        <div className="navbar-start">
-          <div className="dropdown">
-            <input id="my-drawer-1" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content">
-              {/* Page content here */}
-              <label
-                htmlFor="my-drawer-1"
-                style={{ color: "mediumseagreen" }}
-                className="btn drawer-button"
-              >
-                {" "}
-                Mycommunity
-              </label>
-            </div>
-          </div>
-        </div>
+      <div className="navbar-start">
+  <div className="dropdown">
+    <input id="my-drawer-1" type="checkbox" className="drawer-toggle" />
+    <div className="drawer-content">
+      <label htmlFor="my-drawer-1" className="inline-block cursor-pointer">
+        <img
+          src="/MyCommunity%20Logo.png"
+          alt="MyCommunity Logo"
+          className="bg-white shadow-md p-1 border-4 border-white rounded-full w-10 md:w-20 h-7 md:h-16 object-contain transition-transform duration-200"
+        />
+      </label>
+    </div>
+  </div>
+</div>
         <div className="navbar-center">
           {/* <a className="text-xl btn btn-ghost"> </a> */}
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end"> <NotificationBell />
+
           <button className="btn btn-ghost btn-circle">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {" "}
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />{" "}
-            </svg>
+           👤
           </button>
 
           {/* Notification bell with dropdown */}
-          <NotificationBell />
+         
         </div>
       </div>
     </div>
