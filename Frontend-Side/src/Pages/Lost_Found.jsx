@@ -37,7 +37,37 @@ function Lost_Found() {
   if (loading) return <h2 style={{ textAlign: "center" }}>Loading...</h2>;
 
   return (
-    <div>
+    <div> <div2
+        className="bg-base-100 shadow-sm navbar"
+        style={{ backgroundColor: "mediumseagreen" }}
+      >
+        <div className="navbar-start">
+          <div className="dropdown">
+            <input id="my-drawer-1" type="checkbox" className="drawer-toggle" />
+            <div className="drawer-content">
+              {/* Page content here */}
+              <label
+                htmlFor="my-drawer-1"
+                style={{ color: "mediumseagreen" }}
+                className="btn drawer-button"
+              >
+                {" "}
+                Mycommunity
+              </label>
+            </div>
+          </div>
+        </div>
+        <div1 className="navbar-center">
+          {/* <a className="text-xl btn btn-ghost"> </a> */}
+        </div1>
+        <div1 className="navbar-end">
+
+           <button className="btn btn-ghost btn-circle">
+         ➕
+          </button>
+      
+        </div1>
+      </div2>
       {/* <Navbar/> */}
       <div style={{ padding: "20px" }}>
         <h1>🔎 Lost & Found</h1>
