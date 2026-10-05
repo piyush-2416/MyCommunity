@@ -5,7 +5,7 @@
 // import { ObjectId } from "mongodb"; // top pe
 
 // const MONGODB_URI =
-//   "mongodb+srv://wwwpiyushverma2401_db_user:N3hTB85tx.xnStG@piyush2416.sp9zipj.mongodb.net/?appName=Piyush2416"; // apna URI daalo
+//  
 // const Database = "Community-data";
 // const collection = "Business-data";
 // const collection2 = "Complaints-data";
@@ -210,7 +210,7 @@ import dotenv from "dotenv";
 
 // ─── Config ──────────────────────────────────────────────────
 // .env file me ye likho (server.js ke saath wale folder me):
-// MONGODB_URI=mongodb+srv://<user>:<password>@<cluster>/?appName=...
+// MONGODB_URI=
 // PORT=3000
 const MONGODB_URI = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 3000;
