@@ -6,7 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home.jsx";
 import Navbar from "./Pages/Navbar.jsx";
 import Business from "./Pages/Business.jsx";
-import Complaints from "./Pages/Complaints.jsx";import About from "./Pages/About.jsx";
+import Complaints from "./Pages/Complaints.jsx";
+import About from "./Pages/About.jsx";
 import Emergency from "./Pages/Emergency.jsx";
 import Events from "./Pages/Events.jsx";
 import Notice from "./Components/Notices.jsx";
@@ -31,14 +32,16 @@ import Settings from "./Pages/Setting.jsx";
 import Explore from "./Pages/Explore.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
 import Achievements from "./Pages/Achievements.jsx";
-
+import Auth from "./Pages/Auth.jsx";
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />          <Route path="/About" element={<About />} />
-
+          <Route path="/" element={<Home />} />{" "}
+          <Route path="/About" element={<About />} />
+          <Route path="/Auth" element={<Auth />} />{" "}
+          <Route path="/About" element={<About />} />
           <Route path="/Navbar" element={<Navbar />} />
           <Route path="Business" element={<Business />} />
           <Route path="/Complaints" element={<Complaints />} />
@@ -48,8 +51,8 @@ function App() {
           <Route path="/NotificationBell " element={<NotificationBell />} />
           <Route path="/Directory" element={<Directory />} />
           <Route path="/Blogs" element={<Blogs />} />
-                    <Route path="/Emergencycrud" element={<Emergencycrud />} />          <Route path="/About" element={<About />} />
-
+          <Route path="/Emergencycrud" element={<Emergencycrud />} />{" "}
+          <Route path="/About" element={<About />} />
           <Route path="/ComplaintsCrud" element={<ComplaintsCrud />} />
           <Route path="/Lost_Found-data" element={<Lost_Found />} />
           <Route path="/Notice" element={<Notice />} />
@@ -66,8 +69,7 @@ function App() {
           <Route path="/Dashboard" element={<Dashboard />} />{" "}
           <Route path="/Achievements" element={<Achievements />} />{" "}
           <Route path="/Setting" element={<Settings />} />
-            <Route path="/Explore" element={<Explore />} />
-
+          <Route path="/Explore" element={<Explore />} />
           {/* <Route path="/" element={<Home />} />  */}
           {/* <Route path="/Doctorid/:id" element={<Doctorid />} />  */}
           {/* <Route path="/products/:id" element={<ProductPage />} />  */}
