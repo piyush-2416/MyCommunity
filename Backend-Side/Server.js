@@ -1,217 +1,18 @@
-// import express from "express";
-// import { MongoClient } from "mongodb";
-// import dotenv from "dotenv";
-// import cors from "cors";
-// import { ObjectId } from "mongodb"; // top pe
-
-// const MONGODB_URI =
-//  
-// const Database = "Community-data";
-// const collection = "Business-data";
-// const collection2 = "Complaints-data";
-// const collection3 = "Notices-data";
-// const collection4 = "Events-data";
-// const collection5 = "Lost_Found-data";
-// const collection6 = "Society_Gallery";
-// const collection7 = "Society Polls/Voting Collection";
-// const collection8 = "Emergency";
-
-// dotenv.config();
-
-// const app = express();
-// app.use(cors()); // React ko allow karega
-// app.use(express.json());
-
-// const PORT = process.env.PORT || 3000;
-
-// const client = new MongoClient(MONGODB_URI);
-
-// // // 🔥 Connect DB once
-// let db;
-// async function connectDB() {
-//   try {
-//     await client.connect();
-//     console.log("✅ MongoDB Connected");
-//     db = client.db(Database); // 👈 apna database name
-//   } catch (error) {
-//     console.log("❌ DB Error:", error);
-//   }
-// }
-
-// connectDB();
-
-// // // ✅ Route 1: Saare products lao (Home page ke liye)
-// app.get("/api/products", async (req, res) => {
-//   try {
-//     const data = await db.collection(collection).find().toArray();
-//     db = client.db(Database);
-//     res.json(data); // React ko data bhej raha hai
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
-
-// app.get("/api/complaints", async (req, res) => {
-//   try {
-//     const data = await db.collection(collection2).find().toArray();
-//     db = client.db(Database);
-//     res.json(data); // React ko data bhej raha hai
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
-// app.get("/api/Notice", async (req, res) => {
-//   try {
-//     const data = await db.collection(collection3).find().toArray();
-//     db = client.db(Database);
-//     res.json(data); // React ko data bhej raha hai
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
-// app.get("/api/Events", async (req, res) => {
-//   try {
-//     const data = await db.collection(collection4).find().toArray();
-//     db = client.db(Database);
-//     res.json(data); // React ko data bhej raha hai
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
-// app.get("/api/Lost_Found-data", async (req, res) => {
-//   try {
-//     const data = await db.collection(collection5).find().toArray();
-//     db = client.db(Database);
-//     res.json(data); // React ko data bhej raha hai
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
-// app.get("/api/Society_Gallery", async (req, res) => {
-//   try {
-//     const data = await db.collection(collection6).find().toArray();
-//     db = client.db(Database);
-//     res.json(data); // React ko data bhej raha hai
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
-// app.get("/api/Society_Polls", async (req, res) => {
-//   try {
-//     const data = await db.collection(collection7).find().toArray();
-//     db = client.db(Database);
-//     res.json(data); // React ko data bhej raha hai
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
-// app.get("/api/Emergency", async (req, res) => {
-//   try {
-//     const data = await db.collection(collection8).find().toArray();
-//     db = client.db(Database);
-//     res.json(data); // React ko data bhej raha hai
-//   } catch (error) {
-//     res.status(500).json({ error: error.message });
-//   }
-// });
-
-// // // ✅ Route 2: Single product by ID (Product detail page ke liye)
-// // app.get("/api/products/:id", async (req, res) => {
-// //   try {
-// //     const productId = req.params.id;
-
-// //     // Pehle ObjectId se try karo
-// //     let product = null;
-
-// //     try {
-// //       const { ObjectId } = await import("mongodb");
-// //       if (ObjectId.isValid(productId)) {
-// //         product = await db
-// //           .collection(collection)
-// //           .findOne({ _id: new ObjectId(productId) });
-// //       }
-// //     } catch (e) {}
-
-// //     // Agar nahi mila toh string ID se try karo
-// //     if (!product) {
-// //       product = await db
-// //         .collection(collection)
-// //         .findOne({ _id: productId });
-// //     }
-
-// //     // Agar phir bhi nahi mila toh kisi aur field se try karo
-// //     if (!product) {
-// //       product = await db
-// //         .collection(collection)
-// //         .findOne({ id: productId });
-// //     }
-
-// //     if (!product) {
-// //       return res.status(404).json({ error: "Product nahi mila!" });
-// //     }
-
-// //     res.json(product);
-
-// //   } catch (error) {
-// //     res.status(500).json({ error: error.message });
-// //   }
-// // });
-// // // ✅ Route 2: Single product by ID (Product detail page ke liye)
-// // app.get("/api/Doctorid/:id", async (req, res) => {
-// //   try {
-// //     const productId = req.params.id;
-
-// //     // Pehle ObjectId se try karo
-// //     let product = null;
-
-// //     try {
-// //       const { ObjectId } = await import("mongodb");
-// //       if (ObjectId.isValid(productId)) {
-// //         product = await db
-// //           .collection(collection)
-// //           .findOne({ _id: new ObjectId(productId) });
-// //       }
-// //     } catch (e) {}
-
-// //     // Agar nahi mila toh string ID se try karo
-// //     if (!product) {
-// //       product = await db
-// //         .collection(collection)
-// //         .findOne({ _id: productId });
-// //     }
-
-// //     // Agar phir bhi nahi mila toh kisi aur field se try karo
-// //     if (!product) {
-// //       product = await db
-// //         .collection(collection)
-// //         .findOne({ id: productId });
-// //     }
-
-// //     if (!product) {
-// //       return res.status(404).json({ error: "Product nahi mila!" });
-// //     }
-
-// //     res.json(product);
-
-// //   } catch (error) {
-// //     res.status(500).json({ error: error.message });
-// //   }
-// // });
-
-// // Server start
-// app.listen(PORT, () => {
-//   console.log(`🚀 Server running at http://localhost:${PORT}`);
-// });import express from "express";
 import { MongoClient, ObjectId } from "mongodb";
 import cors from "cors";
 import express from "express";
 import dotenv from "dotenv";
- dotenv.config();
+import mongoose from "mongoose";
+import plansRouter from "./routes/Plans.js";
+
+dotenv.config();
 
 // ─── Config ──────────────────────────────────────────────────
-// .env file me ye likho (server.js ke saath wale folder me):
-// MONGODB_URI=
+// .env me ye likho (Server.js ke saath wale folder me):
+// MONGODB_URI=mongodb+srv://<user>:<password>@<cluster>/?appName=...
 // PORT=3000
+// GEMINI_API_KEY=...
+// GEMINI_MODEL=gemini-3.8-flash
 const MONGODB_URI = process.env.MONGODB_URI;
 const PORT = process.env.PORT || 3000;
 
@@ -233,9 +34,7 @@ const collection7 = "Society Polls/Voting Collection";
 const collection8 = "Emergency";
 const collection9 = "Directory";
 
-// ─── App + Middleware ────────────────────────────────────────
-// ─── App + Middleware ────────────────────────────────────────
-
+// ─── App + Middleware (SABSE PEHLE) ──────────────────────────
 const app = express();
 
 app.use(
@@ -251,8 +50,11 @@ app.use(
 
 app.use(express.json());
 
-// ─── DB Connection ───────────────────────────────────────────
+// Safety Planner (Mongoose router): /api/plans/generate, /api/plans, /api/plans/:id ...
+// Ye express.json() ke BAAD aur 404 handler ke PEHLE hona chahiye.
+app.use("/api/plans", plansRouter);
 
+// ─── DB Connection ───────────────────────────────────────────
 const client = new MongoClient(MONGODB_URI);
 
 let db;
@@ -260,6 +62,7 @@ let communityDb;
 
 async function connectDB() {
   await client.connect();
+  await mongoose.connect(MONGODB_URI, { dbName: Community_Data }); // Safety Planner ke liye
 
   db = client.db(Community_data);
   communityDb = client.db(Community_Data);
@@ -268,95 +71,51 @@ async function connectDB() {
     `✅ MongoDB Connected → db: "${Community_data}", collection: "${Collection1}"`
   );
   console.log(`✅ MongoDB Connected → db: "${Community_Data}"`);
+  console.log(`✅ Mongoose Connected → db: "${Community_Data}"`);
 }
 
 const col = () => db.collection(Collection1);
 
 // ═══════════════════════════════════════════════════════════
-// PAGE 1: /api/Events  (pehle jaisa — bina chhede)
+// PAGE 1: /api/Events
 // ═══════════════════════════════════════════════════════════
 
 async function findById(id) {
   if (ObjectId.isValid(id)) {
-    const doc = await col().findOne({
-      _id: new ObjectId(id),
-    });
-
-    if (doc) {
-      return {
-        doc,
-        query: {
-          _id: new ObjectId(id),
-        },
-      };
-    }
+    const doc = await col().findOne({ _id: new ObjectId(id) });
+    if (doc) return { doc, query: { _id: new ObjectId(id) } };
   }
 
-  const doc = await col().findOne({
-    _id: id,
-  });
+  const doc = await col().findOne({ _id: id });
+  if (doc) return { doc, query: { _id: id } };
 
-  if (doc) {
-    return {
-      doc,
-      query: {
-        _id: id,
-      },
-    };
-  }
-
-  return {
-    doc: null,
-    query: null,
-  };
+  return { doc: null, query: null };
 }
 
 // ─── GET ALL Events ──────────────────────────────────────────
-
 app.get("/api/Events", async (req, res) => {
   try {
     const Events = await col().find().sort({ createdAt: -1 }).toArray();
-
-    res.json({
-      success: true,
-      count: Events.length,
-      data: Events,
-    });
+    res.json({ success: true, count: Events.length, data: Events });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      error: err.message,
-    });
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
-// ─── GET ONE Events ───────────────────────────────────────────
-
+// ─── GET ONE Events ──────────────────────────────────────────
 app.get("/api/Events/:id", async (req, res) => {
   try {
     const { doc } = await findById(req.params.id);
-
     if (!doc) {
-      return res.status(404).json({
-        success: false,
-        error: "Events not found",
-      });
+      return res.status(404).json({ success: false, error: "Events not found" });
     }
-
-    res.json({
-      success: true,
-      data: doc,
-    });
+    res.json({ success: true, data: doc });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      error: err.message,
-    });
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
-// ─── CREATE Events ─────────────────────────────────────────────
-
+// ─── CREATE Events ───────────────────────────────────────────
 app.post("/api/Events", async (req, res) => {
   try {
     const { title, type, location, status, description, photo } = req.body;
@@ -384,30 +143,19 @@ app.post("/api/Events", async (req, res) => {
     res.status(201).json({
       success: true,
       message: "Events create ho gaya! ✅",
-      data: {
-        _id: result.insertedId,
-        ...newEvents,
-      },
+      data: { _id: result.insertedId, ...newEvents },
     });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      error: err.message,
-    });
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
-// ─── UPDATE Events ─────────────────────────────────────────────
-
+// ─── UPDATE Events ───────────────────────────────────────────
 app.put("/api/Events/:id", async (req, res) => {
   try {
     const { doc, query } = await findById(req.params.id);
-
     if (!doc) {
-      return res.status(404).json({
-        success: false,
-        error: "Events not found",
-      });
+      return res.status(404).json({ success: false, error: "Events not found" });
     }
 
     const { title, type, location, status, description, photo } = req.body;
@@ -428,45 +176,28 @@ app.put("/api/Events/:id", async (req, res) => {
       { returnDocument: "after" }
     );
 
-    const updatedDoc = result?.value ?? result;
-
     res.json({
       success: true,
       message: "Events update ho gaya! ✅",
-      data: updatedDoc,
+      data: result?.value ?? result,
     });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      error: err.message,
-    });
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
-// ─── DELETE Events ─────────────────────────────────────────────
-
+// ─── DELETE Events ───────────────────────────────────────────
 app.delete("/api/Events/:id", async (req, res) => {
   try {
     const { doc, query } = await findById(req.params.id);
-
     if (!doc) {
-      return res.status(404).json({
-        success: false,
-        error: "Events not found",
-      });
+      return res.status(404).json({ success: false, error: "Events not found" });
     }
 
     await col().deleteOne(query);
-
-    res.json({
-      success: true,
-      message: "Events delete ho gaya! 🗑️",
-    });
+    res.json({ success: true, message: "Events delete ho gaya! 🗑️" });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      error: err.message,
-    });
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
@@ -627,9 +358,7 @@ app.patch("/api/Emergency/:id/status", async (req, res) => {
   try {
     const { doc, query } = await findEmergency(req.params.id);
     if (!doc) {
-      return res
-        .status(404)
-        .json({ success: false, error: "Emergency not found" });
+      return res.status(404).json({ success: false, error: "Emergency not found" });
     }
 
     const result = await emergencyCol().findOneAndUpdate(
@@ -666,9 +395,7 @@ app.post("/api/Emergency/:id/respond", async (req, res) => {
 
     const { doc, query } = await findEmergency(req.params.id);
     if (!doc) {
-      return res
-        .status(404)
-        .json({ success: false, error: "Emergency not found" });
+      return res.status(404).json({ success: false, error: "Emergency not found" });
     }
 
     const result = await emergencyCol().findOneAndUpdate(
@@ -690,7 +417,7 @@ app.post("/api/Emergency/:id/respond", async (req, res) => {
   }
 });
 
-// ─── 404 handler (galat route par JSON error) ─────────────────
+// ─── 404 handler (HAMESHA saare routes ke baad) ──────────────
 app.use((req, res) => {
   res.status(404).json({
     success: false,
@@ -698,8 +425,7 @@ app.use((req, res) => {
   });
 });
 
-// ─── START SERVER ─────────────────────────────────────────────
-
+// ─── START SERVER ────────────────────────────────────────────
 connectDB()
   .then(() => {
     app.listen(PORT, () => {
@@ -726,7 +452,14 @@ connectDB()
       console.log(`   GET    /api/community-events`);
       console.log(`   GET    /api/Lost_Found-data`);
       console.log(`   GET    /api/Society_Gallery`);
-      console.log(`   GET    /api/Society_Polls\n`);
+      console.log(`   GET    /api/Society_Polls`);
+
+      console.log(`\n🛡️ Safety Planner Routes:`);
+      console.log(`   POST   /api/plans/generate`);
+      console.log(`   GET    /api/plans`);
+      console.log(`   GET    /api/plans/:id`);
+      console.log(`   PATCH  /api/plans/:id/progress`);
+      console.log(`   DELETE /api/plans/:id\n`);
     });
   })
   .catch((err) => {
