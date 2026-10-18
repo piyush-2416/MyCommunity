@@ -6,6 +6,14 @@ import NotificationBell from './NotificationBell .jsx';
 import { ImageOff } from 'lucide-react';
  const communityFeatures = [
   {
+    title: "Safety Planner",
+    description: "AI se apni community ka safety plan banao.",
+    image:
+      "https://blog.edcafe.ai/wp-content/uploads/2026/06/AI-Chatbot-safety-scaled.png",
+    icon: "🛡️",
+    Link:"/SafetyPlanner",
+    tag: "Safety",
+  }, {
     title: "Elder Care",
     description: "Care, respect & support for our elders.",
     image:
@@ -14,15 +22,7 @@ import { ImageOff } from 'lucide-react';
     Link:"/Elders",
     tag: "Care",
   },
-  {
-    title: "Animal Safety",
-    description: "Report, rescue & protect animals.",
-    image:
-      "https://static.vecteezy.com/system/resources/thumbnails/011/466/678/small/animal-rescue-team-is-taking-care-of-wild-animals-vector.jpg",
-    icon: "🐾",
-    Link:"/AnimalsSafety",
-    tag: "Animals",
-  },
+ 
   {
     title: "Trees & Plants",
     description: "Make our community greener together.",
@@ -51,13 +51,13 @@ import { ImageOff } from 'lucide-react';
     tag: "Community",
   },
   {
-    title: "Dogs & Community",
-    description: "Adopt, report & care for community dogs.",
+    title: "Animal Safety",
+    description: "Report, rescue & protect animals.",
     image:
       "https://static.vecteezy.com/system/resources/previews/046/885/275/non_2x/a-cartoon-illustration-of-a-man-kneeling-down-and-petting-his-dog-while-outdoors-in-a-park-free-vector.jpg",
-    icon: "🐶",
-    Link:"/Dogs_care",
-    tag: "Pets",
+    icon: "🐾",
+    Link:"/AnimalsSafety",
+    tag: "Animals",
   },
 ];
 function Home() {
