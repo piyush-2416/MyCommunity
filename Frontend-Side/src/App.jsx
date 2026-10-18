@@ -32,7 +32,7 @@ import Settings from "./Pages/Setting.jsx";
 import Explore from "./Pages/Explore.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
 import Achievements from "./Pages/Achievements.jsx";
-import Auth from "./Pages/Auth.jsx";
+import Auth from "./Pages/Auth.jsx";import SafetyPlanner from "./Pages/SafetyPlanner.jsx";
 function App() {
   return (
     <>
@@ -43,6 +43,8 @@ function App() {
           <Route path="/Auth" element={<Auth />} />{" "}
           <Route path="/About" element={<About />} />
           <Route path="/Navbar" element={<Navbar />} />
+        <Route path="/SafetyPlanner" element={<SafetyPlanner />} />{" "}
+
           <Route path="Business" element={<Business />} />
           <Route path="/Complaints" element={<Complaints />} />
           <Route path="/Emergency" element={<Emergency />} />
