@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import NotificationBell from "./NotificationBell ";
 import { Link, NavLink } from "react-router-dom";
+// import SafetyPlanner from "./SafetyPlanner";
 
 /* Sidebar ka poora menu yahin se banta hai.
    Naya item chahiye to bas yahan ek line add kar do. */
@@ -15,6 +16,13 @@ const sections = [
     ],
   },
   {
+    label: "Ai Features",
+    items: [
+      { icon: "🤖", text: "Ai Safety-Planner", to: "/SafetyPlanner" },
+      { icon: "🆘", text: "Ai Self-Safety", to: "/SafetyCheck" },
+    ],
+  },
+  {
     label: "Discover",
     items: [
       { icon: "🔍", text: "Explore", to: "/Explore" },
@@ -24,11 +32,12 @@ const sections = [
       { icon: "💬", text: "Feedback", to: "/Feedback" },
     ],
   },
+
   {
     label: "Account",
     items: [
       { icon: "👤", text: "My Profile" }, // abhi route nahi hai
-   
+
       { icon: "⚙️", text: "Settings", to: "/Setting" },
     ],
   },
@@ -136,7 +145,10 @@ function Navbar() {
                           >
                             {({ isActive }) => (
                               <>
-                                <IconBubble icon={item.icon} active={isActive} />
+                                <IconBubble
+                                  icon={item.icon}
+                                  active={isActive}
+                                />
                                 {item.text}
                               </>
                             )}
