@@ -4,6 +4,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import plansRouter from "./routes/Plans.js";
+import safetyRouter from "./routes/Safety.js";
 
 dotenv.config();
 
@@ -53,6 +54,9 @@ app.use(express.json());
 // Safety Planner (Mongoose router): /api/plans/generate, /api/plans, /api/plans/:id ...
 // Ye express.json() ke BAAD aur 404 handler ke PEHLE hona chahiye.
 app.use("/api/plans", plansRouter);
+
+// Personal Safety Check + SOS: /api/safety/assess, /api/safety/sos
+app.use("/api/safety", safetyRouter);
 
 // ─── DB Connection ───────────────────────────────────────────
 const client = new MongoClient(MONGODB_URI);
@@ -459,7 +463,11 @@ connectDB()
       console.log(`   GET    /api/plans`);
       console.log(`   GET    /api/plans/:id`);
       console.log(`   PATCH  /api/plans/:id/progress`);
-      console.log(`   DELETE /api/plans/:id\n`);
+      console.log(`   DELETE /api/plans/:id`);
+
+      console.log(`\n🆘 Personal Safety Routes:`);
+      console.log(`   POST   /api/safety/assess`);
+      console.log(`   POST   /api/safety/sos\n`);
     });
   })
   .catch((err) => {
