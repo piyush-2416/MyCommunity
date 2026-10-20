@@ -6,7 +6,7 @@ import NotificationBell from './NotificationBell .jsx';
 import { ImageOff } from 'lucide-react';
  const communityFeatures = [
   {
-    title: "Safety Planner",
+    title: "Ai Safety-Planner",
     description: "AI se apni community ka safety plan banao.",
     image:
       "https://blog.edcafe.ai/wp-content/uploads/2026/06/AI-Chatbot-safety-scaled.png",
@@ -22,7 +22,15 @@ import { ImageOff } from 'lucide-react';
     Link:"/Elders",
     tag: "Care",
   },
- 
+  {
+    title: "Ai Self-Safety",
+    description: "Ai Self safety Feature.Emergency safety Helper.",
+    image:
+      "https://verityai.co/_next/image?url=https:%2F%2Fcdn.sanity.io%2Fimages%2F5v26bvj8%2Fproduction%2F6f435aa4e6278b4345a91cec90c3a10ef6e02e40-1536x1024.png&w=1200&q=75",
+    icon: "🆘",
+    Link:"/SafetyCheck",
+    tag: "SafetyCheck",
+  },
   {
     title: "Trees & Plants",
     description: "Make our community greener together.",
@@ -32,15 +40,7 @@ import { ImageOff } from 'lucide-react';
     Link:"/TreesPlats",
     tag: "Environment",
   },
-  {
-    title: "Blood Donation",
-    description: "Donate blood and help save lives.",
-    image:
-      "https://media.istockphoto.com/id/1852205337/vector/doctor-working-with-patient-in-hospital-doctor-collects-blood-from-man.jpg?s=612x612&w=0&k=20&c=04alId1qs46HoJoQPgkihQzSMaZhDunLlM3auWltEMI=",
-    icon: "🩸",
-    Link:"/Blood_donation",
-    tag: "Health",
-  },
+ 
   {
     title: "Lost & Found",
     description: "Help your neighbors find lost items.",
