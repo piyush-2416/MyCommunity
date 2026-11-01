@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+// import NotificationBell from "./NotificationBell";
+import { useAuth } from "../context/AuthContext";
 import NotificationBell from "./NotificationBell ";
-import { Link, NavLink } from "react-router-dom";
-// import SafetyPlanner from "./SafetyPlanner";
-
+// import NotificationBell from "./NotificationBell";
 /* Sidebar ka poora menu yahin se banta hai.
    Naya item chahiye to bas yahan ek line add kar do. */
 const sections = [
@@ -19,7 +20,7 @@ const sections = [
     label: "Ai Features",
     items: [
       { icon: "🤖", text: "Ai Safety-Planner", to: "/SafetyPlanner" },
-      { icon: "🆘", text: "Ai Self-Safety", to: "/SafetyCheck" },
+      { icon: "🆘", text: "Ai Self-Safety", to: "/SafetyChecker" },
     ],
   },
   {
@@ -32,12 +33,49 @@ const sections = [
       { icon: "💬", text: "Feedback", to: "/Feedback" },
     ],
   },
-
   {
     label: "Account",
     items: [
-      { icon: "👤", text: "My Profile" }, // abhi route nahi hai
+      { icon: "👤", text: "My Profile", to: "/Profile" },
+      { icon: "⚙️", text: "Settings", to: "/Setting" },
+    ],
+  },
+];
 
+// Volunteer ka sidebar
+const volunteerSections = [
+  {
+    label: "Community",
+    items: [
+      { icon: "🏠", text: "Dashboard", to: "/", end: true },
+      { icon: "🎉", text: "Community Events", to: "/Events" },
+      { icon: "📝", text: "Complaints", to: "/Complaints" },
+      { icon: "🚨", text: "Emergency", to: "/Emergency" },
+      { icon: "🗳️", text: "Voting Polls", to: "/Society_Polls" },
+      { icon: "📇", text: "Directory", to: "/Directory" },
+      { icon: "🏪", text: "Business", to: "/Business" },
+    ],
+  },
+  {
+    label: "Ai Features",
+    items: [
+      { icon: "🤖", text: "Ai Safety-Planner", to: "/SafetyPlanner" },
+      { icon: "🆘", text: "Ai Self-Safety", to: "/SafetyChecker" },
+    ],
+  },
+  {
+    label: "Discover",
+    items: [
+      { icon: "📰", text: "Blogs", to: "/Blogs" },
+      { icon: "📸", text: "Memories", to: "/Gallery" },
+      { icon: "💬", text: "Feedback", to: "/Feedback" },
+    ],
+  },
+  {
+    label: "Account",
+    items: [
+      // { icon: "📇", text: "My Directory Profile", to: "/volunteer/profile" },
+      { icon: "👤", text: "My Profile", to: "/Profile" },
       { icon: "⚙️", text: "Settings", to: "/Setting" },
     ],
   },
@@ -61,11 +99,56 @@ function IconBubble({ icon, active }) {
 }
 
 function Navbar() {
+  // Hooks hamesha component ke ANDAR hote hain (pehle ye bahar the, isliye crash hota tha)
+  const { user, loading, logout } = useAuth();
+  const navigate = useNavigate();
+  const isVolunteer = user?.role === "volunteer";
+
+  // Volunteer ke Account section mein "My Directory Profile" bhi dikhe
+  //  const isVolunteer = user?.role === "volunteer";
+  const menu = isVolunteer ? volunteerSections : sections;
   const drawerRef = useRef(null);
+  const noBtnRef = useRef(null);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [loggingOut, setLoggingOut] = useState(false);
+  const [logoutError, setLogoutError] = useState("");
 
   // Link click hote hi sidebar band ho jaye (mobile pe zaroori)
   const closeDrawer = () => {
     if (drawerRef.current) drawerRef.current.checked = false;
+  };
+
+  // Logout confirm popup: Escape se band, focus safe option ("Nahi") par
+  useEffect(() => {
+    if (!confirmOpen) return;
+    noBtnRef.current?.focus();
+    const onKey = (e) => {
+      if (e.key === "Escape" && !loggingOut) setConfirmOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [confirmOpen, loggingOut]);
+
+  const askLogout = () => {
+    closeDrawer();
+    setLogoutError("");
+    setConfirmOpen(true);
+  };
+
+  const handleLogout = async () => {
+    setLoggingOut(true);
+    setLogoutError("");
+    try {
+      await logout();
+      setConfirmOpen(false);
+      navigate("/login", { replace: true });
+    } catch (err) {
+      setLogoutError(
+        err?.response?.data?.message || "Logout nahi ho paya, dobara try karo",
+      );
+    } finally {
+      setLoggingOut(false);
+    }
   };
 
   return (
@@ -117,7 +200,7 @@ function Navbar() {
 
             {/* Menu */}
             <nav className="flex-1 px-3 py-4 overflow-y-auto">
-              {sections.map((section) => (
+              {menu.map((section) => (
                 <div key={section.label} className="mb-5 last:mb-0">
                   <p className="mb-2 px-3 font-semibold text-slate-400 text-xs">
                     {section.label}
@@ -138,6 +221,7 @@ function Navbar() {
                         ) : item.to ? (
                           <NavLink
                             to={item.to}
+                            end={item.end}
                             onClick={closeDrawer}
                             className={({ isActive }) =>
                               `${baseItem} ${isActive ? activeItem : idleItem}`
@@ -170,22 +254,34 @@ function Navbar() {
               ))}
             </nav>
 
-            {/* Footer: Logout */}
-            <div className="p-3 border-slate-100 border-t">
-              <button
-                type="button"
-                onClick={closeDrawer}
-                className="flex justify-center items-center gap-2 bg-rose-50 px-3 py-2.5 border border-rose-200 rounded-xl w-full font-semibold text-rose-600 text-sm"
-              >
-                <span>🚪</span>
-                Logout
-              </button>
-            </div>
+            {/* Footer: Logout (login hone par) ya Login / Sign up */}
+            {/* <div1 className="p-3 border-slate-100 border-t">
+              
+               
+             
+                <div className="gap-2 grid grid-cols-2">
+                  <Link
+                    to="/login"
+                    onClick={closeDrawer}
+                    className="bg-emerald-600 hover:bg-emerald-700 px-3 py-2.5 rounded-xl font-semibold text-white text-sm text-center transition-colors"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/signup"
+                    onClick={closeDrawer}
+                    className="hover:bg-emerald-50 px-3 py-2.5 border border-emerald-200 rounded-xl font-semibold text-emerald-700 text-sm text-center transition-colors"
+                  >
+                    Sign up
+                  </Link>
+                </div>
+            
+            </div1> */}
           </aside>
         </div>
       </div>
 
-      {/* Top navbar (pehle jaisa) */}
+      {/* Top navbar */}
       <div
         className="bg-base-100 shadow-sm navbar"
         style={{ backgroundColor: "mediumseagreen" }}
@@ -200,12 +296,160 @@ function Navbar() {
           </label>
         </div>
         <div className="navbar-center"></div>
-        <div className="navbar-end">
+        <div className="items-center gap-1 navbar-end">
           <NotificationBell />
 
-          <button className="btn btn-ghost btn-circle">👤</button>
+          {!loading &&
+            (user ? (
+              <Link
+                to="/Profile"
+                className="gap-2 btn btn-ghost"
+                aria-label="Meri profile"
+              >
+                <span className="hidden sm:inline max-w-[140px] font-medium text-white truncate">
+                  Hi, {user.name}
+                  {isVolunteer ? " 🤝" : ""}
+                </span>
+                <span aria-hidden="true">👤</span>
+              </Link>
+            ) : (
+              <>
+                <Link to="/login" className="btn btn-ghost">
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="hidden sm:inline-flex btn btn-ghost"
+                >
+                  Sign up
+                </Link>
+              </>
+            ))}
         </div>
       </div>
+
+      {/* Logout confirm (Yes / No) */}
+      {confirmOpen && (
+        <div
+          onClick={() => !loggingOut && setConfirmOpen(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1000,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 16,
+            background: "rgba(15,23,42,.5)",
+          }}
+        >
+          <div
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="nav-logout-title"
+            aria-describedby="nav-logout-desc"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "100%",
+              maxWidth: 380,
+              padding: "32px 28px 28px",
+              borderRadius: 24,
+              background: "#fff",
+              textAlign: "center",
+              boxShadow: "0 24px 60px -20px rgba(15,23,42,.5)",
+            }}
+          >
+            <div
+              aria-hidden="true"
+              style={{
+                width: 56,
+                height: 56,
+                margin: "0 auto",
+                display: "grid",
+                placeItems: "center",
+                borderRadius: "50%",
+                background: "#fef3c7",
+                fontSize: 26,
+              }}
+            >
+              ⚠️
+            </div>
+            <h3
+              id="nav-logout-title"
+              style={{
+                margin: "18px 0 0",
+                fontSize: 19,
+                fontWeight: 800,
+                color: "#0f172a",
+              }}
+            >
+              Kya aap logout karna chahte hain?
+            </h3>
+            <p
+              id="nav-logout-desc"
+              style={{ margin: "8px 0 0", fontSize: 14, color: "#64748b" }}
+            >
+              Logout karne ke baad dobara login karna padega.
+            </p>
+
+            {logoutError && (
+              <p
+                role="alert"
+                style={{ margin: "12px 0 0", fontSize: 13, color: "#b91c1c" }}
+              >
+                {logoutError}
+              </p>
+            )}
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 12,
+                marginTop: 24,
+              }}
+            >
+              <button
+                ref={noBtnRef}
+                type="button"
+                onClick={() => setConfirmOpen(false)}
+                disabled={loggingOut}
+                style={{
+                  padding: "12px 10px",
+                  borderRadius: 14,
+                  border: "1px solid #cbd5e1",
+                  background: "#fff",
+                  color: "#334155",
+                  fontWeight: 700,
+                  fontSize: 14,
+                  cursor: loggingOut ? "not-allowed" : "pointer",
+                  opacity: loggingOut ? 0.6 : 1,
+                }}
+              >
+                Nahi
+              </button>
+              <button
+                type="button"
+                onClick={handleLogout}
+                disabled={loggingOut}
+                style={{
+                  padding: "12px 10px",
+                  borderRadius: 14,
+                  border: "1px solid #dc2626",
+                  background: "#dc2626",
+                  color: "#fff",
+                  fontWeight: 700,
+                  fontSize: 14,
+                  cursor: loggingOut ? "not-allowed" : "pointer",
+                  opacity: loggingOut ? 0.6 : 1,
+                }}
+              >
+                {loggingOut ? "Ho raha hai..." : "Haan, logout"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
