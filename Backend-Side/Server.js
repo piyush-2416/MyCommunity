@@ -1,17 +1,23 @@
+import "dotenv/config";
 import { MongoClient, ObjectId } from "mongodb";
 import cors from "cors";
 import express from "express";
-import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
+import { requireRole } from "./Middleware/auth.js";
+import volunteerProfileRouter from "./routes/VolunteerProfile.js";
+import authRouter from "./routes/Auth.js";
 import plansRouter from "./routes/Plans.js";
 import safetyRouter from "./routes/Safety.js";
-
-dotenv.config();
-
+import { requireAuth } from "./Middleware/auth.js";
+// import { requireAuth, requireRole } from "./Middleware/auth.js";
+import statsRouter from "./routes/Stats.js";
 // ─── Config ──────────────────────────────────────────────────
 // .env me ye likho (Server.js ke saath wale folder me):
 // MONGODB_URI=mongodb+srv://<user>:<password>@<cluster>/?appName=...
 // PORT=3000
+// JWT_SECRET=kam_se_kam_32_characters_ka_random_string
+// CLIENT_URL=http://localhost:5173
 // GEMINI_API_KEY=...
 // GEMINI_MODEL=gemini-3.8-flash
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -20,6 +26,14 @@ const PORT = process.env.PORT || 3000;
 if (!MONGODB_URI) {
   console.error("❌ MONGODB_URI .env me nahi mila!");
   process.exit(1);
+}
+
+if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
+  console.error("❌ .env mein JWT_SECRET (kam se kam 32 characters) daalo.");
+  process.exit(1);
+}
+if (!process.env.VOLUNTEER_INVITE_CODE) {
+  console.warn("⚠️ VOLUNTEER_INVITE_CODE .env me nahi mila: volunteer signup band rahega.");
 }
 
 const Community_data = "Community-data";
@@ -37,26 +51,71 @@ const collection9 = "Directory";
 
 // ─── App + Middleware (SABSE PEHLE) ──────────────────────────
 const app = express();
+app.set("trust proxy", 1); // Render jaise hosting par secure cookie ke liye
 
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",
-      "http://localhost:3000",
+      process.env.CLIENT_URL || "http://localhost:5173",
       "http://127.0.0.1:5173",
     ],
-    credentials: true,
+    credentials: true, // cookie bhejne ke liye zaroori
   })
 );
 
-app.use(express.json());
+app.use(cookieParser());
+app.use(express.json({ limit: "1mb" }));
+
+// ─── Helpers ─────────────────────────────────────────────────
+const uid = (req) => String(req.user?._id ?? "");
+
+// Record badalne ki ijazat: banane wala ya admin.
+// Purane records (jinme createdBy nahi hai) koi bhi logged-in user badal sakta hai.
+const canModify = (doc, req) =>
+  !doc?.createdBy || doc.createdBy === uid(req) || req.user?.role === "admin";
+
+// ─── Health check (public) ───────────────────────────────────
+app.get("/", (req, res) => {
+  res.json({ ok: true, message: "Server chal raha hai 🚀", port: PORT });
+});
+
+// ─── Auth (public: signup / login / logout / me) ─────────────
+app.use("/api/auth", authRouter);
+// ─── Volunteer apni Directory profile yahan se bharta hai ────
+app.use("/api/volunteer/profile", requireAuth, requireRole("volunteer"), volunteerProfileRouter);
+// ─── Dashboard stats (sirf volunteer aur admin) ──────────────
+app.use("/api/stats", requireAuth, requireRole("volunteer", "admin"), statsRouter);
+// ─── Data routes ka access rule (SIRF EK JAGAH) ──────────────
+// GET (padhna)  : sabke liye khula
+// POST/PUT/PATCH/DELETE (likhna/badalna): login zaroori
+const readPublic = (req, res, next) =>
+  req.method === "GET" ? next() : requireAuth(req, res, next);
+
+app.use(
+  [
+    "/api/Events",
+    "/api/Emergency",
+    "/api/products",
+    "/api/complaints",
+    "/api/Notice",
+    "/api/Directory",
+    "/api/community-events",
+    "/api/Lost_Found-data",
+    "/api/Society_Gallery",
+    "/api/Society_Polls",
+  ],
+  readPublic
+);
+
+// Emergency list me logon ke phone number hote hain. Agar ye sirf logged-in logon ko
+// dikhane hain, to upar ki list se "/api/Emergency" hata do aur ye line khol do:
+// app.use("/api/Emergency", requireAuth);
 
 // Safety Planner (Mongoose router): /api/plans/generate, /api/plans, /api/plans/:id ...
-// Ye express.json() ke BAAD aur 404 handler ke PEHLE hona chahiye.
-app.use("/api/plans", plansRouter);
+app.use("/api/plans", requireAuth, plansRouter);
 
 // Personal Safety Check + SOS: /api/safety/assess, /api/safety/sos
-app.use("/api/safety", safetyRouter);
+app.use("/api/safety", requireAuth, safetyRouter);
 
 // ─── DB Connection ───────────────────────────────────────────
 const client = new MongoClient(MONGODB_URI);
@@ -66,11 +125,11 @@ let communityDb;
 
 async function connectDB() {
   await client.connect();
-  await mongoose.connect(MONGODB_URI, { dbName: Community_Data }); // Safety Planner ke liye
+  await mongoose.connect(MONGODB_URI, { dbName: Community_Data }); // Safety Planner + Users ke liye
 
   db = client.db(Community_data);
   communityDb = client.db(Community_Data);
-
+app.locals.communityDb = communityDb; // VolunteerProfile router isse DB leta hai
   console.log(
     `✅ MongoDB Connected → db: "${Community_data}", collection: "${Collection1}"`
   );
@@ -138,6 +197,7 @@ app.post("/api/Events", async (req, res) => {
       status: parseFloat(status),
       description: description?.trim() || "",
       photo: photo?.trim() || "",
+      createdBy: uid(req), // kisne banaya
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -160,6 +220,9 @@ app.put("/api/Events/:id", async (req, res) => {
     const { doc, query } = await findById(req.params.id);
     if (!doc) {
       return res.status(404).json({ success: false, error: "Events not found" });
+    }
+    if (!canModify(doc, req)) {
+      return res.status(403).json({ success: false, error: "Sirf banane wala ise badal sakta hai" });
     }
 
     const { title, type, location, status, description, photo } = req.body;
@@ -196,6 +259,9 @@ app.delete("/api/Events/:id", async (req, res) => {
     const { doc, query } = await findById(req.params.id);
     if (!doc) {
       return res.status(404).json({ success: false, error: "Events not found" });
+    }
+    if (!canModify(doc, req)) {
+      return res.status(403).json({ success: false, error: "Sirf banane wala ise delete kar sakta hai" });
     }
 
     await col().deleteOne(query);
@@ -238,7 +304,10 @@ app.get("/api/Notice", async (req, res) => {
 
 app.get("/api/Directory", async (req, res) => {
   try {
-    const data = await communityDb.collection(collection9).find().toArray();
+    const data = await communityDb
+      .collection(collection9)
+      .find({ isProfileComplete: { $ne: false } })
+      .toArray();
     res.json(data);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -341,6 +410,7 @@ app.post("/api/Emergency", async (req, res) => {
       urgency: (urgency || "medium").toLowerCase(),
       status: "active",
       respondedBy: [],
+      createdBy: uid(req), // kisne raise ki
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -363,6 +433,9 @@ app.patch("/api/Emergency/:id/status", async (req, res) => {
     const { doc, query } = await findEmergency(req.params.id);
     if (!doc) {
       return res.status(404).json({ success: false, error: "Emergency not found" });
+    }
+    if (!canModify(doc, req)) {
+      return res.status(403).json({ success: false, error: "Sirf raise karne wala ise resolve kar sakta hai" });
     }
 
     const result = await emergencyCol().findOneAndUpdate(
@@ -388,13 +461,12 @@ app.patch("/api/Emergency/:id/status", async (req, res) => {
 });
 
 // ─── "I can help" ────────────────────────────────────────────
+// Naam ab login wale user ka aata hai, body ka nahi (koi aur ke naam se help nahi kar sakta)
 app.post("/api/Emergency/:id/respond", async (req, res) => {
   try {
-    const responderName = req.body.responderName?.trim();
+    const responderName = String(req.user?.name ?? "").trim();
     if (!responderName) {
-      return res
-        .status(400)
-        .json({ success: false, error: "responderName required hai" });
+      return res.status(400).json({ success: false, error: "User ka naam nahi mila" });
     }
 
     const { doc, query } = await findEmergency(req.params.id);
@@ -429,26 +501,45 @@ app.use((req, res) => {
   });
 });
 
+// ─── Error handler (galat JSON waghera) ──────────────────────
+app.use((err, req, res, next) => {
+  if (res.headersSent) return next(err);
+  if (err?.type === "entity.parse.failed") {
+    return res.status(400).json({ success: false, error: "Galat JSON bheja gaya" });
+  }
+  if (err?.type === "entity.too.large") {
+    return res.status(413).json({ success: false, error: "Data bahut bada hai" });
+  }
+  console.error("❌ Server error:", err);
+  res.status(err.status || 500).json({ success: false, error: "Server error" });
+});
+
 // ─── START SERVER ────────────────────────────────────────────
 connectDB()
   .then(() => {
     app.listen(PORT, () => {
       console.log(`\n🚀 Server running at http://localhost:${PORT}`);
 
-      console.log(`📦 Events Routes:`);
+      console.log(`\n🔐 Auth Routes:`);
+      console.log(`   POST   /api/auth/signup`);
+      console.log(`   POST   /api/auth/login`);
+      console.log(`   POST   /api/auth/logout`);
+      console.log(`   GET    /api/auth/me`);
+
+      console.log(`\n📦 Events Routes (GET khula, baaki login zaroori):`);
       console.log(`   GET    /api/Events`);
       console.log(`   GET    /api/Events/:id`);
       console.log(`   POST   /api/Events`);
       console.log(`   PUT    /api/Events/:id`);
       console.log(`   DELETE /api/Events/:id`);
 
-      console.log(`\n🚨 Emergency Routes:`);
+      console.log(`\n🚨 Emergency Routes (GET khula, baaki login zaroori):`);
       console.log(`   GET    /api/Emergency`);
       console.log(`   POST   /api/Emergency`);
       console.log(`   PATCH  /api/Emergency/:id/status`);
       console.log(`   POST   /api/Emergency/:id/respond`);
 
-      console.log(`\n📦 Community Page Routes:`);
+      console.log(`\n📦 Community Page Routes (GET khula):`);
       console.log(`   GET    /api/products`);
       console.log(`   GET    /api/complaints`);
       console.log(`   GET    /api/Notice`);
@@ -458,14 +549,14 @@ connectDB()
       console.log(`   GET    /api/Society_Gallery`);
       console.log(`   GET    /api/Society_Polls`);
 
-      console.log(`\n🛡️ Safety Planner Routes:`);
+      console.log(`\n🛡️ Safety Planner Routes (login zaroori):`);
       console.log(`   POST   /api/plans/generate`);
       console.log(`   GET    /api/plans`);
       console.log(`   GET    /api/plans/:id`);
       console.log(`   PATCH  /api/plans/:id/progress`);
       console.log(`   DELETE /api/plans/:id`);
 
-      console.log(`\n🆘 Personal Safety Routes:`);
+      console.log(`\n🆘 Personal Safety Routes (login zaroori):`);
       console.log(`   POST   /api/safety/assess`);
       console.log(`   POST   /api/safety/sos\n`);
     });
