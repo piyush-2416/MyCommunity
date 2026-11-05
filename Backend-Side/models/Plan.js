@@ -4,7 +4,10 @@ import mongoose from "mongoose";
 // isliye community type ke liye "kind" use kiya hai.
 const planSchema = new mongoose.Schema(
   {
-    community: {   
+    // Plan kis logged-in user ne banaya
+    owner: { type: String, index: true },
+
+    community: {
       name: { type: String, required: true },
       kind: { type: String, required: true },
       households: { type: Number, required: true },
