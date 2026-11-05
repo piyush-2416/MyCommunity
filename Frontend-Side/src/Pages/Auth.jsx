@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { LogIn, UserPlus, ArrowRight } from "lucide-react";
-
+import { Link } from "react-router-dom";
 /* ------------------------------------------------------------------
    Images: public folder mein rakho
      public/hero-community.png       (hero background)
@@ -208,13 +208,13 @@ function AboutSection() {
               safe and united community.
             </p>
 
-            <a
+         <Link to="/About"><a
               href="#features"
               className="inline-flex items-center gap-2 bg-[#3cb371] mt-6 px-6 rounded-full h-11 font-semibold text-white text-sm"
             >
               Learn More
               <ArrowRight size={16} />
-            </a>
+            </a></Link>
           </Reveal>
         </div>
 
