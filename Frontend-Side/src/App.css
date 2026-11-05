@@ -2078,3 +2078,52 @@ body {
 .au-role:hover { border-color: #818cf8; }
 .au-role.on { border-color: #4f46e5; background: #eef2ff; }
 .au-role.on small { color: #6366f1; }
+
+
+.em-head-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+
+.em-service-btn{
+  min-height:46px;
+  padding:0 16px;
+  border:0;
+  border-radius:12px;
+  font-weight:700;
+  font-size:.9rem;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  transition:transform .2s, opacity .2s;
+}
+
+.em-service-btn:hover{
+  transform:translateY(-2px);
+  opacity:.9;
+}
+
+.em-ambulance{
+  background:#fff;
+  color:#16834b;
+}
+
+.em-police{
+  background:#173f8a;
+  color:#fff;
+}
+
+@media(max-width:600px){
+  .em-head-actions{
+    width:100%;
+  }
+
+  .em-service-btn{
+    flex:1;
+  }
+}
