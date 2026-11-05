@@ -10,46 +10,49 @@ const sections = [
   {
     label: "Community",
     items: [
-      { icon: "🏠", text: "Dashboard", to: "/Dashboard" },
-      { icon: "👥", text: "About", to: "/About" },
+      { icon: "🏠", text: "Home", to: "/" },
+      // { icon: "🎉", text: "Events", to: "/events" },
+      // { icon: "📢", text: "Complaints", to: "/Complaints" },
+      // { icon: "🚨", text: "Emergency", to: "/emergency" },
       { icon: "🤝", text: "Volunteers", to: "/Directory", noActive: true },
       { icon: "🗳️", text: "Polls & Voting", to: "/Society_Polls" },
     ],
   },
   {
-    label: "Ai Features",
+    label: "AI Features",
     items: [
-      { icon: "🤖", text: "Ai Safety-Planner", to: "/SafetyPlanner" },
-      { icon: "🆘", text: "Ai Self-Safety", to: "/SafetyChecker" },
+      { icon: "🛡️", text: "AI Safety Planner", to: "/SafetyPlanner" },
+      { icon: "🆘", text: "AI Self-Safety", to: "/SafetyChecker" },
     ],
   },
   {
     label: "Discover",
     items: [
-      { icon: "🔍", text: "Explore", to: "/Explore" },
+      { icon: "🏪", text: "Business", to: "/Business" },
+      { icon: "🔎", text: "Explore", to: "/Explore" },
+
       { icon: "📰", text: "Community Feed", to: "/Feed" },
       { icon: "📸", text: "Memories", to: "/Gallery" },
       { icon: "🏆", text: "Achievements", to: "/Achievements" },
       { icon: "💬", text: "Feedback", to: "/Feedback" },
+      { icon: "ℹ️", text: "About", to: "/About" },
     ],
   },
   {
     label: "Account",
-    items: [
-      { icon: "👤", text: "My Profile", to: "/Profile" },
-      { icon: "⚙️", text: "Settings", to: "/Setting" },
-    ],
+    items: [{ icon: "👤", text: "My Profile", to: "/Profile" }],
   },
 ];
 
-// Volunteer ka sidebar
+// Volunteer Sidebar
+
 const volunteerSections = [
   {
     label: "Community",
     items: [
       { icon: "🏠", text: "Dashboard", to: "/", end: true },
       { icon: "🎉", text: "Community Events", to: "/Events" },
-      { icon: "📝", text: "Complaints", to: "/Complaints" },
+      { icon: "📢", text: "Complaints", to: "/Complaints" },
       { icon: "🚨", text: "Emergency", to: "/Emergency" },
       { icon: "🗳️", text: "Voting Polls", to: "/Society_Polls" },
       { icon: "📇", text: "Directory", to: "/Directory" },
@@ -57,10 +60,10 @@ const volunteerSections = [
     ],
   },
   {
-    label: "Ai Features",
+    label: "AI Features",
     items: [
-      { icon: "🤖", text: "Ai Safety-Planner", to: "/SafetyPlanner" },
-      { icon: "🆘", text: "Ai Self-Safety", to: "/SafetyChecker" },
+      { icon: "🛡️", text: "AI Safety Planner", to: "/SafetyPlanner" },
+      { icon: "🆘", text: "AI Self-Safety", to: "/SafetyChecker" },
     ],
   },
   {
@@ -73,11 +76,7 @@ const volunteerSections = [
   },
   {
     label: "Account",
-    items: [
-      // { icon: "📇", text: "My Directory Profile", to: "/volunteer/profile" },
-      { icon: "👤", text: "My Profile", to: "/Profile" },
-      { icon: "⚙️", text: "Settings", to: "/Setting" },
-    ],
+    items: [{ icon: "👤", text: "My Profile", to: "/Profile" }],
   },
 ];
 
