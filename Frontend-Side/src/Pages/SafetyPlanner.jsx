@@ -22,15 +22,24 @@ const LEVEL = {
   high: { label: "Zyada" },
 };
 
+// FIX: credentials: "include" ke bina login cookie server tak nahi jaati,
+// aur /api/plans requireAuth ke peeche hai. Isi wajah se "Server error" aa raha tha.
 async function api(path, opts = {}) {
   let res;
   try {
-    res = await fetch(`${API}${path}`, { headers: { "Content-Type": "application/json" }, ...opts });
+    res = await fetch(`${API}${path}`, {
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      ...opts,
+    });
   } catch {
     throw new Error("Backend se connect nahi ho paya. Server (port 3000) chal raha hai?");
   }
   const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.error || "Server error");
+  if (!res.ok) {
+    if (res.status === 401) throw new Error("Pehle login karo, phir plan banao.");
+    throw new Error(data.error || data.message || `Server error (${res.status})`);
+  }
   return data;
 }
 
@@ -197,7 +206,7 @@ const css = `
   .no-print{display:none!important}
   .sp{background:#fff}
   .sp-card{box-shadow:none}
-    .sp-hero{padding:32px 16px 44px;
+  .sp-hero{padding:32px 16px 44px;
     background:linear-gradient(180deg,rgba(244,250,255,.93) 0%,rgba(244,250,255,.85) 100%),
     url("https://blog.edcafe.ai/wp-content/uploads/2026/06/AI-Chatbot-safety-scaled.png") 65% center/cover no-repeat}
   .sp-main{padding:0 14px 60px}
@@ -209,7 +218,6 @@ const css = `
   .sp-dark{background:#fff!important;color:#000!important;border:1px solid #cbd5e1;box-shadow:none}
   .sp-dark p{color:#334155!important}
   .sp-main{max-width:none;padding:0}
-
 }
 `;
 
@@ -485,7 +493,7 @@ export default function SafetyPlanner() {
         )}
 
         {/* ================= RESULT ================= */}
-        {doc && plan && (
+        {doc && plan && doc.community && (
           <div ref={resultRef} className="sp-stack" aria-live="polite">
             {doc.fallback && (
               <div className="sp-warn">
@@ -673,7 +681,7 @@ export default function SafetyPlanner() {
           <section className="no-print">
             <h2 className="sp-saved-title">Aapke saved plans</h2>
             <div className="sp-grid2" style={{ marginTop: 16 }}>
-              {saved.map((s) => (
+              {saved.filter((s) => s.community).map((s) => (
                 <div key={s._id} className={`sp-saved ${doc?._id === s._id ? "sel" : ""}`}>
                   <div className="sp-saved-top">
                     <div style={{ minWidth: 0 }}>
