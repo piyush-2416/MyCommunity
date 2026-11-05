@@ -1,5 +1,8 @@
 import axios from "axios";
+import client from "./client";
 
+export const getEmergencies = () => client.get("/Emergency");
+export const getProducts = () => client.get("/products");
 const API_BASE = "http://localhost:3000/api/Emergency";
 
 export const emergencyApi = {
