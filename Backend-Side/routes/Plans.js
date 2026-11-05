@@ -17,6 +17,14 @@ const onlyAllowed = (v, allowed) =>
 const validId = (req, res, next) =>
   mongoose.isValidObjectId(req.params.id) ? next() : res.status(400).json({ error: "Galat id" });
 
+// Logged-in user ki id (requireAuth ke baad req.user set hota hai)
+const getUserId = (req) => String(req.user?._id ?? req.user?.id ?? "");
+
+// Id na mile to aage mat jaane do
+router.use((req, res, next) =>
+  getUserId(req) ? next() : res.status(401).json({ error: "Pehle login karo" })
+);
+
 // Simple rate limit: free Gemini quota bachane ke liye (har IP se 10 plan / minute)
 const hits = new Map();
 function rateLimit(req, res, next) {
@@ -29,9 +37,6 @@ function rateLimit(req, res, next) {
   hits.set(req.ip, recent);
   next();
 }
-
-// TODO: login ke baad yahan auth middleware lagao aur Plan mein owner save karo,
-// warna koi bhi dusre ke plans dekh ya delete kar sakta hai.
 
 // 1) Naya plan banao (AI) aur save karo
 router.post("/generate", rateLimit, async (req, res) => {
@@ -60,6 +65,7 @@ router.post("/generate", rateLimit, async (req, res) => {
     const { plan, fallback } = await generatePlan(input);
 
     const doc = await Plan.create({
+      owner: getUserId(req),
       community: {
         name: input.name,
         kind: input.kind,
@@ -76,34 +82,34 @@ router.post("/generate", rateLimit, async (req, res) => {
 
     res.status(201).json(doc);
   } catch (err) {
-    console.error(err);
+    console.error("POST /plans/generate:", err);
     res.status(500).json({ error: "Plan nahi ban paya" });
   }
 });
 
-// 2) Saved plans ki list
+// 2) Apne saved plans ki list
 router.get("/", async (req, res) => {
   try {
-    const list = await Plan.find()
+    const list = await Plan.find({ owner: getUserId(req), community: { $exists: true } })
       .sort({ createdAt: -1 })
       .limit(50)
       .select("community risks fallback createdAt")
       .lean();
     res.json(list);
   } catch (err) {
-    console.error(err);
+    console.error("GET /plans:", err);
     res.status(500).json({ error: "Plans load nahi ho paye" });
   }
 });
 
-// 3) Ek plan poora
+// 3) Ek plan poora (sirf owner)
 router.get("/:id", validId, async (req, res) => {
   try {
-    const doc = await Plan.findById(req.params.id);
+    const doc = await Plan.findOne({ _id: req.params.id, owner: getUserId(req) });
     if (!doc) return res.status(404).json({ error: "Plan nahi mila" });
     res.json(doc);
   } catch (err) {
-    console.error(err);
+    console.error("GET /plans/:id:", err);
     res.status(500).json({ error: "Plan load nahi ho paya" });
   }
 });
@@ -111,27 +117,33 @@ router.get("/:id", validId, async (req, res) => {
 // 4) Checklist progress save karo: body = { done: ["0-1", "2-3"] }
 router.patch("/:id/progress", validId, async (req, res) => {
   try {
-    const done = Array.isArray(req.body.done)
-      ? [...new Set(req.body.done.filter((x) => typeof x === "string" && x.length <= 12))].slice(0, 200)
+    const raw = req.body?.done;
+    const done = Array.isArray(raw)
+      ? [...new Set(raw.filter((x) => typeof x === "string" && x.length <= 12))].slice(0, 200)
       : null;
     if (!done) return res.status(400).json({ error: "done array chahiye" });
 
-    const doc = await Plan.findByIdAndUpdate(req.params.id, { done }, { new: true }).select("done");
+    const doc = await Plan.findOneAndUpdate(
+      { _id: req.params.id, owner: getUserId(req) },
+      { done },
+      { new: true }
+    ).select("done");
     if (!doc) return res.status(404).json({ error: "Plan nahi mila" });
     res.json({ done: doc.done });
   } catch (err) {
-    console.error(err);
+    console.error("PATCH /plans/:id/progress:", err);
     res.status(500).json({ error: "Progress save nahi hua" });
   }
-});   
+});
 
-// 5) Plan delete
+// 5) Plan delete (sirf owner)
 router.delete("/:id", validId, async (req, res) => {
   try {
-    await Plan.findByIdAndDelete(req.params.id);
+    const doc = await Plan.findOneAndDelete({ _id: req.params.id, owner: getUserId(req) });
+    if (!doc) return res.status(404).json({ error: "Plan nahi mila" });
     res.json({ ok: true });
   } catch (err) {
-    console.error(err);
+    console.error("DELETE /plans/:id:", err);
     res.status(500).json({ error: "Delete nahi ho paya" });
   }
 });
