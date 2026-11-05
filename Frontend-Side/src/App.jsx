@@ -51,7 +51,6 @@ function HomeRouter() {
   return user?.role === "volunteer" ? <VolunteerDashboard /> : <Home />;
 }
 
-
 // "/" par: login nahi hai to Auth page, login hai to role wala Home/Dashboard
 function RootRoute() {
   const { user, loading } = useAuth();
@@ -70,56 +69,236 @@ function App() {
 
           <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
-{/* <Route path="/" element={<HomeRouter />} /> */}
-<Route path="/" element={<RootRoute />} />
-<Route path="/Auth" element={<Auth />} />
-          <Route path="/About" element={<About />} />
+            <Route path="/About" element={<About />} />
 
           {/* ---------- Community ---------- */}
-          <Route path="/Dashboard" element={<P><Dashboard /></P>} />
-          <Route path="/Directory" element={<P><Directory /></P>} />
-          <Route path="/Society_Polls" element={<P><Society_polls /></P>} />
-          <Route path="/Business" element={<P><Business /></P>} />
-          <Route path="/Notice" element={<P><Notice /></P>} />
-          <Route path="/Events" element={<P><Events /></P>} />
-          <Route path="/Complaints" element={<P><Complaints /></P>} />
-          <Route path="/ComplaintsCrud" element={<P><ComplaintsCrud /></P>} />
-          <Route path="/Lost_Found-data" element={<P><Lost_Found /></P>} />
+          <Route path="/" element={<HomeRouter />} />
+          <Route
+            path="/Dashboard"
+            element={
+              <P>
+                <Dashboard />
+              </P>
+            }
+          />
+          <Route
+            path="/Directory"
+            element={
+              <P>
+                <Directory />
+              </P>
+            }
+          />
+          <Route
+            path="/Society_Polls"
+            element={
+              <P>
+                <Society_polls />
+              </P>
+            }
+          />
+          <Route
+            path="/Business"
+            element={
+              <P>
+                <Business />
+              </P>
+            }
+          />
+          <Route
+            path="/Notice"
+            element={
+              <P>
+                <Notice />
+              </P>
+            }
+          />
+          <Route
+            path="/Events"
+            element={
+              <P>
+                <Events />
+              </P>
+            }
+          />
+          <Route
+            path="/Complaints"
+            element={
+              <P>
+                <Complaints />
+              </P>
+            }
+          />
+          <Route
+            path="/ComplaintsCrud"
+            element={
+              <P>
+                <ComplaintsCrud />
+              </P>
+            }
+          />
+          <Route
+            path="/Lost_Found-data"
+            element={
+              <P>
+                <Lost_Found />
+              </P>
+            }
+          />
 
           {/* ---------- Emergency ---------- */}
-          <Route path="/Emergency" element={<P><Emergency /></P>} />
-          <Route path="/Emergencycrud" element={<P><Emergencycrud /></P>} />
+          <Route
+            path="/Emergency"
+            element={
+              <P>
+                <Emergency />
+              </P>
+            }
+          />
+          <Route
+            path="/Emergencycrud"
+            element={
+              <P>
+                <Emergencycrud />
+              </P>
+            }
+          />
 
           {/* ---------- AI features ---------- */}
-          <Route path="/SafetyChecker" element={<P><SafetyCheck /></P>} />
-          <Route path="/SafetyCheck" element={<Navigate to="/SafetyChecker" replace />} />
-          <Route path="/SafetyPlanner" element={<P><SafetyPlanner /></P>} />
+          <Route
+            path="/SafetyChecker"
+            element={
+              <P>
+                <SafetyCheck />
+              </P>
+            }
+          />
+          <Route
+            path="/SafetyCheck"
+            element={<Navigate to="/SafetyChecker" replace />}
+          />
+          <Route
+            path="/SafetyPlanner"
+            element={
+              <P>
+                <SafetyPlanner />
+              </P>
+            }
+          />
 
           {/* ---------- Care ---------- */}
-          <Route path="/Elders" element={<P><Elders /></P>} />
-          <Route path="/AnimalsSafety" element={<P><AnimalsSafety /></P>} />
-          <Route path="/Blood_donation" element={<P><Blood_donation /></P>} />
-          <Route path="/Dogs_care" element={<P><Dogs_care /></P>} />
-          <Route path="/TreesPlats" element={<P><TreesPlats /></P>} />
+          <Route
+            path="/Elders"
+            element={
+              <P>
+                <Elders />
+              </P>
+            }
+          />
+          <Route
+            path="/AnimalsSafety"
+            element={
+              <P>
+                <AnimalsSafety />
+              </P>
+            }
+          />
+          <Route
+            path="/Blood_donation"
+            element={
+              <P>
+                <Blood_donation />
+              </P>
+            }
+          />
+          <Route
+            path="/Dogs_care"
+            element={
+              <P>
+                <Dogs_care />
+              </P>
+            }
+          />
+          <Route
+            path="/TreesPlats"
+            element={
+              <P>
+                <TreesPlats />
+              </P>
+            }
+          />
 
           {/* ---------- Discover ---------- */}
-          <Route path="/Explore" element={<P><Explore /></P>} />
-          <Route path="/Feed" element={<P><Feed /></P>} />
-          <Route path="/Gallery" element={<P><Gallery /></P>} />
-          <Route path="/Achievements" element={<P><Achievements /></P>} />
-          <Route path="/Feedback" element={<P><Feedback /></P>} />
-          <Route path="/Blogs" element={<P><Blogs /></P>} />
+          <Route
+            path="/Explore"
+            element={
+              <P>
+                <Explore />
+              </P>
+            }
+          />
+          <Route
+            path="/Feed"
+            element={
+              <P>
+                <Feed />
+              </P>
+            }
+          />
+          <Route
+            path="/Gallery"
+            element={
+              <P>
+                <Gallery />
+              </P>
+            }
+          />
+          <Route
+            path="/Achievements"
+            element={
+              <P>
+                <Achievements />
+              </P>
+            }
+          />
+          <Route
+            path="/Feedback"
+            element={
+              <P>
+                <Feedback />
+              </P>
+            }
+          />
+          <Route
+            path="/Blogs"
+            element={
+              <P>
+                <Blogs />
+              </P>
+            }
+          />
 
           {/* ---------- Account ---------- */}
-          <Route path="/Profile" element={<P><Profile /></P>} />
-          <Route path="/Setting" element={<P><Settings /></P>} />
-<Route
-  path="/volunteer/profile"
-  element={<ProtectedRoute roles={["volunteer"]}><VolunteerProfile /></ProtectedRoute>}
-/>
-{/* <Route path="/Profile" element={<P><Profile /></P>} />
+          <Route
+            path="/Profile"
+            element={
+              <P>
+                <Profile />
+              </P>
+            }
+          />
+          {/* <Route path="/Setting" element={<P><Settings /></P>} /> */}
+          <Route
+            path="/volunteer/profile"
+            element={
+              <ProtectedRoute roles={["volunteer"]}>
+                <VolunteerProfile />
+              </ProtectedRoute>
+            }
+          />
+          {/* <Route path="/Profile" element={<P><Profile /></P>} />
 <Route path="/logout" element={<Logout />} /> */}
-{/* <Route path="/volunteer/profile" element={<ProtectedRoute roles={["volunteer"]}><VolunteerProfile /></ProtectedRoute>} /> */}
+          {/* <Route path="/volunteer/profile" element={<ProtectedRoute roles={["volunteer"]}><VolunteerProfile /></ProtectedRoute>} /> */}
           {/* ---------- Koi galat URL ---------- */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
