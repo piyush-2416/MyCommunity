@@ -23,7 +23,7 @@ const STEPS = [
 ];
 
 // Add your name and role here
-const TEAM = [{ name: "Your Name", role: "Developer", emoji: "👨‍💻" }];
+const TEAM = [{ name: "Piyush verma", role: "Developer", emoji: "👨‍💻" }];
 
 // ─── Scroll reveal ───────────────────────────────────────────
 function Reveal({ children, delay = 0, className = "" }) {
@@ -208,8 +208,7 @@ function About() {
           <section className="ab-cta">
             <h2>Join your community</h2>
             <p>Have a need or a suggestion, or just want to see what is happening in your society?</p>
-            <Link to="/" className="ab-btn">Go to Home</Link>
-          </section>
+           </section>
         </Reveal>
 
         <p className="ab-foot">Made with 💚 for our community</p>
