@@ -318,8 +318,32 @@ function Emergency() {
           <p className="em-sub">Koi emergency raise ho to poori community dekh kar help kar sakti hai.</p>
           </div>
         </div>
-        <button className="em-btn em-red em-desk" onClick={() => setOpen(true)}>🚨 Raise Emergency</button>
-      </div>
+<div className="em-head-actions">
+
+  <a
+    href="tel:108"
+    className="em-service-btn em-ambulance"
+    aria-label="Call Ambulance"
+  >
+    🚑 Call Ambulance
+  </a>
+
+  <a
+    href="tel:112"
+    className="em-service-btn em-police"
+    aria-label="Call Police"
+  >
+    🚓 Call Police
+  </a>
+
+  <button
+    className="em-btn em-red"
+    onClick={() => setOpen(true)}
+  >
+    🚨 Raise Emergency
+  </button>
+
+</div>      </div>
 
       <div className="em-chips" role="tablist">
         {["all", "active", "resolved"].map((f) => (
