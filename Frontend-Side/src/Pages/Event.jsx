@@ -52,7 +52,7 @@ function Events() {
             display: "flex",
             flexDirection: "column",
             gap: "15px",
-            marginTop: "20px",
+            marginTop: "20px", 
           }}
         >
           {Events .map((e) => {
