@@ -285,7 +285,7 @@ export default function VolunteerDashboard() {
                 <p className="font-medium text-emerald-300 text-sm">
                   🤝 Volunteer Dashboard · {todayText()}
                 </p>
-                <h1 className="mt-2 font-extrabold text-2xl sm:text-3xl break-words">
+                <h1 className="mt-2 font-extrabold text-emerald-100 text-2xl sm:text-3xl break-words">
                   Namaste, {user?.name}!
                 </h1>
                 <p className="mt-2 max-w-xl text-slate-300 text-sm leading-relaxed">
