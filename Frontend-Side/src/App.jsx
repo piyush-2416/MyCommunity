@@ -2,11 +2,12 @@ import React from "react";
 import "./App.css";
 import "./index.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import VolunteerProfile from "./Pages/VolunteerProfile.jsx";
-import { AuthProvider } from "./context/AuthContext";
+
+import { AuthProvider, useAuth } from "./context/AuthContext";
 import ProtectedRoute from "./Components/ProtectedRoute.jsx";
-import Auth from "./Pages/Auth.jsx";
+
 // ---------- Auth pages ----------
+import Auth from "./Pages/Auth.jsx";
 import Login from "./Pages/Login.jsx";
 import Signup from "./Pages/Signup.jsx";
 import Logout from "./Pages/Logout.jsx";
@@ -15,6 +16,8 @@ import Logout from "./Pages/Logout.jsx";
 import Home from "./Pages/Home.jsx";
 import About from "./Pages/About.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
+import VolunteerDashboard from "./Pages/VolunteerDashboard.jsx";
+import VolunteerProfile from "./Pages/VolunteerProfile.jsx";
 import Business from "./Pages/Business.jsx";
 import Complaints from "./Pages/Complaints.jsx";
 import ComplaintsCrud from "./Pages/ComplaintsCrud.jsx";
@@ -35,28 +38,79 @@ import Gallery from "./Pages/Gallery";
 import Blogs from "./Components/Blogs.jsx";
 import Feed from "./Pages/Feed.jsx";
 import Feedback from "./Pages/Feedback.jsx";
-import Settings from "./Pages/Setting.jsx";
-import Explore from "./Pages/Explore.jsx";
+ import Explore from "./Pages/Explore.jsx";
 import Achievements from "./Pages/Achievements.jsx";
 import SafetyCheck from "./Pages/Safetycheck.jsx";
 import SafetyPlanner from "./Pages/SafetyPlanner.jsx";
-import VolunteerDashboard from "./Pages/VolunteerDashboard.jsx";
-import { useAuth } from "./context/AuthContext";
-// Login ke peeche wala page: <P><Page /></P>
-const P = ({ children }) => <ProtectedRoute>{children}</ProtectedRoute>;
-// "/" par volunteer ko Dashboard, baaki sabko purani Home
-function HomeRouter() {
-  const { user, loading } = useAuth();
-  if (loading) return null;
-  return user?.role === "volunteer" ? <VolunteerDashboard /> : <Home />;
-}
 
-// "/" par: login nahi hai to Auth page, login hai to role wala Home/Dashboard
+/* =====================================================================
+   ROLES: "user" = Resident, "volunteer" = Volunteer, "admin" = Admin
+   Admin ko har route par jaane diya jaata hai (neeche R() khud jodta hai).
+   Kisi route ka role badalna ho to bas us line ki list badlo.
+   ===================================================================== */
+const RESIDENT = ["user"];
+const VOLUNTEER = ["volunteer"];
+const BOTH = ["user", "volunteer"];
+
+// Is route par sirf diye gaye roles (+ admin) ja sakte hain, baaki "/" par wapas
+const R = (roles, page) => (
+  <ProtectedRoute roles={[...roles, "admin"]}>{page}</ProtectedRoute>
+);
+
+/* "/" par: login nahi hai to Auth page.
+   Login hai to volunteer/admin ko Dashboard, baaki ko Home */
 function RootRoute() {
   const { user, loading } = useAuth();
-  if (loading) return null;
-  return user ? <HomeRouter /> : <Auth />;
+  if (loading) return null; // user check hone tak kuch mat dikhao
+  if (!user) return <Auth />;
+  return user.role === "volunteer" || user.role === "admin" ? (
+    <VolunteerDashboard />
+  ) : (
+    <Home />
+  );
 }
+
+/* ---------- Route list: [path, page, roles] ---------- */
+const protectedRoutes = [
+  // ===== Dono (Resident + Volunteer) =====
+  ["/Notice", <Notice />, BOTH],
+  ["/Events", <Events />, BOTH],
+  ["/Complaints", <Complaints />, BOTH],
+  ["/Emergency", <Emergency />, BOTH],
+  ["/Society_Polls", <Society_polls />, BOTH],
+  ["/Directory", <Directory />, BOTH],
+  ["/Business", <Business />, BOTH],
+  ["/Lost_Found-data", <Lost_Found />, BOTH],
+  ["/SafetyChecker", <SafetyCheck />, BOTH],
+  ["/SafetyPlanner", <SafetyPlanner />, BOTH],
+  ["/Gallery", <Gallery />, BOTH],
+  ["/Feedback", <Feedback />, BOTH],
+  ["/Blogs", <Blogs />, BOTH],
+  ["/Profile", <Profile />, BOTH],
+  ["/Elders", <Elders />, BOTH],
+  ["/Blood_donation", <Blood_donation />, BOTH],
+  ["/Dogs_care", <Dogs_care />, BOTH],
+  ["/Feed", <Feed />, BOTH],
+
+  ["/TreesPlats", <TreesPlats />, BOTH],
+  ["/AnimalsSafety", <AnimalsSafety />, BOTH],
+  // ===== Sirf Resident =====
+   ["/AnimalsSafety", <AnimalsSafety />, RESIDENT],
+  ["/Blood_donation", <Blood_donation />, RESIDENT],
+  ["/Dogs_care", <Dogs_care />, RESIDENT],
+  ["/TreesPlats", <TreesPlats />, RESIDENT],
+  ["/Explore", <Explore />, RESIDENT],
+   ["/Achievements", <Achievements />, RESIDENT],
+
+  // ===== Sirf Volunteer =====
+  ["/volunteer/dashboard", <VolunteerDashboard />, VOLUNTEER],
+  ["/volunteer/profile", <VolunteerProfile />, VOLUNTEER],
+
+  ["/ComplaintsCrud", <ComplaintsCrud />, VOLUNTEER],
+  ["/Emergencycrud", <Emergencycrud />, VOLUNTEER],
+
+];
+
 function App() {
   return (
     <BrowserRouter>
@@ -64,241 +118,24 @@ function App() {
       <AuthProvider>
         <Routes>
           {/* ---------- Public (login ke bina) ---------- */}
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<RootRoute />} />
           <Route path="/Auth" element={<Auth />} />
-
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/logout" element={<Logout />} />
-            <Route path="/About" element={<About />} />
+          <Route path="/About" element={<About />} />
 
-          {/* ---------- Community ---------- */}
-          <Route path="/" element={<HomeRouter />} />
-          <Route
-            path="/Dashboard"
-            element={
-              <P>
-                <Dashboard />
-              </P>
-            }
-          />
-          <Route
-            path="/Directory"
-            element={
-              <P>
-                <Directory />
-              </P>
-            }
-          />
-          <Route
-            path="/Society_Polls"
-            element={
-              <P>
-                <Society_polls />
-              </P>
-            }
-          />
-          <Route
-            path="/Business"
-            element={
-              <P>
-                <Business />
-              </P>
-            }
-          />
-          <Route
-            path="/Notice"
-            element={
-              <P>
-                <Notice />
-              </P>
-            }
-          />
-          <Route
-            path="/Events"
-            element={
-              <P>
-                <Events />
-              </P>
-            }
-          />
-          <Route
-            path="/Complaints"
-            element={
-              <P>
-                <Complaints />
-              </P>
-            }
-          />
-          <Route
-            path="/ComplaintsCrud"
-            element={
-              <P>
-                <ComplaintsCrud />
-              </P>
-            }
-          />
-          <Route
-            path="/Lost_Found-data"
-            element={
-              <P>
-                <Lost_Found />
-              </P>
-            }
-          />
+          {/* ---------- Role ke hisaab se protected routes ---------- */}
+          {protectedRoutes.map(([path, page, roles]) => (
+            <Route key={path} path={path} element={R(roles, page)} />
+          ))}
 
-          {/* ---------- Emergency ---------- */}
-          <Route
-            path="/Emergency"
-            element={
-              <P>
-                <Emergency />
-              </P>
-            }
-          />
-          <Route
-            path="/Emergencycrud"
-            element={
-              <P>
-                <Emergencycrud />
-              </P>
-            }
-          />
-
-          {/* ---------- AI features ---------- */}
-          <Route
-            path="/SafetyChecker"
-            element={
-              <P>
-                <SafetyCheck />
-              </P>
-            }
-          />
+          {/* Purane link: /SafetyCheck -> /SafetyChecker */}
           <Route
             path="/SafetyCheck"
             element={<Navigate to="/SafetyChecker" replace />}
           />
-          <Route
-            path="/SafetyPlanner"
-            element={
-              <P>
-                <SafetyPlanner />
-              </P>
-            }
-          />
 
-          {/* ---------- Care ---------- */}
-          <Route
-            path="/Elders"
-            element={
-              <P>
-                <Elders />
-              </P>
-            }
-          />
-          <Route
-            path="/AnimalsSafety"
-            element={
-              <P>
-                <AnimalsSafety />
-              </P>
-            }
-          />
-          <Route
-            path="/Blood_donation"
-            element={
-              <P>
-                <Blood_donation />
-              </P>
-            }
-          />
-          <Route
-            path="/Dogs_care"
-            element={
-              <P>
-                <Dogs_care />
-              </P>
-            }
-          />
-          <Route
-            path="/TreesPlats"
-            element={
-              <P>
-                <TreesPlats />
-              </P>
-            }
-          />
-
-          {/* ---------- Discover ---------- */}
-          <Route
-            path="/Explore"
-            element={
-              <P>
-                <Explore />
-              </P>
-            }
-          />
-          <Route
-            path="/Feed"
-            element={
-              <P>
-                <Feed />
-              </P>
-            }
-          />
-          <Route
-            path="/Gallery"
-            element={
-              <P>
-                <Gallery />
-              </P>
-            }
-          />
-          <Route
-            path="/Achievements"
-            element={
-              <P>
-                <Achievements />
-              </P>
-            }
-          />
-          <Route
-            path="/Feedback"
-            element={
-              <P>
-                <Feedback />
-              </P>
-            }
-          />
-          <Route
-            path="/Blogs"
-            element={
-              <P>
-                <Blogs />
-              </P>
-            }
-          />
-
-          {/* ---------- Account ---------- */}
-          <Route
-            path="/Profile"
-            element={
-              <P>
-                <Profile />
-              </P>
-            }
-          />
-          {/* <Route path="/Setting" element={<P><Settings /></P>} /> */}
-          <Route
-            path="/volunteer/profile"
-            element={
-              <ProtectedRoute roles={["volunteer"]}>
-                <VolunteerProfile />
-              </ProtectedRoute>
-            }
-          />
-          {/* <Route path="/Profile" element={<P><Profile /></P>} />
-<Route path="/logout" element={<Logout />} /> */}
-          {/* <Route path="/volunteer/profile" element={<ProtectedRoute roles={["volunteer"]}><VolunteerProfile /></ProtectedRoute>} /> */}
           {/* ---------- Koi galat URL ---------- */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
