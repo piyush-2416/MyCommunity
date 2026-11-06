@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 // import NotificationBell from "./NotificationBell";
 import { useAuth } from "../context/AuthContext";
-import NotificationBell from "./NotificationBell ";
+import NotificationBell from "./NotificationBell";
+// import NotificationBell from "./NotificationBell ";
 // import NotificationBell from "./NotificationBell";
 /* Sidebar ka poora menu yahin se banta hai.
    Naya item chahiye to bas yahan ek line add kar do. */
@@ -11,9 +12,6 @@ const sections = [
     label: "Community",
     items: [
       { icon: "🏠", text: "Home", to: "/" },
-      // { icon: "🎉", text: "Events", to: "/events" },
-      // { icon: "📢", text: "Complaints", to: "/Complaints" },
-      // { icon: "🚨", text: "Emergency", to: "/emergency" },
       { icon: "🤝", text: "Volunteers", to: "/Directory", noActive: true },
       { icon: "🗳️", text: "Polls & Voting", to: "/Society_Polls" },
     ],
@@ -31,7 +29,7 @@ const sections = [
       { icon: "🏪", text: "Business", to: "/Business" },
       { icon: "🔎", text: "Explore", to: "/Explore" },
 
-      { icon: "📰", text: "Community Feed", to: "/Feed" },
+      { icon: "🌐", text: "Community Feed", to: "/Feed" },
       { icon: "📸", text: "Memories", to: "/Gallery" },
       { icon: "🏆", text: "Achievements", to: "/Achievements" },
       { icon: "💬", text: "Feedback", to: "/Feedback" },
@@ -71,6 +69,8 @@ const volunteerSections = [
     items: [
       { icon: "📰", text: "Blogs", to: "/Blogs" },
       { icon: "📸", text: "Memories", to: "/Gallery" },
+      { icon: "🌐", text: "Community Feed", to: "/Feed" },
+
       { icon: "💬", text: "Feedback", to: "/Feedback" },
     ],
   },
