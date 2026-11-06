@@ -2,7 +2,8 @@ import React from 'react'
  import Navbar from './Navbar.jsx';
 import { Link } from 'react-router-dom';
 import Footer from './Footer.jsx';import Blogs from '../Components/Blogs.jsx';
-import NotificationBell from './NotificationBell .jsx';
+// import NotificationBell from './NotificationBell .jsx';
+// import Notifi
 import { ImageOff } from 'lucide-react';
  const communityFeatures = [
   {
