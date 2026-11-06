@@ -10,8 +10,8 @@ export default function ProtectedRoute({ children, roles, admin = false }) {
 
   if (loading) return <p style={{ padding: "96px 16px", textAlign: "center" }}>Loading...</p>;
 
-  // Login nahi hai to /login bhejo, login ke baad wapas yahin aayega
-  if (!user) return <Navigate to="/login" state={{ from: location }} replace />;
+  // Login nahi hai to Auth page bhejo
+  if (!user) return <Navigate to="/Auth" state={{ from: location }} replace />;
 
   if (admin && user.role !== "admin") return <Navigate to="/" replace />;
   if (roles && !roles.includes(user.role)) return <Navigate to="/" replace />;
