@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
    Images: public folder mein rakho
      public/hero-community.png       (hero background)
      public/together-community.png   (Active People banner)
-     public/MyCommunity Logo.png     (tumhara purana logo)
+     public/MyCommunity Logo.png     (tumhara purana logo) 
 
    NOTE: is file mein Tailwind ki `grid` class ki jagah `[display:grid]`
    use hui hai, kyunki tumhari index.css mein ek global `.grid` rule hai
