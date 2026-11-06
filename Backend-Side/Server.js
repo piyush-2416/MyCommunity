@@ -313,6 +313,19 @@ app.get("/api/Directory", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+// Residents list (Feed ke stories / members ke liye)
+app.get("/api/residents", async (req, res) => {
+  try {
+    const data = await communityDb
+      .collection("Residents") // <-- apni Resident collection ka exact naam yahan likho
+      .find()
+      .limit(100)
+      .toArray();
+    res.json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 app.get("/api/community-events", async (req, res) => {
   try {
