@@ -1,0 +1,7 @@
+.history/
+.lh/
+node_modules
+.env
+.env.*
+uploads
+dist
