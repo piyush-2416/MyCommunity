@@ -60,15 +60,59 @@ import { ImageOff } from 'lucide-react';
     tag: "Animals",
   },
 ];
+
+const mainImageCss = `
+/* Mobile: poori width */
+div.Main-image {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 10px 10px 0;
+  box-sizing: border-box;
+}
+div.Main-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  div.Main-image {
+    max-width: 820px;
+    padding: 18px 20px 0;
+  }
+  div.Main-image img { border-radius: 20px; }
+}
+
+/* Laptop */
+@media (min-width: 1024px) {
+  div.Main-image {
+    max-width: 960px;
+    padding: 24px 24px 0;
+  }
+}
+
+/* Bade monitor */
+@media (min-width: 1440px) {
+  div.Main-image { max-width: 1100px; }
+}
+`;
 function Home() {
   return (
 
     <div>  <Navbar/>
       
-       <div className="Main-image">
-  <img src="/Mycommunity-image.png" alt="MyCommunity" />
+<style>{mainImageCss}</style>
+<div className="Main-image">
+  <img
+    src="/Mycommunity-image.png"
+    alt="MyCommunity - Stronger Community, Better Tomorrow"
+    decoding="async"
+  />
 </div>
-
       <div className="quick-section">
   <h2>Quick Actions</h2>
 
