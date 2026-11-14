@@ -38,7 +38,7 @@ import Feedback from "./Pages/Feedback.jsx";
 import Settings from "./Pages/Setting.jsx";
 import Explore from "./Pages/Explore.jsx";
 import Achievements from "./Pages/Achievements.jsx";
-import SafetyCheck from "./Pages/Safetycheck.jsx";
+import SafetyCheck from "./Pages/SafetyCheck.jsx";
 import SafetyPlanner from "./Pages/SafetyPlanner.jsx";
 import VolunteerDashboard from "./Pages/VolunteerDashboard.jsx";
 import { useAuth } from "./context/AuthContext";
