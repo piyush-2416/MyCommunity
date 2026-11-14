@@ -65,8 +65,9 @@ function Home() {
 
     <div>  <Navbar/>
        <div className="Main-image">
-        <img src="" alt="" />
-      </div>
+       <div className="Main-image">
+  <img src="/Mycommunity-image.png" alt="MyCommunity" />
+</div>
 
       <div className="quick-section">
   <h2>Quick Actions</h2>
