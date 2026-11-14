@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import SafetySos from "../models/SafetySos.js";
-import { assessSituation } from "../SafetyAI.js";
+import { assessSituation } from "../Safetyai.js";
 
 const router = express.Router();
 
