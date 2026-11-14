@@ -277,8 +277,9 @@ function Home() {
   </div>
 </div>
       
-      <img className="community-Trees" src="" alt=""/>
-            <section className="community-features">
+ <img className="community-Trees"src="./last-community-image.png"
+       alt="community trees"/>   
+     <section className="community-features">
 
       <div className="community-feature-heading">
         <div>
