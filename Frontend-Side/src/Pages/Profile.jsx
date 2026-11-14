@@ -18,14 +18,15 @@ const fmtDate = (d) =>
     ? new Date(d).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })
     : "—";
 
+// text-black + placeholder: mobile (dark mode) mein bhi input ka text saaf dikhe
 const inputCls =
-  "w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm outline-none focus:border-emerald-500";
+  "w-full rounded-lg border border-gray-400 bg-white px-3 py-2.5 text-base text-black placeholder:text-gray-500 outline-none focus:border-emerald-600";
 
 function Field({ label, value }) {
   return (
-    <div className="bg-gray-50 p-4 border border-gray-100 rounded-xl">
-      <p className="font-semibold text-gray-400 text-xs uppercase tracking-wide">{label}</p>
-      <p className="mt-1 font-semibold text-gray-800 text-sm break-words">{value}</p>
+    <div className="bg-gray-50 p-4 border border-gray-200 rounded-xl">
+      <p className="font-semibold text-gray-600 text-xs uppercase tracking-wide">{label}</p>
+      <p className="mt-1 font-semibold text-black text-sm break-words">{value}</p>
     </div>
   );
 }
@@ -91,7 +92,7 @@ export default function Profile() {
       setEditing(false);
       setSaved(true);
     } catch (err) {
-      setError(err.response?.data?.message || "Save nahi ho paya, dobara try karo");
+      setError(err.response?.data?.message || err.response?.data?.error || "Save nahi ho paya, dobara try karo");
     } finally {
       setSaving(false);
     }
@@ -113,7 +114,8 @@ export default function Profile() {
   return (
     <>
       <Navbar />
-      <div className="bg-gray-50 min-h-screen">
+      {/* text-black + [color-scheme:light]: phone ka dark mode text ko safed nahi karega */}
+      <div className="bg-gray-50 min-h-screen text-black [color-scheme:light]">
         <div className="space-y-6 mx-auto px-4 py-8 max-w-3xl">
           {/* ---------- Header ---------- */}
           <section className="bg-white shadow-md rounded-2xl overflow-hidden">
@@ -121,29 +123,29 @@ export default function Profile() {
             <div className="flex sm:flex-row flex-col sm:items-end gap-4 -mt-12 px-6 pb-6">
               <div
                 aria-hidden="true"
-                className="flex justify-center items-center bg-emerald-600 shadow-lg border-4 border-white rounded-full w-24 h-24 font-bold text-white text-4xl shrink-0"
+                className="flex justify-center items-center bg-emerald-300 shadow-lg border-4 border-white rounded-full w-24 h-24 font-bold text-black text-4xl shrink-0"
               >
                 {initial}
               </div>
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-2">
-                  <h1 className="font-extrabold text-2xl break-words">{show(user.name)}</h1>
-                  <span className="bg-emerald-50 px-3 py-1 border border-emerald-200 rounded-full font-bold text-emerald-700 text-xs">
+                  <h1 className="font-extrabold text-black text-2xl break-words">{show(user.name)}</h1>
+                  <span className="bg-emerald-50 px-3 py-1 border border-emerald-300 rounded-full font-bold text-emerald-900 text-xs">
                     {ROLE_LABEL[user.role] || "🏠 Resident"}
                   </span>
                 </div>
-                <p className="mt-1 text-gray-500 text-sm break-all">📧 {show(user.email)}</p>
+                <p className="mt-1 text-gray-800 text-sm break-all">📧 {show(user.email)}</p>
               </div>
             </div>
           </section>
 
           {saved && (
-            <p role="status" className="bg-green-50 p-3 border border-green-200 rounded-xl text-green-700 text-sm">
+            <p role="status" className="bg-green-50 p-3 border border-green-300 rounded-xl text-green-800 text-sm">
               ✅ Profile save ho gayi
             </p>
           )}
           {error && !editing && (
-            <p role="alert" className="bg-red-50 p-3 border border-red-200 rounded-xl text-red-600 text-sm">
+            <p role="alert" className="bg-red-50 p-3 border border-red-300 rounded-xl text-red-700 text-sm">
               ⚠️ {error}
             </p>
           )}
@@ -151,12 +153,12 @@ export default function Profile() {
           {/* ---------- Account details (edit ho sakti hain) ---------- */}
           <section className="bg-white shadow-md p-6 rounded-2xl">
             <div className="flex justify-between items-center gap-3">
-              <h2 className="font-bold text-lg">Account Information</h2>
+              <h2 className="font-bold text-black text-lg">Account Information</h2>
               {!editing && (
                 <button
                   type="button"
                   onClick={startEdit}
-                  className="bg-emerald-600 hover:bg-emerald-700 px-4 py-2 rounded-full font-semibold text-white text-sm transition"
+                  className="bg-emerald-700 hover:bg-emerald-800 px-4 py-2 rounded-full font-semibold text-white text-sm transition"
                 >
                   ✏️ Edit karo
                 </button>
@@ -166,11 +168,11 @@ export default function Profile() {
             {editing ? (
               <form onSubmit={handleSave} className="space-y-4 mt-5">
                 {error && (
-                  <p role="alert" className="bg-red-50 p-3 rounded-lg text-red-600 text-sm">⚠️ {error}</p>
+                  <p role="alert" className="bg-red-50 p-3 rounded-lg text-red-700 text-sm">⚠️ {error}</p>
                 )}
 
                 <div>
-                  <label htmlFor="pf-name" className="block mb-1 font-medium text-sm">Naam</label>
+                  <label htmlFor="pf-name" className="block mb-1 font-medium text-black text-sm">Naam</label>
                   <input
                     id="pf-name" name="name" required minLength={2} maxLength={60}
                     value={form.name} onChange={handleChange} className={inputCls}
@@ -178,7 +180,7 @@ export default function Profile() {
                 </div>
 
                 <div>
-                  <label htmlFor="pf-phone" className="block mb-1 font-medium text-sm">Mobile number</label>
+                  <label htmlFor="pf-phone" className="block mb-1 font-medium text-black text-sm">Mobile number</label>
                   <input
                     id="pf-phone" name="phone" type="tel" inputMode="numeric" maxLength={15}
                     value={form.phone} onChange={handleChange}
@@ -187,22 +189,22 @@ export default function Profile() {
                 </div>
 
                 <div>
-                  <label className="block mb-1 font-medium text-sm">Email</label>
-                  <input value={user.email} disabled className={`${inputCls} bg-gray-100 text-gray-500`} />
-                  <p className="mt-1 text-gray-400 text-xs">Email badla nahi ja sakta (ye aapki login ID hai)</p>
+                  <label className="block mb-1 font-medium text-black text-sm">Email</label>
+                  <input value={user.email} disabled className={`${inputCls} bg-gray-100 text-gray-700`} />
+                  <p className="mt-1 text-gray-600 text-xs">Email badla nahi ja sakta (ye aapki login ID hai)</p>
                 </div>
 
                 <div className="flex flex-wrap gap-3 pt-2">
                   <button
                     type="submit" disabled={saving}
-                    className="bg-emerald-600 hover:bg-emerald-700 disabled:opacity-60 px-6 py-2.5 rounded-full font-semibold text-white text-sm transition"
+                    className="bg-emerald-700 hover:bg-emerald-800 disabled:opacity-60 px-6 py-2.5 rounded-full font-semibold text-white text-sm transition"
                   >
                     {saving ? "Save ho raha hai..." : "Save karo"}
                   </button>
                   <button
                     type="button" disabled={saving}
                     onClick={() => setEditing(false)}
-                    className="hover:bg-gray-50 px-6 py-2.5 border border-gray-300 rounded-full font-semibold text-gray-700 text-sm transition"
+                    className="bg-white hover:bg-gray-50 px-6 py-2.5 border border-gray-400 rounded-full font-semibold text-black text-sm transition"
                   >
                     Cancel
                   </button>
@@ -222,10 +224,10 @@ export default function Profile() {
           {/* ---------- Volunteer ki Directory details ---------- */}
           {isVolunteer && (
             <section className="bg-white shadow-md p-6 rounded-2xl">
-              <h2 className="font-bold text-lg">📇 Directory Profile</h2>
+              <h2 className="font-bold text-black text-lg">📇 Directory Profile</h2>
 
               {dir && !dir.isProfileComplete && (
-                <p className="bg-amber-50 mt-4 p-3 border border-amber-200 rounded-lg text-amber-800 text-sm">
+                <p className="bg-amber-50 mt-4 p-3 border border-amber-300 rounded-lg text-amber-900 text-sm">
                   ⚠️ Profile adhuri hai, aap abhi Community Directory mein nahi dikh rahe.
                 </p>
               )}
@@ -240,7 +242,7 @@ export default function Profile() {
 
               <Link
                 to="/volunteer/profile"
-                className="inline-block bg-emerald-600 hover:bg-emerald-700 mt-5 px-6 py-2.5 rounded-full font-semibold text-white text-sm transition"
+                className="inline-block bg-emerald-700 hover:bg-emerald-800 mt-5 px-6 py-2.5 rounded-full font-semibold text-white text-sm transition"
               >
                 ✏️ Directory profile edit karo
               </Link>
@@ -248,15 +250,15 @@ export default function Profile() {
           )}
 
           {/* ---------- Logout ---------- */}
-          <section className="flex sm:flex-row flex-col sm:justify-between sm:items-center gap-4 bg-white shadow-md p-6 border border-rose-100 rounded-2xl">
+          <section className="flex sm:flex-row flex-col sm:justify-between sm:items-center gap-4 bg-white shadow-md p-6 border border-rose-200 rounded-2xl">
             <div>
-              <h2 className="font-bold text-lg">Logout</h2>
-              <p className="mt-1 text-gray-500 text-sm">Is device se apne account se bahar niklo.</p>
+              <h2 className="font-bold text-black text-lg">Logout</h2>
+              <p className="mt-1 text-gray-700 text-sm">Is device se apne account se bahar niklo.</p>
             </div>
             <button
               type="button"
               onClick={() => setConfirmOpen(true)}
-              className="bg-rose-50 hover:bg-rose-600 px-8 py-2.5 border border-rose-200 hover:border-rose-600 rounded-full font-bold text-rose-600 hover:text-white text-sm transition"
+              className="bg-rose-50 hover:bg-rose-600 px-8 py-2.5 border border-rose-300 hover:border-rose-600 rounded-full font-bold text-rose-700 hover:text-white text-sm transition"
             >
               🚪 Logout karo
             </button>
@@ -276,7 +278,7 @@ export default function Profile() {
             aria-labelledby="pf-logout-title"
             aria-describedby="pf-logout-desc"
             onClick={(e) => e.stopPropagation()}
-            className="bg-white shadow-2xl px-7 py-8 rounded-3xl w-full max-w-sm text-center"
+            className="bg-white shadow-2xl px-7 py-8 rounded-3xl w-full max-w-sm text-black text-center [color-scheme:light]"
           >
             <div
               aria-hidden="true"
@@ -284,10 +286,10 @@ export default function Profile() {
             >
               ⚠️
             </div>
-            <h3 id="pf-logout-title" className="mt-4 font-extrabold text-slate-900 text-xl">
+            <h3 id="pf-logout-title" className="mt-4 font-extrabold text-black text-xl">
               Kya aap logout karna chahte hain?
             </h3>
-            <p id="pf-logout-desc" className="mt-2 text-slate-500 text-sm">
+            <p id="pf-logout-desc" className="mt-2 text-gray-700 text-sm">
               Logout karne ke baad dobara login karna padega.
             </p>
 
@@ -297,7 +299,7 @@ export default function Profile() {
                 type="button"
                 onClick={() => setConfirmOpen(false)}
                 disabled={loggingOut}
-                className="hover:bg-slate-50 disabled:opacity-60 py-3 border border-slate-300 rounded-2xl font-bold text-slate-700 text-sm"
+                className="bg-white hover:bg-slate-50 disabled:opacity-60 py-3 border border-slate-400 rounded-2xl font-bold text-black text-sm"
               >
                 Nahi
               </button>
