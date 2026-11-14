@@ -281,19 +281,27 @@ function Navbar() {
       </div>
 
       {/* Top navbar */}
-      <div
-        className="bg-base-100 shadow-sm navbar"
-        style={{ backgroundColor: "mediumseagreen" }}
-      >
-        <div className="navbar-start">
-          <label htmlFor="my-drawer-1" className="inline-block cursor-pointer">
-            <img
-              src="/MyCommunity%20Logo.png"
-              alt="MyCommunity Logo"
-              className="bg-white shadow-md p-1 border-4 border-white rounded-full w-10 md:w-20 h-7 md:h-16 object-contain transition-transform duration-200"
-            />
-          </label>
-        </div>
+    <div
+  className="navbar bg-base-100 min-h-[4.25rem] px-3 shadow-sm md:min-h-24 md:px-6"
+  style={{ backgroundColor: "mediumseagreen" }}
+>
+  <div className="navbar-start">
+    <label
+      htmlFor="my-drawer-1"
+      aria-label="Menu kholo"
+      className="inline-flex shrink-0 cursor-pointer"
+    >
+      <img
+        src="/MyCommunity%20Logo.png"
+        alt="MyCommunity Logo"
+        width="80"
+        height="80"
+        decoding="async"
+        className="aspect-square h-12 w-12 shrink-0 rounded-full border-2 border-white bg-white object-contain p-1 shadow-md transition-transform duration-200 hover:scale-105 sm:h-14 sm:w-14 sm:border-4 md:h-[4.5rem] md:w-[4.5rem] lg:h-20 lg:w-20"
+      />
+    </label>
+  </div>
+
         <div className="navbar-center"></div>
         <div className="items-center gap-1 navbar-end">
           <NotificationBell />
