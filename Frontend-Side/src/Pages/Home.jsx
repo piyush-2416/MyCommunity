@@ -64,7 +64,7 @@ function Home() {
   return (
 
     <div>  <Navbar/>
-       <div className="Main-image">
+      
        <div className="Main-image">
   <img src="/Mycommunity-image.png" alt="MyCommunity" />
 </div>
