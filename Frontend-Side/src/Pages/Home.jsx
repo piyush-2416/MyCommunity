@@ -90,8 +90,8 @@ div.Main-image img {
 /* Laptop */
 @media (min-width: 1024px) {
   div.Main-image {
-    max-width: 960px;
-    padding: 24px 24px 0;
+    max-width: 120%;
+    padding: 20px 24px 0;
   }
 }
 
