@@ -280,9 +280,9 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Top navbar */}
-    <div
-  className="navbar bg-base-100 min-h-[4.25rem] px-3 shadow-sm md:min-h-24 md:px-6"
+   {/* Top navbar */}
+<div
+  className="navbar bg-base-100 min-h-[4.25rem] px-3 shadow-sm md:min-h-20 md:px-6 lg:min-h-[4.5rem]"
   style={{ backgroundColor: "mediumseagreen" }}
 >
   <div className="navbar-start">
@@ -297,7 +297,7 @@ function Navbar() {
         width="80"
         height="80"
         decoding="async"
-        className="aspect-square h-12 w-12 shrink-0 rounded-full border-2 border-white bg-white object-contain p-1 shadow-md transition-transform duration-200 hover:scale-105 sm:h-14 sm:w-14 sm:border-4 md:h-[4.5rem] md:w-[4.5rem] lg:h-20 lg:w-20"
+        className="aspect-square h-12 w-12 shrink-0 rounded-full border-2 border-white bg-white object-contain p-1 shadow-md transition-transform duration-200 hover:scale-105 sm:h-14 sm:w-14 sm:border-4 md:h-16 md:w-16 lg:h-14 lg:w-14 lg:border-2"
       />
     </label>
   </div>
