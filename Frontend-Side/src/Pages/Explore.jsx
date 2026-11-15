@@ -11,14 +11,14 @@ const CATS = ["All", "Residential", "Events", "Volunteering", "Services"];
 
 // img me apni real photo ka URL daal sakte ho, abhi placeholder photos hain
 const DATA = [
-  { id: 1, name: "Green Society", cat: "Residential", desc: "Eco-friendly living, gardening and waste-free drives.", members: 1200, rating: 4.8, tag: "Environment", img: "https://picsum.photos/seed/cm1/600/400" },
-  { id: 2, name: "Health & Wellness", cat: "Services", desc: "Free checkups, yoga mornings and fitness groups.", members: 856, rating: 4.7, tag: "Health", img: "https://picsum.photos/seed/cm2/600/400" },
-  { id: 3, name: "Cultural Club", cat: "Events", desc: "Festivals, music nights and art exhibitions.", members: 432, rating: 4.9, tag: "Art & Culture", img: "https://picsum.photos/seed/cm3/600/400" },
-  { id: 4, name: "Volunteer Hub", cat: "Volunteering", desc: "Join drives for cleanliness, food and education.", members: 310, rating: 4.6, tag: "Social", img: "https://picsum.photos/seed/cm4/600/400" },
-  { id: 5, name: "Royal Residency", cat: "Residential", desc: "Neighbourhood updates, security and notices.", members: 640, rating: 4.5, tag: "Society", img: "https://picsum.photos/seed/cm5/600/400" },
-  { id: 6, name: "Weekend Fun Events", cat: "Events", desc: "Sports days, picnics and kids' activities.", members: 390, rating: 4.7, tag: "Fun", img: "https://picsum.photos/seed/cm6/600/400" },
-  { id: 7, name: "Helping Hands", cat: "Volunteering", desc: "Support for elders and families in need.", members: 275, rating: 4.9, tag: "Care", img: "https://picsum.photos/seed/cm7/600/400" },
-  { id: 8, name: "Fix-It Services", cat: "Services", desc: "Trusted plumbers, electricians and repairs nearby.", members: 520, rating: 4.4, tag: "Local", img: "https://picsum.photos/seed/cm8/600/400" },
+  { id: 1, name: "Green Society", cat: "Residential", desc: "Eco-friendly living, gardening and waste-free drives.", members: 1200, rating: 4.8, tag: "Environment", img: "https://homesight.org/wp-content/uploads/2024/11/The-Importance-of-Sustainable-Urban-Housing-Design-1.png" },
+  { id: 2, name: "Health & Wellness", cat: "Services", desc: "Free checkups, yoga mornings and fitness groups.", members: 856, rating: 4.7, tag: "Health", img: "https://homesight.org/wp-content/uploads/2025/11/diyseo-image-1763329668-1024x683.png" },
+  { id: 3, name: "Cultural Club", cat: "Events", desc: "Festivals, music nights and art exhibitions.", members: 432, rating: 4.9, tag: "Art & Culture", img: "https://thumbs.dreamstime.com/b/people-celebrating-ganesh-chaturthi-festival-dancing-traditional-indian-attire-outdoors-community-gathering-culture-449998929.jpg" },
+  { id: 4, name: "Volunteer Hub", cat: "Volunteering", desc: "Join drives for cleanliness, food and education.", members: 310, rating: 4.6, tag: "Social", img: "https://media.gettyimages.com/id/2046206585/photo/young-adult-female-volunteer-smiles-proudly-while-helping-at-the-event.jpg?s=612x612&w=gi&k=20&c=8X9wes4mzrH3tjOHUBbg4em0eBdla76wyFQ8S2FNpM8=" },
+  { id: 5, name: "Royal Residency", cat: "Residential", desc: "Neighbourhood updates, security and notices.", members: 640, rating: 4.5, tag: "Society", img: "https://i.pinimg.com/736x/d2/56/01/d25601d5f6434fdd0b51d6d45acefc1e.jpg" },
+  { id: 6, name: "Weekend Fun Events", cat: "Events", desc: "Sports days, picnics and kids' activities.", members: 390, rating: 4.7, tag: "Fun", img: "https://tse1.mm.bing.net/th/id/OIP.w7KeY5yhmAq3iHGX4ejCrAAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" },
+  { id: 7, name: "Helping Hands", cat: "Volunteering", desc: "Support for elders and families in need.", members: 275, rating: 4.9, tag: "Care", img: "https://www.icsss.org/wp-content/plugins/phastpress/phast.php/c2VydmljZT1pbWFnZXMmc3JjPWh0dHBzJTNBJTJGJTJGd3d3Lmljc3NzLm9yZyUyRndwLWNvbnRlbnQlMkZ1cGxvYWRzJTJGMjAyNCUyRjA2JTJGMDcyNzA4ZTUtMGE1ZC00OTA0LThmMDktNDNiZWE1ZDI3NjkwLmpwZyZjYWNoZU1hcmtlcj0xNzE4NzAzNjA5LTM5MzE5NCZ0b2tlbj0wYzg2YTNlNTRjMmZkMzQy.q.jpg" },
+  { id: 8, name: "Fix-It Services", cat: "Services", desc: "Trusted plumbers, electricians and repairs nearby.", members: 520, rating: 4.4, tag: "Local", img: "https://cdn.completeaitraining.com/news_images/ai-in-bangladesh-s-government-2025-strategies-practical-use-cases-and-what-s-nex_2025-09-06.jpg" },
 ];
 
 const CSS = `
