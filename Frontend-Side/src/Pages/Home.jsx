@@ -62,11 +62,12 @@ import { ImageOff } from 'lucide-react';
 ];
 
 const mainImageCss = `
-/* Mobile: poori width */
+const mainImageCss = `
+/* Mobile */
 div.Main-image {
   width: 100%;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0;
   padding: 10px 10px 0;
   box-sizing: border-box;
 }
@@ -74,27 +75,21 @@ div.Main-image img {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 16px;
+  border-radius: 14px;
   object-fit: cover;
 }
 
 /* Tablet */
 @media (min-width: 768px) {
-  div.Main-image {
-    max-width: 820px;
-    padding: 18px 20px 0;
-  }
-  div.Main-image img { border-radius: 20px; }
+  div.Main-image { padding: 14px 16px 0; }
 }
 
-/* Laptop */
+/* Laptop: poori 100% width, halka radius */
 @media (min-width: 1024px) {
-  div.Main-image {
-    max-width: 120%;
-    padding: 20px 24px 0;
-  }
+  div.Main-image { padding: 0; }
+  div.Main-image img { border-radius: 12px; }
 }
-
+`;
 /* Bade monitor */
 @media (min-width: 1440px) {
   div.Main-image { max-width: 1100px; }
