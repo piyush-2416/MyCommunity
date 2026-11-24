@@ -264,7 +264,7 @@ function Home() {
 
         <img
           className="community-Trees"
-          src="https://img.freepik.com/premium-photo/people-planting-trees-city-park-garden_1106493-203555.jpg"
+          src="https://images.squarespace-cdn.com/content/v1/6366ee2084b1c1355a31b927/75fbe89a-3434-49fa-b992-0d717e4cc5cd/v2-f8g58-pidaa.jpg"
           alt="community trees"
           loading="lazy"
           decoding="async"
