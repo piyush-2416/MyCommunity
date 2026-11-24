@@ -101,7 +101,7 @@ function Home() {
         {/* LCP image: lazy mat lagana. width/height asli size se match karo */}
         <div className="Main-image">
           <img
-            src="/Mycommunity-image.webp"
+            src="/Mycommunity-image.png"
             alt="MyCommunity - Stronger Community, Better Tomorrow"
             width="1400"
             height="716"
@@ -264,7 +264,7 @@ function Home() {
 
         <img
           className="community-Trees"
-          src="/last-community-image.webp"
+          src="/last-community-image.png"
           alt="community trees"
           loading="lazy"
           decoding="async"
